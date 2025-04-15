@@ -1,18 +1,20 @@
 using System;
 
-public class Camionette : Vehicule
-{
-    private string usage;
-
-    public Camionette(string immatriculation, string couleur,string marque,string usage):base(immatriculation, couleur, marque)
+namespace transconnect {
+    public class Camionette : Vehicule
     {
-        this.usage = usage;
-    }
+        private string usage;
 
-    public string Usage { get { return usage; } set { usage = value; } }
+        public Camionette(string immatriculation, string couleur,string marque,string usage):base(immatriculation, couleur, marque)
+        {
+            this.usage = usage;
+        }
 
-    public override string ToString()
-    {
-        return base.ToString()+ " | Usage : " + usage;
+        public string Usage { get { return usage; } set { usage = value; } }
+
+        public override string ToString()
+        {
+            return base.ToString()+ " | Usage : " + usage;
+        }
     }
 }

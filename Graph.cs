@@ -1,6 +1,6 @@
 namespace transconnect {
     public class Graph<T> where T : notnull {
-        List<Noeud<T>> verticies;
+        public List<Noeud<T>> verticies { get; }
 
         public Graph(List<Noeud<T>> verticies) {
             this.verticies = verticies;
@@ -116,7 +116,7 @@ namespace transconnect {
         {
             string str = "";
             foreach (Noeud<T> vert in verticies) {
-                str += vert.ToString();
+                str += vert.ToString()+"\n";
             }
             return str;
         }
