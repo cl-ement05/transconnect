@@ -10,7 +10,7 @@ namespace transconnect {
             this.nb_passagers = nb_passagers;
         }
 
-        public Nb_passager {get {return nb_passagers;} set {nb_passagers = value;} }
+        public int Nb_passager { get {return nb_passagers;} set {nb_passagers = value;} }
 
         public override string ToString ()
         {

@@ -1,5 +1,5 @@
 namespace transconnect {
-    public class Graph<T> where T : notnull {
+    public class Graph<T> where T : notnull, IComparable<T> {
         public List<Noeud<T>> verticies { get; }
 
         public Graph(List<Noeud<T>> verticies) {
@@ -37,51 +37,56 @@ namespace transconnect {
             }
         }
 
-        public List<Noeud<T>> DFS(Noeud<T> start, Stack<Noeud<T>>? visiting = null, bool searchCycles = false) {
-            if (visiting == null) {
-                var visited2 = new Stack<Noeud<T>>();
-                visited2.Push(start);
-                return DFS(start, visited2, searchCycles);
-            } else {
-                if (searchCycles) {
-                    Stack<Noeud<T>> dfs = new Stack<Noeud<T>>();
-                    HashSet<Noeud<T>> visited = new HashSet<Noeud<T>>();
-                    dfs.Push(start);
-                    bool found = false;
-                    while (dfs.Count > 0 || !found) {
-                        Noeud<T> cur = dfs.Peek();
-                        bool successor = false;
-                        foreach(Lien<T> lien in cur.edges) {
-                            if (dfs.Contains(lien.dest)) {
-                                dfs.Push(lien.dest);
-                                break;
-                            }
-                            if (!dfs.Contains(lien.dest) && !visited.Contains(lien.dest)) {
-                                dfs.Push(lien.dest);
-                                successor = true;
-                                break;
-                            }
-                        }
-                        if (!successor && !found) {
-                            visited.Add(dfs.Pop());
-                        }
+        private List<Noeud<T>> DFSSearchCycle(Noeud<T> start) {
+            Stack<Noeud<T>> dfs = new Stack<Noeud<T>>();
+            HashSet<Noeud<T>> visited = new HashSet<Noeud<T>>();
+            dfs.Push(start);
+            bool found = false;
+            while (dfs.Count > 0 && !found) {
+                Noeud<T> cur = dfs.Peek();
+                bool successor = false;
+                foreach(Lien<T> lien in cur.edges) {
+                    if (dfs.Contains(lien.dest) && dfs.Count > 2) { // > 2 because otherwise round-trip returned
+                        dfs.Push(lien.dest);
+                        found = true;
+                        break;
                     }
-                    if (found) {
-                        return dfs.ToList();
-                    } else {
-                        return [];
+                    if (!dfs.Contains(lien.dest) && !visited.Contains(lien.dest)) {
+                        dfs.Push(lien.dest);
+                        successor = true;
+                        break;
                     }
-                } else {
-                    List<Noeud<T>> dfs = new List<Noeud<T>>();
-                    foreach(Lien<T> lien in start.edges) {
-                        if (!visiting.Contains(lien.dest)) {
-                            visiting.Push(lien.dest);
-                            dfs.Concat(DFS(lien.dest, visiting));
-                        }
-                    }
-                    visiting.Pop();
-                    return (List<Noeud<T>>)dfs.Concat([start]);
                 }
+                if (!successor && !found) {
+                    visited.Add(dfs.Pop());
+                }
+            }
+            if (found) {
+                return dfs.ToList();
+            } else {
+                return [];
+            }
+        }
+
+        public List<Noeud<T>> DFS(Noeud<T> start, Stack<Noeud<T>>? visiting = null, HashSet<Noeud<T>>? visited = null) {
+            if (visiting is null) {
+                var visiting2 = new Stack<Noeud<T>>();
+                visiting2.Push(start);
+                return DFS(start, visiting2, visited);
+            } else if (visited is null) {
+                var visited2 = new HashSet<Noeud<T>>();
+                return DFS(start, visiting, visited2);
+            } else {
+                List<Noeud<T>> dfs = new List<Noeud<T>>();
+                foreach(Lien<T> lien in start.edges) {
+                    if (!visiting.Contains(lien.dest) && !visited.Contains(lien.dest)) {
+                        visiting.Push(lien.dest);
+                        dfs = dfs.Concat(DFS(lien.dest, visiting, visited)).ToList();
+                    }
+                }
+                Noeud<T> justVisited = visiting.Pop();
+                visited.Add(justVisited);
+                return dfs.Concat([justVisited]).ToList();
             }
         }
 
@@ -105,11 +110,13 @@ namespace transconnect {
         }
 
         public bool isConnected() {
-            return DFS(verticies.First()).SequenceEqual(verticies);
+            List<Noeud<T>> a = DFS(verticies.First());
+            a.Sort();
+            return a.SequenceEqual(verticies);
         }
 
         public List<Noeud<T>> hasCycle() {
-            return DFS(verticies.First(), searchCycles: true);
+            return DFSSearchCycle(verticies.First());
         }
 
         public override string ToString()

@@ -11,7 +11,7 @@
                 {0, 6, 0, 0, 0, 0} };
             char[] labels = {'A', 'B', 'C', 'D', 'E', 'F'};
             Graph<char> graph = new Graph<char>(data, labels);
-            graph.BFS(graph.verticies.First()).ForEach(Console.WriteLine);
+            Console.WriteLine(graph.isConnected());
         }
     }
 }
