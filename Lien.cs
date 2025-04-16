@@ -1,5 +1,5 @@
 namespace transconnect {
-    public class Lien<T> : IEquatable<Lien<T>> where T : notnull, IComparable<T> {
+    public class Lien<T> : IEquatable<Lien<T>> where T : notnull, IComparable<T>, IEquatable<T> {
         public Noeud<T> origin { get; }
         public Noeud<T> dest { get; }
         public int weight { get; }

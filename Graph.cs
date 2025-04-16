@@ -1,5 +1,5 @@
 namespace transconnect {
-    public class Graph<T> where T : notnull, IComparable<T> {
+    public class Graph<T> where T : notnull, IComparable<T>, IEquatable<T> {
         public List<Noeud<T>> verticies { get; }
 
         public Graph(List<Noeud<T>> verticies) {
@@ -10,8 +10,12 @@ namespace transconnect {
             verticies = new List<Noeud<T>>();
             if (matrix.GetLength(0) != labels.Length) {
                 throw new ArgumentException("Numbers of labels must match nbr of rows in matrix");
-            } else if (matrix.GetLength(0) != matrix.GetLength(1)) {
+            }
+            if (matrix.GetLength(0) != matrix.GetLength(1)) {
                 throw new ArgumentException("Must be a square matrix");
+            }
+            if (labels.Distinct().Count() != labels.Count()) {
+                throw new ArgumentException("Graph cannot contain 2 verticies with the same label");
             }
             for(int i = 0; i < matrix.GetLength(0); i++) {
                 verticies.Add(new Noeud<T>(labels[i]));
@@ -24,6 +28,9 @@ namespace transconnect {
         }
 
         public Graph(Dictionary<T, List<(T data, int weight)>> adjacencyList) {
+            if (adjacencyList.Keys.Distinct().Count() != adjacencyList.Keys.Count()) {
+                throw new ArgumentException("Graph cannot contain 2 verticies with the same label");
+            }
             verticies = new List<Noeud<T>>();
             foreach(T val in adjacencyList.Keys) {
                 verticies.Add(new Noeud<T>(val));
@@ -107,6 +114,14 @@ namespace transconnect {
                 }
             }
             return result;
+        }
+
+        [STAThread]
+        public void drawGraph() {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            Application.Run(new GraphDrawer<T>(this));
         }
 
         public bool isConnected() {

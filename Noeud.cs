@@ -1,5 +1,5 @@
 namespace transconnect {
-    public class Noeud<T> : IComparable<Noeud<T>>, IEquatable<Noeud<T>> where T : notnull, IComparable<T> {
+    public class Noeud<T> : IComparable<Noeud<T>>, IEquatable<Noeud<T>> where T : notnull, IComparable<T>, IEquatable<T> {
         public T data { get; }
         public HashSet<Lien<T>> edges { get; }
 

@@ -22,6 +22,8 @@
             };
             Graph<char> graph2 = new Graph<char>(dict);
             graph2.DFS(graph.verticies.First()).ForEach(Console.WriteLine);
+
+            graph.drawGraph();
         }
     }
 }
