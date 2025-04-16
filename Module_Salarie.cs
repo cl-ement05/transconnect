@@ -16,23 +16,45 @@ namespace transconnect
             get { return salaries; }
             set { salaries = value; }
         }
-
+        /// <summary>
+        /// Ajoute un salarié à l'entreprise et l'ajoute à l'organigramme.
+        /// </summary>
+        /// <param name="salarie"></param>
+        /// <param name="manager"></param>
         public void EmbaucherSalarie(Salarie salarie, Salarie? manager = null)
         {
             salaries.Add(salarie);
             organigramme.AjouterSalarie(salarie, manager);
         }
-
+        /// <summary>
+        /// Supprime un salarié de l'entreprise et de l'organigramme.
+        /// </summary>
+        /// <param name="salarie"></param>
         public void LicencierSalarie(Salarie salarie)
         {
             salaries.Remove(salarie);
             organigramme.SupprimerSalarie(salarie);
         }
-
+        /// <summary>
+        /// Recherche un salarié par son numéro de sécurité sociale.
+        /// </summary>
+        /// <param name="numeroSS"></param>
+        /// <returns></returns>
         public Salarie? RechercherSalarieParNumeroSS(string numeroSS)
         {
             return salaries.Find(s => s.NumeroSS == numeroSS);
         }
+        /// <summary>
+        /// Modifie les informations d'un salarié par son numéro de sécurité sociale.
+        /// </summary>
+        /// <param name="numeroSS"></param>
+        /// <param name="nom"></param>
+        /// <param name="prenom"></param>
+        /// <param name="dateNaissance"></param>
+        /// <param name="adressePostale"></param>
+        /// <param name="email"></param>
+        /// <param name="telephone"></param>
+        /// <param name="salaire"></param>
 
         public void ModifierSalarieParNumeroSS(string numeroSS, string nom, string prenom, DateTime dateNaissance,
                                                string adressePostale, string email, string telephone, decimal salaire)
@@ -54,6 +76,11 @@ namespace transconnect
             }
         }
 
+
+        /// <summary>
+        /// Affiche la liste des salariés de l'entreprise.
+        /// </summary>
+
         public void AfficherSalaries()
         {
             Console.WriteLine("Liste des salariés :");
@@ -62,6 +89,10 @@ namespace transconnect
                 Console.WriteLine(salarie.ToString());
             }
         }
+
+        /// <summary>
+        /// Affiche les salariés par nom.
+        /// /// </summary>
 
         public void AfficherOrganigramme()
         {
@@ -97,6 +128,14 @@ namespace transconnect
 
         private Noeud? racine;
 
+        /// <summary>
+        /// Ajoute un salarié à l'organigramme.
+        /// Si le salarié a un manager, il est ajouté en tant que subordonné du manager.
+        /// Si le salarié n'a pas de manager, il est ajouté à la racine de l'organigramme.
+        /// </summary>
+        /// <param name="salarie"></param>
+        /// <param name="manager"></param>
+
         public void AjouterSalarie(Salarie salarie, Salarie? manager = null)
         {
             if (racine == null)
@@ -117,13 +156,19 @@ namespace transconnect
             }
         }
 
+        /// <summary>
+        /// Supprime un salarié de l'organigramme.
+        /// Si le salarié est la racine, l'organigramme devient vide.
+        /// </summary>
+        /// <param name="salarie"></param>
+
         public void SupprimerSalarie(Salarie salarie)
         {
             if (racine != null)
             {
                 if (racine.Salarie == salarie)
                 {
-                    racine = null; // Supprime la racine
+                    racine = null;
                 }
                 else
                 {
@@ -131,6 +176,11 @@ namespace transconnect
                 }
             }
         }
+
+
+        /// <summary>
+        /// Affiche l'organigramme de l'entreprise.
+        /// </summary>
 
         public void Afficher()
         {
@@ -143,6 +193,15 @@ namespace transconnect
                 Console.WriteLine("L'organigramme est vide.");
             }
         }
+
+
+        /// <summary>
+        /// Recherche un salarié dans l'organigramme.
+        /// Si le salarié est trouvé, retourne le noeud correspondant.
+        /// </summary>
+        /// <param name="noeud"></param>
+        /// <param name="salarie"></param>
+        /// <returns></returns>
 
         private Noeud? TrouverNoeud(Noeud noeud, Salarie salarie)
         {
@@ -163,6 +222,13 @@ namespace transconnect
             return null;
         }
 
+
+        /// <summary>
+        /// Supprime un salarié de l'organigramme.
+        /// </summary>
+        /// <param name="noeud"></param>
+        /// <param name="salarie"></param>
+
         private void SupprimerNoeud(Noeud noeud, Salarie salarie)
         {
             foreach (Noeud subordonne in noeud.Subordonnes.ToList())
@@ -178,6 +244,12 @@ namespace transconnect
                 }
             }
         }
+
+        /// <summary>
+        /// Affiche un salarié et ses subordonnés dans l'organigramme.
+        /// </summary>
+        /// <param name="noeud"></param>
+        /// <param name="niveau"></param>
 
         private void AfficherNoeud(Noeud noeud, int niveau)
         {
