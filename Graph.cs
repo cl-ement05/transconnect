@@ -130,6 +130,55 @@ namespace transconnect {
             return a.SequenceEqual(verticies);
         }
 
+        public (List<Noeud<T>>, int) Dijkstra(Noeud<T> start, Noeud<T> end) {
+            List<Noeud<T>> result = new List<Noeud<T>>();
+            HashSet<Noeud<T>> visited = new HashSet<Noeud<T>>();
+            Dictionary<Noeud<T>, Noeud<T>?> predicitions = new Dictionary<Noeud<T>, Noeud<T>?>();
+            Dictionary<Noeud<T>, int> distances = new Dictionary<Noeud<T>, int>();
+            
+            foreach (Noeud<T> noeud in verticies) {
+                if (noeud.Equals(start)) {
+                    predicitions[noeud] = start;
+                    distances[noeud] = 0;
+                } else {
+                    predicitions[noeud] = null;
+                    distances[noeud] = int.MaxValue;
+                }
+            }
+
+            while (!visited.Contains(end)) {
+                Noeud<T> minNoeud = distances.First((e) => !visited.Contains(e.Key)).Key;
+                int minDistance = distances[minNoeud];
+                foreach (Noeud<T> noeud in distances.Keys) {
+                    if (!visited.Contains(noeud)) {
+                        if (minDistance > distances[noeud]) {
+                            minDistance = distances[noeud];
+                            minNoeud = noeud;
+                        }
+                    }
+                }
+                visited.Add(minNoeud);
+                foreach(Lien<T> lien in minNoeud.edges) {
+                    if (!visited.Contains(lien.dest)) {
+                        if (minDistance + lien.weight < distances[lien.dest]) {
+                            distances[lien.dest] = minDistance + lien.weight;
+                            predicitions[lien.dest] = minNoeud;
+                        }
+                    }
+                }
+            }
+
+            Noeud<T> current = end;
+            while (current != start) {
+                result.Add(current);
+                current = predicitions[current]!;
+            }
+            result.Add(start);
+            result.Reverse();
+
+            return (result, distances[end]);
+        }
+
         public List<Noeud<T>> hasCycle() {
             return DFSSearchCycle(verticies.First());
         }
