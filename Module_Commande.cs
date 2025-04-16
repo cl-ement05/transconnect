@@ -13,11 +13,13 @@ namespace transconnect
             this.chauffeurs = chauffeurs;
         }
 
-        public void Creer_commande(Client client, string villeDepart, string villeArrivee, DateTime dateCommande, Chauffeur chauffeur, decimal tarifHoraire)
+        public void Creer_commande(Client client, string villeDepart, string villeArrivee, DateTime dateCommande, Chauffeur chauffeur, decimal tarifHoraire, Module_Vehicule vehicule)
         {
         // A ajouter : 
         // Graphe : calcul du trajet + calcul km parcoururus
         // Calcul prix de la commande : km parcourus + tarif horaire
+
+
 
             Client? clientExistant = clients.Find(c => c.NumeroSS == client.NumeroSS);
             if (clientExistant == null)
@@ -55,9 +57,11 @@ namespace transconnect
                 return;
             }
 
+            Vehicule vehiculeSelectionne = vehicule.SelectionnerVehicule();
+
             int numeroCommande = commandes.Count + 1;
 
-            /*Commande commande = new Commande(numeroCommande, client, villeDepart, villeArrivee, prixCommande, chauffeurSelectionne, dateCommande);
+            /*Commande commande = new Commande(numeroCommande, clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
             /commandes.Add(commande);
             client.HistoriqueCommandes.Add(commande);
             chauffeurSelectionne.LivraisonsEffectuees.Add(commande);
