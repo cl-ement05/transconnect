@@ -22,9 +22,8 @@
             Graph<char> graph2 = new Graph<char>(dict);
             Noeud<char> noeud = graph2.verticies.Find((e) => e.data == 'A')!;
             Noeud<char> noeud2 = graph2.verticies.Find((e) => e.data == 'E')!;
-            (List<Noeud<char>>, int) var = graph2.Dijkstra(noeud, noeud2);
-            Console.WriteLine(var.Item2);
-            var.Item1.ForEach(Console.WriteLine);
+            int var = graph2.FloydWarshall(noeud, noeud2);
+            Console.WriteLine(var);
         }
     }
 }
