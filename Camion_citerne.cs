@@ -10,10 +10,7 @@ namespace transconnect {
             this.typeProduit = typeProduit;
         }
 
-        public double VolumeCuve {
-            get { return volumeCuve; }
-            set { volumeCuve = value; }
-        }
+        public double VolumeCuve {get { return volumeCuve; }set { volumeCuve = value; }}
 
         public string TypeProduit {get { return typeProduit; }set { typeProduit = value; }}
 

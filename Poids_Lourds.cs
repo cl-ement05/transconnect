@@ -10,11 +10,7 @@ namespace transconnect
             this.capaciteChargement = capaciteChargement;
         }
 
-        public double CapaciteChargement
-        {
-            get { return capaciteChargement; }
-            set { capaciteChargement = value; }
-        }
+        public double CapaciteChargement {get { return capaciteChargement; }set { capaciteChargement = value; }}
 
         public override string ToString()
         {
