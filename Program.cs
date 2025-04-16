@@ -13,8 +13,8 @@
             Graph<char> graph = new Graph<char>(data, labels);
             Dictionary<char, List<(char data, int weight)>> dict = new Dictionary<char, List<(char data, int weight)>>() {
                 {'A', [('B', 3), ('C', 5)]},
-                {'B', [('A', 3), ('C', 1), ('F', 6)]},
-                {'C', [('A', 5), ('B', 1), ('D', 2)]},
+                {'B', [('A', 3), ('C', 7), ('F', 6)]},
+                {'C', [('A', 5), ('B', 7), ('D', 2)]},
                 {'D', [('C', 2), ('E', 3)]},
                 {'E', [('D', 3)]},
                 {'F', [('B', 6)]},

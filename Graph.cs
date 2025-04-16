@@ -131,6 +131,9 @@ namespace transconnect {
         }
 
         public (List<Noeud<T>>, int) Dijkstra(Noeud<T> start, Noeud<T> end) {
+            if (verticies.Any((e) => e.edges.Any((edge) => edge.weight < 0))) {
+                throw new InvalidOperationException("Cannot use Dijkstra if weights are < 0");
+            }
             List<Noeud<T>> result = new List<Noeud<T>>();
             HashSet<Noeud<T>> visited = new HashSet<Noeud<T>>();
             Dictionary<Noeud<T>, Noeud<T>?> predicitions = new Dictionary<Noeud<T>, Noeud<T>?>();
@@ -177,6 +180,50 @@ namespace transconnect {
             result.Reverse();
 
             return (result, distances[end]);
+        }
+
+        public (List<Noeud<T>>, int) BellmanFord(Noeud<T> start, Noeud<T> end) {
+            List<Noeud<T>> result = new List<Noeud<T>>();
+            Dictionary<Noeud<T>, Noeud<T>?> predicitions = new Dictionary<Noeud<T>, Noeud<T>?>();
+            Dictionary<Noeud<T>, int> distances = new Dictionary<Noeud<T>, int>();
+            
+            foreach (Noeud<T> noeud in verticies) {
+                if (noeud.Equals(start)) {
+                    predicitions[noeud] = start;
+                    distances[noeud] = 0;
+                } else {
+                    predicitions[noeud] = null;
+                    distances[noeud] = int.MaxValue;
+                }
+            }
+
+            HashSet<Lien<T>> liens = new HashSet<Lien<T>>();
+            for (int i = 0; i < verticies.Count()-1; i++) {
+                verticies.ForEach((noeud) => liens = liens.Union(noeud.edges).ToHashSet());
+                foreach (Lien<T> lien in liens) {
+                    if (distances[lien.origin] + lien.weight < distances[lien.dest]) {
+                        distances[lien.dest] = distances[lien.origin] + lien.weight;
+                        predicitions[lien.dest] = lien.origin;
+                    }
+                }
+            }
+            //checking for negative cycle
+            foreach (Lien<T> lien in liens) {
+                if (distances[lien.origin] + lien.weight < distances[lien.dest]) {
+                    throw new InvalidOperationException("Cannot use Bellman-Ford when there is a negative cycle");
+                }
+            }
+
+            Noeud<T> current = end;
+            while (current != start) {
+                result.Add(current);
+                current = predicitions[current]!;
+            }
+            result.Add(start);
+            result.Reverse();
+
+            return (result, distances[end]);
+
         }
 
         public List<Noeud<T>> hasCycle() {
