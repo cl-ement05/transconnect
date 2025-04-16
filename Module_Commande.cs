@@ -158,5 +158,32 @@ namespace transconnect
                 }
             }
         }
+
+        public void AfficherPrixCommande(int numeroCommande) //A ajouter surement graphe
+        {
+            Commande? commande=commandes.Find(c =>c.NumeroCommande == numeroCommande);
+            if(commande == null)
+            {
+                Console.WriteLine("Commande introuvable");
+                return;
+            }
+
+            //Ajouter calcul du prix
+
+            //Console.WriteLine("Le prix de la commande " + numeroCommande + " est de " + prix + " €.");
+        }
+
+        /*public void AfficherPlanDeRoute (int numerocommande, graphe)
+        {
+            Commande? commande=commandes.Find(c =>c.NumeroCommande == numeroCommande);
+            if(commande == null)
+            {
+                Console.WriteLine("Commande introuvable");
+                return;
+            }
+
+            // Determiner le chemin le plus court
+               
+        }*/
     }
 }
