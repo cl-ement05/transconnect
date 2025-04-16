@@ -6,18 +6,16 @@ namespace transconnect
         private Client client;
         private string villeDepart;
         private string villeArrivee;
-        private decimal prix;
         private Chauffeur chauffeur;
         private DateTime dateCommande;
 
         public Commande(int numeroCommande, Client client, string villeDepart, string villeArrivee,
-                        decimal prix, Chauffeur chauffeur, DateTime dateCommande)
+                         Chauffeur chauffeur, DateTime dateCommande)
         {
             this.numeroCommande = numeroCommande;
             this.client = client;
             this.villeDepart = villeDepart;
             this.villeArrivee = villeArrivee;
-            this.prix = prix;
             this.chauffeur = chauffeur;
             this.dateCommande = dateCommande;
         }
@@ -46,11 +44,7 @@ namespace transconnect
             set { villeArrivee = value; }
         }
 
-        public decimal Prix
-        {
-            get { return prix; }
-            set { prix = value; }
-        }
+
 
         public Chauffeur Chauffeur
         {
@@ -66,7 +60,7 @@ namespace transconnect
 
         public override string ToString()
         {
-            return $"[Commande #{NumeroCommande}] {VilleDepart} → {VilleArrivee} | {Prix} € | {DateCommande.ToShortDateString()}";
+            return $"[Commande #{NumeroCommande}] {VilleDepart} → {VilleArrivee}  | {DateCommande.ToShortDateString()}";
         }
     }
 }
