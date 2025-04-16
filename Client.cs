@@ -17,19 +17,11 @@ namespace transconnect
             set { historiqueCommandes = value; }
         }
 
-        public decimal MontantTotalAchats()
-        {
-            decimal total = 0;
-            foreach (Commande commande in historiqueCommandes)
-            {
-                total += commande.Prix;
-            }
-            return total;
-        }
+        
 
         public override string ToString()
         {
-            return base.ToString() + "Montant total des achats : " + MontantTotalAchats() + " €";
+            return base.ToString();
         
         }
 }
