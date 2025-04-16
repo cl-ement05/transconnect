@@ -1,23 +1,24 @@
-using System;
-
-namespace transconnect {
-    public class Poids_Lourds : Vehicule
+namespace transconnect
+{
+    public abstract class PoidsLourds : Vehicule
     {
-        private double volume;
-        private string matiere_transportee;
+        private double capaciteChargement;
 
-        public Poids_Lourds(string immatriculation, string couleur,string marque,double volume, string matiere_transportee):base(immatriculation, couleur, marque)
+        public PoidsLourds(string immatriculation, string couleur, string marque, double capaciteChargement)
+            : base(immatriculation, couleur, marque)
         {
-            this.volume = volume;
-            this.matiere_transportee=matiere_transportee;
+            this.capaciteChargement = capaciteChargement;
         }
 
-        public double Volume{ get { return volume; } set { volume=value; }}
-        public string Matiere_transportee{ get {return matiere_transportee;} set { matiere_transportee=value; }}
+        public double CapaciteChargement
+        {
+            get { return capaciteChargement; }
+            set { capaciteChargement = value; }
+        }
 
         public override string ToString()
         {
-            return base.ToString() + " | Volume : " + volume + " | Matière transportée : " + matiere_transportee;
+            return base.ToString() + " | Capacité de chargement : " + capaciteChargement;
         }
     }
 }
