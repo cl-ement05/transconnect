@@ -1,5 +1,5 @@
 namespace transconnect {
-    public abstract class CamionFrigorifique : Vehicule {
+    public class CamionFrigorifique : Vehicule {
         private double capaciteIsotherme;
         private int nombreGroupesElectrogene;
 

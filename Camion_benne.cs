@@ -1,5 +1,5 @@
 namespace transconnect {
-    public abstract class CamionBenne : Vehicule {
+    public class CamionBenne : Vehicule {
         private int nombreBennes;
         private bool grueAuxiliaire;
 

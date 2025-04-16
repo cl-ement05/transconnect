@@ -1,5 +1,5 @@
 namespace transconnect {
-    public abstract class CamionCiterne : Vehicule {
+    public class CamionCiterne : Vehicule {
         private double volumeCuve;
         private string typeProduit;
 
