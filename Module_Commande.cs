@@ -17,12 +17,6 @@ namespace transconnect
 
         public void Creer_commande(Client client, string villeDepart, string villeArrivee, DateTime dateCommande, Chauffeur chauffeur, decimal tarifHoraire, Module_Vehicule vehicule)
         {
-        // A ajouter : 
-        // Graphe : calcul du trajet + calcul km parcoururus
-        // Calcul prix de la commande : km parcourus + tarif horaire
-
-
-
             Client? clientExistant = clients.Find(c => c.NumeroSS == client.NumeroSS);
             if (clientExistant == null)
             {
@@ -137,11 +131,25 @@ namespace transconnect
                         trajetModifie = true;
                     }
 
-                    /*if(trajetModifie)
+                    if(trajetModifie)
                     {
-                        // Redéterminer le nouveau parcours
-                        // Recalculer le prix
-                    }*/
+                        Noeud<string>? nd = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleDepart);
+                        Noeud<string>? na = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleArrivee);
+                        if (nd != null && na != null)
+                        {
+                            List<Noeud<string>> nouveauChemin;
+                            int nouvelleDistance;
+                            (nouveauChemin, nouvelleDistance) = graphe.Dijkstra(nd, na);
+                            Console.WriteLine("Nouvelle distance : " + nouvelleDistance + " km");
+
+                            double nouveauPrix = nouvelleDistance * commande.Chauffeur.TarifHoraire;
+                            Console.WriteLine("Nouveau prix : " + nouveauPrix + " €");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Impossible de recalculer, ville inconnue.");
+                        }
+                    }
                 }
                 else if(choix=="2")
                 {   
@@ -166,6 +174,17 @@ namespace transconnect
                                     commande.Chauffeur.LivraisonsEffectuees.Remove(commande);
                                     commande.Chauffeur=nvchauffeur;
                                     nvchauffeur.LivraisonsEffectuees.Add(commande);
+
+                                    Noeud<string>? nd = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleDepart);
+                                    Noeud<string>? na = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleArrivee);
+                                    if (nd != null && na != null)
+                                    {
+                                        List<Noeud<string>> cheminRecalcule;
+                                        int distanceRecalculee;
+                                        (cheminRecalcule, distanceRecalculee) = graphe.Dijkstra(nd, na);
+                                        double nouveauPrix = distanceRecalculee * nvchauffeur.TarifHoraire;
+                                        Console.WriteLine("Nouveau prix après changement de chauffeur : " + nouveauPrix + " €");
+                                    }
                                 }
                             }
                         }
@@ -188,7 +207,7 @@ namespace transconnect
             }
         }
 
-        public void AfficherPrixCommande(int numeroCommande) //A ajouter surement graphe
+        public void AfficherPrixCommande(int numeroCommande)
         {
             Commande? commande=commandes.Find(c =>c.NumeroCommande == numeroCommande);
             if(commande == null)
@@ -197,22 +216,52 @@ namespace transconnect
                 return;
             }
 
-            //Ajouter calcul du prix
-
-            //Console.WriteLine("Le prix de la commande " + numeroCommande + " est de " + prix + " €.");
+            Noeud<string>? nd = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleDepart);
+            Noeud<string>? na = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleArrivee);
+            if (nd != null && na != null)
+            {
+                List<Noeud<string>> chemin;
+                int distance;
+                (chemin, distance) = graphe.Dijkstra(nd, na);
+                double prix = distance * commande.Chauffeur.TarifHoraire;
+                Console.WriteLine("Le prix de la commande " + numeroCommande + " est de " + prix + " €.");
+            }
+            else
+            {
+                Console.WriteLine("Impossible de calculer le prix : ville inconnue.");
+            }
         }
 
-        /*public void AfficherPlanDeRoute (int numerocommande, graphe)
+        public void AfficherPlanDeRoute (int numerocommande)
         {
-            Commande? commande=commandes.Find(c =>c.NumeroCommande == numeroCommande);
+            Commande? commande = commandes.Find(c => c.NumeroCommande == numerocommande);
             if(commande == null)
             {
                 Console.WriteLine("Commande introuvable");
                 return;
             }
 
-            // Determiner le chemin le plus court
-               
-        }*/
+            Noeud<string>? noeudDepart = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleDepart);
+            Noeud<string>? noeudArrivee = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleArrivee);
+
+            if (noeudDepart == null || noeudArrivee == null)
+            {
+                Console.WriteLine("Impossible d'afficher le plan de route : ville inconnue.");
+                return;
+            } 
+
+            List<Noeud<string>> chemin;
+            int a;
+            (chemin, a)=graphe.Dijkstra(noeudDepart,noeudArrivee);
+
+            Console.WriteLine("Plant de route de " + commande.VilleDepart+ " à "+commande.VilleArrivee);   
+            foreach(Noeud<string> noeud in chemin)
+            {
+                Console.WriteLine(" - "+noeud.data);
+            }
+
+            GraphDrawer<string> drawer = new GraphDrawer<string>(graphe);
+            Application.Run(drawer);
+        }
     }
 }
