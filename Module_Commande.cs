@@ -5,12 +5,14 @@ namespace transconnect
         private List<Commande> commandes ;
         private List<Client> clients;
         private List<Chauffeur> chauffeurs;
+        private Graph<string> graphe;
 
-        public Module_Commande(List<Client> clients, List<Chauffeur> chauffeurs)
+        public Module_Commande(List<Client> clients, List<Chauffeur> chauffeurs,Graph<string> graphe)
         {
             this.commandes = new List<Commande>();
             this.clients = clients;
             this.chauffeurs = chauffeurs;
+            this.graphe = graphe;
         }
 
         public void Creer_commande(Client client, string villeDepart, string villeArrivee, DateTime dateCommande, Chauffeur chauffeur, decimal tarifHoraire, Module_Vehicule vehicule)
@@ -59,16 +61,39 @@ namespace transconnect
 
             Vehicule vehiculeSelectionne = vehicule.SelectionnerVehicule();
 
+            Noeud<string>? noeudDepart=graphe.verticies.FirstOrDefault(n => n.data == villeDepart);
+            if(noeudDepart == null)
+            {
+                Console.WriteLine("Ville de départ inconnue : "+ villeDepart);
+                return;
+            }
+
+            Noeud<string>? noeudArrivee=graphe.verticies.FirstOrDefault(n=>n.data==villeArrivee);
+            if(noeudArrivee==null)
+            {
+                Console.WriteLine("Ville d'arrivée inconnue : "+ villeArrivee);
+                return;
+            }
+
+            List<Noeud<string>> chemin;
+            int distancekm;
+            (chemin,distancekm)=graphe.Dijkstra(noeudDepart,noeudArrivee);
+
+            Console.WriteLine("Distance estimée : "+distancekm+" km");
+
+            double prix=distancekm * chauffeurSelectionne.TarifHoraire;
+            Console.WriteLine("Prix de la commande : "+prix+" €");
+
+
             int numeroCommande = commandes.Count + 1;
 
-            /*Commande commande = new Commande(numeroCommande, clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
-            /commandes.Add(commande);
+            Commande commande = new Commande(numeroCommande, clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
+            commandes.Add(commande);
             client.HistoriqueCommandes.Add(commande);
             chauffeurSelectionne.LivraisonsEffectuees.Add(commande);
 
             Console.WriteLine("Commande créée avec succès :");
             Console.WriteLine(commande.ToString());
-            */
         
         }
 

@@ -3,7 +3,7 @@ namespace transconnect
     public class Chauffeur : Salarie
     {
         private List<Commande> livraisonsEffectuees;
-        private decimal tarifHoraire;
+        private double tarifHoraire;
 
         public Chauffeur(string numeroSS, string nom, string prenom, DateTime dateNaissance,
                          string adressePostale, string email, string telephone,
@@ -20,13 +20,13 @@ namespace transconnect
             set { livraisonsEffectuees = value; }
         }
 
-        public decimal TarifHoraire
+        public double TarifHoraire
         {
             get { return tarifHoraire; }
             private set { tarifHoraire = value; }
         }
 
-        private decimal CalculerTarifHoraire()
+        private double CalculerTarifHoraire()
         {
             int anciennete = DateTime.Now.Year - DateEntree.Year;
             if (DateTime.Now < DateEntree.AddYears(anciennete)) anciennete--;
