@@ -100,6 +100,13 @@ namespace transconnect
             organigramme.Afficher();
         }
     }
+    /// <summary>
+    /// Classe représentant l'organigramme de l'entreprise.
+    /// Il est constitué de noeuds représentant les salariés et leurs subordonnés.
+    /// Chaque salarié peut avoir un manager, et l'organigramme est structuré de manière hiérarchique.
+    /// La racine de l'organigramme est le salarié sans manager.
+    /// Les subordonnés sont ajoutés en tant que noeuds enfants du manager dans l'organigramme.
+    /// </summary>
 
     public class Organigramme
     {
@@ -186,7 +193,7 @@ namespace transconnect
         {
             if (racine != null)
             {
-                AfficherNoeud(racine, 0);
+                AfficherNoeud(racine, "", true);
             }
             else
             {
@@ -249,14 +256,32 @@ namespace transconnect
         /// Affiche un salarié et ses subordonnés dans l'organigramme.
         /// </summary>
         /// <param name="noeud"></param>
-        /// <param name="niveau"></param>
+        /// <param name="prefix"></param>
+        /// <param name="isLast"></param>
 
-        private void AfficherNoeud(Noeud noeud, int niveau)
+        private void AfficherNoeud(Noeud noeud, string prefix, bool isLast)
         {
-            Console.WriteLine(new string('-', niveau * 2) + noeud.Salarie.Nom + " (" + noeud.Salarie.Poste + ")");
-            foreach (Noeud subordonne in noeud.Subordonnes)
+            // Changer la couleur en fonction du poste
+            if (noeud.Salarie.Poste == "Directeur")
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            else if (noeud.Salarie.Poste == "Chef d'Équipe")
+                Console.ForegroundColor = ConsoleColor.Cyan;
+            else
+                Console.ForegroundColor = ConsoleColor.White;
+
+            // Afficher le salarié avec un préfixe visuel
+            Console.WriteLine(prefix + (isLast ? "└── " : "├── ") + noeud.Salarie.ToString());
+
+            // Réinitialiser la couleur
+            Console.ResetColor();
+
+            // Préparer le préfixe pour les subordonnés
+            prefix += isLast ? "    " : "│   ";
+
+            // Parcourir les subordonnés
+            for (int i = 0; i < noeud.Subordonnes.Count; i++)
             {
-                AfficherNoeud(subordonne, niveau + 1);
+                AfficherNoeud(noeud.Subordonnes[i], prefix, i == noeud.Subordonnes.Count - 1);
             }
         }
     }

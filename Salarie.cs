@@ -36,7 +36,7 @@ namespace transconnect
 
         public override string ToString()
         {
-            return base.ToString() + $"Poste : {poste}, Salaire : {salaire} €, Date d'entrée : {dateEntree.ToShortDateString()}\n";
+            return base.ToString() + $"Poste : {poste}, Salaire : {salaire} euros, Date d'entrée : {dateEntree.ToShortDateString()}\n";
         }
     }
 }

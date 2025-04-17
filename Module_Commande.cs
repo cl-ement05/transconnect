@@ -7,6 +7,12 @@ namespace transconnect
         private List<Chauffeur> chauffeurs;
         private Graph<string> graphe;
 
+        public List<Commande> Commandes
+        {
+            get { return commandes; }
+            set { commandes = value; }
+        }
+
         public Module_Commande(List<Client> clients, List<Chauffeur> chauffeurs,Graph<string> graphe)
         {
             this.commandes = new List<Commande>();
@@ -229,6 +235,32 @@ namespace transconnect
             else
             {
                 Console.WriteLine("Impossible de calculer le prix : ville inconnue.");
+            }
+        }
+
+        public double CalculerPrixCommande(int numeroCommande)
+        {
+            Commande? commande=commandes.Find(c =>c.NumeroCommande == numeroCommande);
+            if(commande == null)
+            {
+                Console.WriteLine("Commande introuvable");
+                return 0;
+            }
+
+            Noeud<string>? nd = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleDepart);
+            Noeud<string>? na = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleArrivee);
+            if (nd != null && na != null)
+            {
+                List<Noeud<string>> chemin;
+                int distance;
+                (chemin, distance) = graphe.Dijkstra(nd, na);
+                double prix = distance * commande.Chauffeur.TarifHoraire;
+                return prix;
+            }
+            else
+            {
+                Console.WriteLine("Impossible de calculer le prix : ville inconnue.");
+                return 0;
             }
         }
 

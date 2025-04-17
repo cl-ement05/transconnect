@@ -17,6 +17,20 @@ namespace transconnect
             set { historiqueCommandes = value; }
         }
 
+        public override bool Equals(object? obj)
+        {
+            if (obj is Client otherClient)
+            {
+                return this.NumeroSS == otherClient.NumeroSS;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return NumeroSS.GetHashCode();
+        }
+
         
 
         public override string ToString()
