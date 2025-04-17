@@ -139,6 +139,37 @@ namespace transconnect {
             moduleClient.AfficherParMontantCommande(moduleCommande);
         }
 
+        public static void test_Module_Statut_Vehicule()
+        {
+            // Création de véhicules
+            Vehicule vehicule1 = new Voiture("AB-123-CD", "Rouge", "Renault",3);
+            Vehicule vehicule2 = new Camionette("EF-456-GH", "Bleu", "Mercedes","Transport de marchandises");
+            Vehicule vehicule3 = new CamionFrigorifique("IJ-789-KL", "Noir", "Peugeot", 1000, 100);
+
+            // Création du module des statuts des véhicules
+            Module_Statut_Vehicule moduleStatutVehicule = new Module_Statut_Vehicule();
+
+            // Ajouter des véhicules avec leurs statuts
+            moduleStatutVehicule.AjouterVehicule(vehicule1, "Disponible");
+            moduleStatutVehicule.AjouterVehicule(vehicule2, "En maintenance");
+            moduleStatutVehicule.AjouterVehicule(vehicule3, "En cours d'utilisation");
+
+            // Afficher les statuts des véhicules
+            Console.WriteLine("Statuts des véhicules après ajout :");
+            moduleStatutVehicule.AfficherStatuts();
+
+            // Mettre à jour le statut d'un véhicule
+            moduleStatutVehicule.MettreAJourStatut(vehicule1, "En cours d'utilisation");
+            moduleStatutVehicule.MettreAJourStatut(vehicule2, "Disponible");
+
+            // Obtenir le statut d'un véhicule
+            Console.WriteLine($"\nStatut du véhicule {vehicule1.Immatriculation} : {moduleStatutVehicule.ObtenirStatut(vehicule1)}");
+            Console.WriteLine($"Statut du véhicule {vehicule2.Immatriculation} : {moduleStatutVehicule.ObtenirStatut(vehicule2)}");
+
+            // Afficher les statuts après mise à jour
+            Console.WriteLine("\nStatuts des véhicules après mise à jour :");
+            moduleStatutVehicule.AfficherStatuts();
+        }
         public static void clement()
         {
                 int[,] data = { 
@@ -169,6 +200,7 @@ namespace transconnect {
             
             //test_Module_Salarie();
             //test_Module_Client();
+            //test_Module_Statut_Vehicule();
         }
     }
 }
