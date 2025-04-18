@@ -25,29 +25,22 @@ namespace transconnect
             }
             Console.WriteLine("Saisir le véhicule voulu");
             int index=Convert.ToInt32(Console.ReadLine());
+            while (index < 0 || index >= flotte.Count()) {
+                Console.WriteLine("Saisie invalide, veuillez réessayer : ");
+                index=Convert.ToInt32(Console.ReadLine());
+            }
             return flotte[index];
         }
 
         public void AjouterVehicule(Vehicule v)
         {
-            if(v!= null)
-            {
-                flotte.Add(v);
-            }
+            flotte.Add(v);
         }
 
         public void RetirerVehicule(Vehicule v)
         {
-            foreach (Vehicule ve in flotte)
-            {
-                if(ve.Immatriculation==v.Immatriculation)
-                {
-                    flotte.Remove(v);
-                }
-                else
-                {
-                    Console.WriteLine("Aucun véhicule trouvé");
-                }
+            if (!flotte.Remove(v)) {
+                Console.WriteLine("Aucun véhicule trouvé");
             }
         }
     }

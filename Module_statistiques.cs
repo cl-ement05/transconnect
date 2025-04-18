@@ -78,7 +78,7 @@ namespace transconnect
         public void AffichercommandesPourClient(string numeroSS)
         {
             Client? client=clients.Find(c=> c.NumeroSS==numeroSS);
-            if(client==null)
+            if(client is null)
             {
                 Console.WriteLine("Client introuvable");
                 return;

@@ -1,5 +1,3 @@
-using System.Net.WebSockets;
-
 namespace transconnect
 {
     public class Module_Client
@@ -16,6 +14,7 @@ namespace transconnect
             get { return clients; }
             set { clients = value; }
         }
+
         /// <summary>
         /// Ajoute un client à la liste des clients.
         /// </summary>
@@ -37,14 +36,14 @@ namespace transconnect
         }
 
         /// <summary>
-        /// Recherche un client par son numéro de sécurité sociale. Si n'a pas accès à non numero ss
+        /// Recherche un client dans la liste (deux clients sont égaux s'ils ont le meme numéro de sécu)
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
 
         public Client? RechercherClient(Client client)
         {
-            return clients.Find(c => c.NumeroSS == client.NumeroSS);
+            return clients.Find(c => c.Equals(client));
         }
 
         /// <summary>
@@ -73,7 +72,7 @@ namespace transconnect
                                       string adressePostale, string email, string telephone)
         {
             Client? client = RechercherClientNSS(numeroSS);
-            if (client != null)
+            if (client is not null)
             {
                 client.Nom = nom;
                 client.Prenom = prenom;
@@ -102,7 +101,7 @@ namespace transconnect
         }
 
         /// <summary>
-        /// Affiche les clients par nom.
+        /// Affiche la liste des clients triés sur le nom.
         /// </summary>
 
         public void AfficherParNom()
@@ -116,7 +115,7 @@ namespace transconnect
 
 
         /// <summary>
-        /// Affiche les clients par ville.
+        /// Affiche les clients résidant dans la ville passée en paramètre
         /// </summary>
         /// <param name="ville"></param>
 
@@ -130,7 +129,7 @@ namespace transconnect
         }
 
         /// <summary>
-        /// Affiche les clients par montant de commande.
+        /// Affiche les clients triés par ordre décroissant de montant de commande.
         /// </summary>
         public void AfficherParMontantCommande(Module_Commande moduleCommande)  
         {

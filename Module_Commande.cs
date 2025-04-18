@@ -21,10 +21,10 @@ namespace transconnect
             this.graphe = graphe;
         }
 
-        public void Creer_commande(Client client, string villeDepart, string villeArrivee, DateTime dateCommande, Chauffeur chauffeur, decimal tarifHoraire, Module_Vehicule vehicule)
+        public void Creer_commande(Client client, string villeDepart, string villeArrivee, DateTime dateCommande, Module_Vehicule vehicule)
         {
             Client? clientExistant = clients.Find(c => c.NumeroSS == client.NumeroSS);
-            if (clientExistant == null)
+            if (clientExistant is null)
             {
                 Console.WriteLine("Client non trouvé. Veuillez saisir les informations du nouveau client.");
                 Console.Write("Nom : ");
@@ -53,7 +53,7 @@ namespace transconnect
             }
 
             Chauffeur? chauffeurSelectionne = chauffeurs.Find(ch => ch.EstDisponible(dateCommande));
-            if(chauffeurSelectionne == null)
+            if(chauffeurSelectionne is null)
             {
                 Console.WriteLine("Aucun chaufeur n'est disponible à la date demandée : "+ dateCommande);
                 return;
@@ -62,14 +62,14 @@ namespace transconnect
             Vehicule vehiculeSelectionne = vehicule.SelectionnerVehicule();
 
             Noeud<string>? noeudDepart=graphe.verticies.FirstOrDefault(n => n.data == villeDepart);
-            if(noeudDepart == null)
+            if(noeudDepart is null)
             {
                 Console.WriteLine("Ville de départ inconnue : "+ villeDepart);
                 return;
             }
 
             Noeud<string>? noeudArrivee=graphe.verticies.FirstOrDefault(n=>n.data==villeArrivee);
-            if(noeudArrivee==null)
+            if(noeudArrivee is null)
             {
                 Console.WriteLine("Ville d'arrivée inconnue : "+ villeArrivee);
                 return;
@@ -100,13 +100,14 @@ namespace transconnect
         public void Modifier_commande(int numeroCommande)
         {
             Commande? commande=commandes.Find(c => c.NumeroCommande==numeroCommande);
-            if(commande == null)
+            if(commande is null)
             {
                 Console.WriteLine("Commande introuvable");
                 return;
             }
 
-            while (true)
+            bool continueA = true;
+            while (continueA)
             {
                 Console.WriteLine("\nCommande actuelle :");
                 Console.WriteLine(commande.ToString());
@@ -141,7 +142,7 @@ namespace transconnect
                     {
                         Noeud<string>? nd = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleDepart);
                         Noeud<string>? na = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleArrivee);
-                        if (nd != null && na != null)
+                        if (nd is not null && na is not null)
                         {
                             List<Noeud<string>> nouveauChemin;
                             int nouvelleDistance;
@@ -170,7 +171,7 @@ namespace transconnect
                             {
                                 Console.WriteLine("Le chauffeur actuel n'est pas disponible à cette date");
                                 Chauffeur? nvchauffeur=chauffeurs.Find(ch => ch.EstDisponible(nvdate));
-                                if(nvchauffeur==null)
+                                if(nvchauffeur is null)
                                 {
                                     Console.WriteLine("Aucun chauffeur n'est disponible, la date ne sera pas modifié");
                                 }
@@ -180,10 +181,11 @@ namespace transconnect
                                     commande.Chauffeur.LivraisonsEffectuees.Remove(commande);
                                     commande.Chauffeur=nvchauffeur;
                                     nvchauffeur.LivraisonsEffectuees.Add(commande);
+                                    commande.DateCommande=nvdate;
 
                                     Noeud<string>? nd = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleDepart);
                                     Noeud<string>? na = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleArrivee);
-                                    if (nd != null && na != null)
+                                    if (nd is not null && na is not null)
                                     {
                                         List<Noeud<string>> cheminRecalcule;
                                         int distanceRecalculee;
@@ -192,11 +194,9 @@ namespace transconnect
                                         Console.WriteLine("Nouveau prix après changement de chauffeur : " + nouveauPrix + " €");
                                     }
                                 }
+                            } else {
+                                commande.DateCommande=nvdate;
                             }
-                        }
-                        else
-                        {
-                            commande.DateCommande=nvdate;
                         }
                     }
                 }
@@ -204,7 +204,7 @@ namespace transconnect
                 else if (choix == "3")
                 {
                     Console.WriteLine("Modification terminée.");
-                    break;
+                    continueA = false;
                 }
                 else
                 {
@@ -213,35 +213,10 @@ namespace transconnect
             }
         }
 
-        public void AfficherPrixCommande(int numeroCommande)
-        {
-            Commande? commande=commandes.Find(c =>c.NumeroCommande == numeroCommande);
-            if(commande == null)
-            {
-                Console.WriteLine("Commande introuvable");
-                return;
-            }
-
-            Noeud<string>? nd = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleDepart);
-            Noeud<string>? na = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleArrivee);
-            if (nd != null && na != null)
-            {
-                List<Noeud<string>> chemin;
-                int distance;
-                (chemin, distance) = graphe.Dijkstra(nd, na);
-                double prix = distance * commande.Chauffeur.TarifHoraire;
-                Console.WriteLine("Le prix de la commande " + numeroCommande + " est de " + prix + " €.");
-            }
-            else
-            {
-                Console.WriteLine("Impossible de calculer le prix : ville inconnue.");
-            }
-        }
-
         public double CalculerPrixCommande(int numeroCommande)
         {
             Commande? commande=commandes.Find(c =>c.NumeroCommande == numeroCommande);
-            if(commande == null)
+            if(commande is null)
             {
                 Console.WriteLine("Commande introuvable");
                 return 0;
@@ -249,7 +224,7 @@ namespace transconnect
 
             Noeud<string>? nd = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleDepart);
             Noeud<string>? na = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleArrivee);
-            if (nd != null && na != null)
+            if (nd is not null && na is not null)
             {
                 List<Noeud<string>> chemin;
                 int distance;
@@ -267,7 +242,7 @@ namespace transconnect
         public void AfficherPlanDeRoute (int numerocommande)
         {
             Commande? commande = commandes.Find(c => c.NumeroCommande == numerocommande);
-            if(commande == null)
+            if(commande is null)
             {
                 Console.WriteLine("Commande introuvable");
                 return;
@@ -276,7 +251,7 @@ namespace transconnect
             Noeud<string>? noeudDepart = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleDepart);
             Noeud<string>? noeudArrivee = graphe.verticies.FirstOrDefault(n => n.data == commande.VilleArrivee);
 
-            if (noeudDepart == null || noeudArrivee == null)
+            if (noeudDepart is null || noeudArrivee is null)
             {
                 Console.WriteLine("Impossible d'afficher le plan de route : ville inconnue.");
                 return;
@@ -292,8 +267,7 @@ namespace transconnect
                 Console.WriteLine(" - "+noeud.data);
             }
 
-            GraphDrawer<string> drawer = new GraphDrawer<string>(graphe);
-            Application.Run(drawer);
+            graphe.drawGraph();
         }
     }
 }

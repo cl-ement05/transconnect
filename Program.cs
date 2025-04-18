@@ -36,7 +36,7 @@ namespace transconnect {
             // Rechercher un salarié par son numéro de sécurité sociale
             Console.WriteLine("\nRecherche d'un salarié par numéro de sécurité sociale :");
             Salarie? salarieRecherche = moduleSalarie.RechercherSalarieParNumeroSS("987654321");
-            if (salarieRecherche != null)
+            if (salarieRecherche is not null)
             {
                 Console.WriteLine($"Salarié trouvé : {salarieRecherche.ToString()}");
             }
@@ -98,7 +98,7 @@ namespace transconnect {
             // Rechercher un client par numéro de sécurité sociale
             Console.WriteLine("\nRecherche d'un client par numéro de sécurité sociale :");
             Client? clientRecherche = moduleClient.RechercherClientNSS("987654321");
-            if (clientRecherche != null)
+            if (clientRecherche is not null)
             {
                 Console.WriteLine($"Client trouvé : {clientRecherche.ToString()}");
             }

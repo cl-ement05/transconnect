@@ -16,6 +16,7 @@ namespace transconnect
             get { return salaries; }
             set { salaries = value; }
         }
+
         /// <summary>
         /// Ajoute un salarié à l'entreprise et l'ajoute à l'organigramme.
         /// </summary>
@@ -26,6 +27,7 @@ namespace transconnect
             salaries.Add(salarie);
             organigramme.AjouterSalarie(salarie, manager);
         }
+
         /// <summary>
         /// Supprime un salarié de l'entreprise et de l'organigramme.
         /// </summary>
@@ -35,6 +37,7 @@ namespace transconnect
             salaries.Remove(salarie);
             organigramme.SupprimerSalarie(salarie);
         }
+
         /// <summary>
         /// Recherche un salarié par son numéro de sécurité sociale.
         /// </summary>
@@ -44,6 +47,7 @@ namespace transconnect
         {
             return salaries.Find(s => s.NumeroSS == numeroSS);
         }
+
         /// <summary>
         /// Modifie les informations d'un salarié par son numéro de sécurité sociale.
         /// </summary>
@@ -60,7 +64,7 @@ namespace transconnect
                                                string adressePostale, string email, string telephone, decimal salaire)
         {
             Salarie? salarie = RechercherSalarieParNumeroSS(numeroSS);
-            if (salarie != null)
+            if (salarie is not null)
             {
                 salarie.Nom = nom;
                 salarie.Prenom = prenom;
@@ -100,6 +104,7 @@ namespace transconnect
             organigramme.Afficher();
         }
     }
+    
     /// <summary>
     /// Classe représentant l'organigramme de l'entreprise.
     /// Il est constitué de noeuds représentant les salariés et leurs subordonnés.
@@ -145,14 +150,14 @@ namespace transconnect
 
         public void AjouterSalarie(Salarie salarie, Salarie? manager = null)
         {
-            if (racine == null)
+            if (racine is null)
             {
                 racine = new Noeud(salarie);
             }
-            else if (manager != null)
+            else if (manager is not null)
             {
                 Noeud? noeudManager = TrouverNoeud(racine, manager);
-                if (noeudManager != null)
+                if (noeudManager is not null)
                 {
                     noeudManager.Subordonnes.Add(new Noeud(salarie));
                 }
@@ -171,7 +176,7 @@ namespace transconnect
 
         public void SupprimerSalarie(Salarie salarie)
         {
-            if (racine != null)
+            if (racine is not null)
             {
                 if (racine.Salarie == salarie)
                 {
@@ -191,7 +196,7 @@ namespace transconnect
 
         public void Afficher()
         {
-            if (racine != null)
+            if (racine is not null)
             {
                 AfficherNoeud(racine, "", true);
             }
@@ -220,7 +225,7 @@ namespace transconnect
             foreach (Noeud subordonne in noeud.Subordonnes)
             {
                 Noeud? resultat = TrouverNoeud(subordonne, salarie);
-                if (resultat != null)
+                if (resultat is not null)
                 {
                     return resultat;
                 }
