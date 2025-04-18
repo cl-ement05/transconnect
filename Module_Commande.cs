@@ -21,6 +21,14 @@ namespace transconnect
             this.graphe = graphe;
         }
 
+        /// <summary>
+        /// Création d'une commande avec chauffeur, client, ville départ, ville d'arrivée, et un véhicule
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="villeDepart"></param>
+        /// <param name="villeArrivee"></param>
+        /// <param name="dateCommande"></param>
+        /// <param name="vehicule"></param>
         public void Creer_commande(Client client, string villeDepart, string villeArrivee, DateTime dateCommande, Module_Vehicule vehicule)
         {
             Client? clientExistant = clients.Find(c => c.NumeroSS == client.NumeroSS);
@@ -97,6 +105,10 @@ namespace transconnect
         
         }
 
+        /// <summary>
+        /// Modification possibles pour une commande : trajet (ville départ et/ou arrivée), date de commande 
+        /// </summary>
+        /// <param name="numeroCommande"></param>
         public void Modifier_commande(int numeroCommande)
         {
             Commande? commande=commandes.Find(c => c.NumeroCommande==numeroCommande);
@@ -213,6 +225,11 @@ namespace transconnect
             }
         }
 
+        /// <summary>
+        /// Avoir le prix de la commande
+        /// </summary>
+        /// <param name="numeroCommande"></param>
+        /// <returns></returns>
         public double CalculerPrixCommande(int numeroCommande)
         {
             Commande? commande=commandes.Find(c =>c.NumeroCommande == numeroCommande);
@@ -239,6 +256,10 @@ namespace transconnect
             }
         }
 
+        /// <summary>
+        /// Afficher le plan de route
+        /// </summary>
+        /// <param name="numerocommande"></param>
         public void AfficherPlanDeRoute (int numerocommande)
         {
             Commande? commande = commandes.Find(c => c.NumeroCommande == numerocommande);
