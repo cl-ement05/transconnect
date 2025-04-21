@@ -17,27 +17,6 @@ namespace transconnect
             set { historiqueCommandes = value; }
         }
 
-        public static Client CreateClient() {
-            Console.WriteLine("Veuillez saisir les informations du nouveau client.");
-            Console.Write("Nom : ");
-            string nom = Console.ReadLine()!;
-            Console.Write("Prénom : ");
-            string prenom = Console.ReadLine()!;
-            Console.Write("Date de naissance (JJ/MM/AAAA) : ");
-            DateTime dateNaissance = Convert.ToDateTime(Console.ReadLine()!);
-            Console.Write("Adresse postale : ");
-            string adressePostale = Console.ReadLine()!;
-            Console.Write("Email : ");
-            string email = Console.ReadLine()!;
-            Console.Write("Téléphone : ");
-            string telephone = Console.ReadLine()!;
-            Console.Write("Numéro de SS : ");
-            string numeroSS = Console.ReadLine()!;
-
-            Client nouveauClient = new Client(numeroSS, nom, prenom, dateNaissance, adressePostale, email, telephone);
-            return nouveauClient;
-        }
-
         /// <summary>
         /// Ajoute ce client à la liste des clients.
         /// </summary>
@@ -54,16 +33,6 @@ namespace transconnect
         public void SupprimerClient(DataState dataState)
         {
             dataState.clients.Remove(this);
-        }
-
-        /// <summary>
-        /// Recherche un client par son numéro de sécurité sociale.
-        /// </summary>
-        /// <param name="numeroSS"></param>
-        /// <returns></returns>
-        public static Client? RechercherClientNSS(DataState dataState, string numeroSS)
-        {
-            return dataState.clients.Find(c => c.NumeroSS == numeroSS);
         }
 
         /// <summary>
@@ -99,6 +68,17 @@ namespace transconnect
             }
         }
 
+        
+        /// <summary>
+        /// Recherche un client par son numéro de sécurité sociale.
+        /// </summary>
+        /// <param name="numeroSS"></param>
+        /// <returns></returns>
+        public static Client? RechercherClientNSS(DataState dataState, string numeroSS)
+        {
+            return dataState.clients.Find(c => c.NumeroSS == numeroSS);
+        }
+
         /// <summary>
         /// Affiche la liste des clients triés sur le nom.
         /// </summary>
@@ -123,6 +103,27 @@ namespace transconnect
             {
                 Console.WriteLine(c.ToString());
             }
+        }
+
+        public static Client CreateClient() {
+            Console.WriteLine("Veuillez saisir les informations du nouveau client.");
+            Console.Write("Nom : ");
+            string nom = Console.ReadLine()!;
+            Console.Write("Prénom : ");
+            string prenom = Console.ReadLine()!;
+            Console.Write("Date de naissance (JJ/MM/AAAA) : ");
+            DateTime dateNaissance = Convert.ToDateTime(Console.ReadLine()!);
+            Console.Write("Adresse postale : ");
+            string adressePostale = Console.ReadLine()!;
+            Console.Write("Email : ");
+            string email = Console.ReadLine()!;
+            Console.Write("Téléphone : ");
+            string telephone = Console.ReadLine()!;
+            Console.Write("Numéro de SS : ");
+            string numeroSS = Console.ReadLine()!;
+
+            Client nouveauClient = new Client(numeroSS, nom, prenom, dateNaissance, adressePostale, email, telephone);
+            return nouveauClient;
         }
 
         /// <summary>

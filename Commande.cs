@@ -31,67 +31,6 @@ namespace transconnect
         public DateTime DateCommande { get { return dateCommande; } set { dateCommande = value; } }
 
         /// <summary>
-        /// Création d'une commande avec chauffeur, client, ville départ, ville d'arrivée, et un véhicule
-        /// </summary>
-        /// <param name="client"></param>
-        /// <param name="villeDepart"></param>
-        /// <param name="villeArrivee"></param>
-        /// <param name="dateCommande"></param>
-        /// <param name="vehicule"></param>
-        public static Commande? Creer_commande(DataState dataState, string numeroSS, string villeDepart, string villeArrivee, DateTime dateCommande)
-        {
-            Client? clientExistant = Client.RechercherClientNSS(dataState, numeroSS);
-            if (clientExistant is null)
-            {
-                Console.WriteLine("Client non trouvé. Vous devez d'abord créer le client avant de pouvoir créer une commande");
-                return null;
-            }
-
-            Chauffeur? chauffeurSelectionne = dataState.chauffeurs.Find(ch => ch.EstDisponible(dateCommande));
-            if(chauffeurSelectionne is null)
-            {
-                Console.WriteLine("Aucun chaufeur n'est disponible à la date demandée : "+ dateCommande);
-                return null;
-            }
-
-            Vehicule vehiculeSelectionne = Vehicule.SelectionnerVehicule(dataState);
-
-            Noeud<string>? noeudDepart= dataState.graphe.verticies.FirstOrDefault(n => n.data == villeDepart);
-            if(noeudDepart is null)
-            {
-                Console.WriteLine("Ville de départ inconnue : "+ villeDepart);
-                return null;
-            }
-
-            Noeud<string>? noeudArrivee = dataState.graphe.verticies.FirstOrDefault(n=>n.data==villeArrivee);
-            if(noeudArrivee is null)
-            {
-                Console.WriteLine("Ville d'arrivée inconnue : "+ villeArrivee);
-                return null;
-            }
-
-            List<Noeud<string>> chemin;
-            int distancekm;
-            (chemin,distancekm) = dataState.graphe.Dijkstra(noeudDepart,noeudArrivee);
-
-            Console.WriteLine("Distance estimée : "+distancekm+" km");
-
-            double prix=distancekm * chauffeurSelectionne.TarifHoraire;
-            Console.WriteLine("Prix de la commande : "+prix+" €");
-
-
-            int numeroCommande = dataState.commandes.Count + 1;
-
-            Commande commande = new Commande(numeroCommande, clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
-            dataState.commandes.Add(commande);
-            clientExistant.HistoriqueCommandes.Add(commande);
-            chauffeurSelectionne.LivraisonsEffectuees.Add(commande);
-
-            Console.WriteLine("Commande créée avec succès :");
-            return commande;
-        }
-
-        /// <summary>
         /// Avoir le prix de la commande
         /// </summary>
         /// <param name="numeroCommande"></param>
@@ -254,6 +193,67 @@ namespace transconnect
             }
 
             dataState.graphe.drawGraph();
+        }
+
+        /// <summary>
+        /// Création d'une commande avec chauffeur, client, ville départ, ville d'arrivée, et un véhicule
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="villeDepart"></param>
+        /// <param name="villeArrivee"></param>
+        /// <param name="dateCommande"></param>
+        /// <param name="vehicule"></param>
+        public static Commande? Creer_commande(DataState dataState, string numeroSS, string villeDepart, string villeArrivee, DateTime dateCommande)
+        {
+            Client? clientExistant = Client.RechercherClientNSS(dataState, numeroSS);
+            if (clientExistant is null)
+            {
+                Console.WriteLine("Client non trouvé. Vous devez d'abord créer le client avant de pouvoir créer une commande");
+                return null;
+            }
+
+            Chauffeur? chauffeurSelectionne = dataState.chauffeurs.Find(ch => ch.EstDisponible(dateCommande));
+            if(chauffeurSelectionne is null)
+            {
+                Console.WriteLine("Aucun chaufeur n'est disponible à la date demandée : "+ dateCommande);
+                return null;
+            }
+
+            Vehicule vehiculeSelectionne = Vehicule.SelectionnerVehicule(dataState);
+
+            Noeud<string>? noeudDepart= dataState.graphe.verticies.FirstOrDefault(n => n.data == villeDepart);
+            if(noeudDepart is null)
+            {
+                Console.WriteLine("Ville de départ inconnue : "+ villeDepart);
+                return null;
+            }
+
+            Noeud<string>? noeudArrivee = dataState.graphe.verticies.FirstOrDefault(n=>n.data==villeArrivee);
+            if(noeudArrivee is null)
+            {
+                Console.WriteLine("Ville d'arrivée inconnue : "+ villeArrivee);
+                return null;
+            }
+
+            List<Noeud<string>> chemin;
+            int distancekm;
+            (chemin,distancekm) = dataState.graphe.Dijkstra(noeudDepart,noeudArrivee);
+
+            Console.WriteLine("Distance estimée : "+distancekm+" km");
+
+            double prix=distancekm * chauffeurSelectionne.TarifHoraire;
+            Console.WriteLine("Prix de la commande : "+prix+" €");
+
+
+            int numeroCommande = dataState.commandes.Count + 1;
+
+            Commande commande = new Commande(numeroCommande, clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
+            dataState.commandes.Add(commande);
+            clientExistant.HistoriqueCommandes.Add(commande);
+            chauffeurSelectionne.LivraisonsEffectuees.Add(commande);
+
+            Console.WriteLine("Commande créée avec succès :");
+            return commande;
         }
 
         public override string ToString()

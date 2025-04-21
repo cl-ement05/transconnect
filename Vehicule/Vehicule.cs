@@ -42,6 +42,20 @@ namespace transconnect {
             }
         }
 
+        public void AjouterVehicule(DataState dataState)
+        {
+            if (!dataState.flotte.Contains(this)) {
+                dataState.flotte.Add(this);
+            }
+        }
+
+        public void RetirerVehicule(DataState dataState)
+        {
+            if (!dataState.flotte.Remove(this)) {
+                Console.WriteLine("Véhicule absent de la flotte");
+            }
+        }
+
         public static Vehicule SelectionnerVehicule(DataState dataState)
         {
             Console.WriteLine("Liste des véhicules disponibles : ");
@@ -56,20 +70,6 @@ namespace transconnect {
                 index = Convert.ToInt32(Console.ReadLine());
             }
             return dataState.flotte[index];
-        }
-
-        public void AjouterVehicule(DataState dataState)
-        {
-            if (!dataState.flotte.Contains(this)) {
-                dataState.flotte.Add(this);
-            }
-        }
-
-        public void RetirerVehicule(DataState dataState)
-        {
-            if (!dataState.flotte.Remove(this)) {
-                Console.WriteLine("Véhicule absent de la flotte");
-            }
         }
 
         public override string ToString()
