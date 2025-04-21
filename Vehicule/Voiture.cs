@@ -5,7 +5,8 @@ namespace transconnect {
     {
         private int nb_passagers;
 
-        public Voiture (string immatriculation, string couleur,string marque,int nb_passagers):base(immatriculation, couleur, marque)
+        public Voiture (string immatriculation, string couleur, string marque, int nb_passagers, string statut = vehiculeDispo) 
+            : base(immatriculation, couleur, marque, statut)
         {
             this.nb_passagers = nb_passagers;
         }

@@ -3,8 +3,8 @@ namespace transconnect {
         private int nombreBennes;
         private bool grueAuxiliaire;
 
-        public CamionBenne(string immatriculation, string couleur, string marque, int nombreBennes, bool grueAuxiliaire)
-            : base(immatriculation, couleur, marque)
+        public CamionBenne(string immatriculation, string couleur, string marque, int nombreBennes, bool grueAuxiliaire, string statut = vehiculeDispo)
+            : base(immatriculation, couleur, marque, statut)
         {
             this.nombreBennes = nombreBennes;
             this.grueAuxiliaire = grueAuxiliaire;

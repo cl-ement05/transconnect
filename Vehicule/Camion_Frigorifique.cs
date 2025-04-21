@@ -3,8 +3,8 @@ namespace transconnect {
         private double capaciteIsotherme;
         private int nombreGroupesElectrogene;
 
-        public CamionFrigorifique(string immatriculation, string couleur, string marque, double capaciteIsotherme, int nombreGroupesElectrogene)
-            : base(immatriculation, couleur, marque)
+        public CamionFrigorifique(string immatriculation, string couleur, string marque, double capaciteIsotherme, int nombreGroupesElectrogene, string statut = vehiculeDispo)
+            : base(immatriculation, couleur, marque, statut)
         {
             this.capaciteIsotherme = capaciteIsotherme;
             this.nombreGroupesElectrogene = nombreGroupesElectrogene;

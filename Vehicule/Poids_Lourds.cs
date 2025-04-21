@@ -4,8 +4,8 @@ namespace transconnect
     {
         private double capaciteChargement;
 
-        public PoidsLourds(string immatriculation, string couleur, string marque, double capaciteChargement)
-            : base(immatriculation, couleur, marque)
+        public PoidsLourds(string immatriculation, string couleur, string marque, double capaciteChargement, string statut = vehiculeDispo)
+            : base(immatriculation, couleur, marque, statut)
         {
             this.capaciteChargement = capaciteChargement;
         }

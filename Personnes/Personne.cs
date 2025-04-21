@@ -1,13 +1,13 @@
 namespace transconnect{
     public abstract class Personne
     {
-        private string numeroSS; 
-        private string nom  ;
-        private string prenom  ;
-        private DateTime dateNaissance  ;
-        private string adressePostale  ;
-        private string email  ;
-        private string telephone  ;
+        protected readonly string numeroSS; 
+        protected string nom  ;
+        protected string prenom  ;
+        protected DateTime dateNaissance  ;
+        protected string adressePostale  ;
+        protected string email  ;
+        protected string telephone  ;
 
         public Personne(string numeroSS, string nom, string prenom, DateTime dateNaissance,
                     string adressePostale, string email, string telephone)
@@ -24,7 +24,6 @@ namespace transconnect{
         public string NumeroSS
         {
             get { return numeroSS; }
-            set { numeroSS = value; }
         }
         public string Nom
         {
@@ -57,12 +56,10 @@ namespace transconnect{
             set { telephone = value; }
         }
 
-    
-
+        
         public override string ToString()
         {
             return $"Nom : {nom}, Prénom : {prenom}, Date de naissance : {dateNaissance.ToShortDateString()}, Adresse : {adressePostale}, Email : {email}, Téléphone : {telephone}";
         }
     }
-
 }

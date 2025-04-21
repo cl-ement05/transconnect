@@ -23,5 +23,4 @@ namespace transconnect
             chauffeursSousResponsabilite.Add(chauffeur);
         }
     }
-
 }

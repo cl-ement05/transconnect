@@ -5,7 +5,8 @@ namespace transconnect {
     {
         private string usage;
 
-        public Camionette(string immatriculation, string couleur,string marque,string usage):base(immatriculation, couleur, marque)
+        public Camionette(string immatriculation, string couleur, string marque, string usage, string statut = vehiculeDispo)
+            : base(immatriculation, couleur, marque, statut)
         {
             this.usage = usage;
         }

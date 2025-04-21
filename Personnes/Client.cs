@@ -17,6 +17,139 @@ namespace transconnect
             set { historiqueCommandes = value; }
         }
 
+        public static Client CreateClient() {
+            Console.WriteLine("Veuillez saisir les informations du nouveau client.");
+            Console.Write("Nom : ");
+            string nom = Console.ReadLine()!;
+            Console.Write("Prénom : ");
+            string prenom = Console.ReadLine()!;
+            Console.Write("Date de naissance (JJ/MM/AAAA) : ");
+            DateTime dateNaissance = Convert.ToDateTime(Console.ReadLine()!);
+            Console.Write("Adresse postale : ");
+            string adressePostale = Console.ReadLine()!;
+            Console.Write("Email : ");
+            string email = Console.ReadLine()!;
+            Console.Write("Téléphone : ");
+            string telephone = Console.ReadLine()!;
+            Console.Write("Numéro de SS : ");
+            string numeroSS = Console.ReadLine()!;
+
+            Client nouveauClient = new Client(numeroSS, nom, prenom, dateNaissance, adressePostale, email, telephone);
+            return nouveauClient;
+        }
+
+        /// <summary>
+        /// Ajoute ce client à la liste des clients.
+        /// </summary>
+        /// <param name="client"></param>
+        public void AjouterClient(DataState dataState)
+        {
+            dataState.clients.Add(this);
+        }
+
+        /// <summary>
+        /// Supprime ce client de la liste des clients.
+        /// </summary>
+        /// <param name="client"></param>
+        public void SupprimerClient(DataState dataState)
+        {
+            dataState.clients.Remove(this);
+        }
+
+        /// <summary>
+        /// Recherche un client par son numéro de sécurité sociale.
+        /// </summary>
+        /// <param name="numeroSS"></param>
+        /// <returns></returns>
+        public static Client? RechercherClientNSS(DataState dataState, string numeroSS)
+        {
+            return dataState.clients.Find(c => c.NumeroSS == numeroSS);
+        }
+
+        /// <summary>
+        /// Modifie les informations de ce client
+        /// </summary>
+        /// <param name="numeroSS"></param>
+        /// <param name="nom"></param>
+        /// <param name="prenom"></param>
+        /// <param name="dateNaissance"></param>
+        /// <param name="adressePostale"></param>
+        /// <param name="email"></param>
+        /// <param name="telephone"></param>
+        public void ModifierClientParNumeroSS(string nom, string prenom, DateTime dateNaissance,
+                                      string adressePostale, string email, string telephone)
+        {
+            this.nom = nom;
+            this.prenom = prenom;
+            this.dateNaissance = dateNaissance;
+            this.adressePostale = adressePostale;
+            this.email = email;
+            this.telephone = telephone;
+        }
+
+        /// <summary>
+        /// Affiche la liste des clients.
+        /// </summary>
+        public static void AfficherClients(DataState dataState)
+        {
+            Console.WriteLine("Liste des clients :");
+            foreach (Client client in dataState.clients)
+            {
+                Console.WriteLine(client.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Affiche la liste des clients triés sur le nom.
+        /// </summary>
+        public static void AfficherParNom(DataState dataState)
+        {
+            Console.WriteLine("IClients par Nom :");
+            foreach (Client c in dataState.clients.OrderBy(c => c.Nom))
+            {
+                Console.WriteLine(c.ToString());
+            }
+        }
+
+
+        /// <summary>
+        /// Affiche les clients résidant dans la ville passée en paramètre
+        /// </summary>
+        /// <param name="ville"></param>
+        public static void AfficherParVille(DataState dataState, string ville)
+        {
+            Console.WriteLine($"Clients par Ville : {ville}");
+            foreach (Client c in dataState.clients.Where(c => c.AdressePostale.Contains(ville)))
+            {
+                Console.WriteLine(c.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Affiche les clients triés par ordre décroissant de montant de commande.
+        /// </summary>
+        public static void AfficherParMontantCommande(DataState dataState)  
+        {
+            Console.WriteLine("Clients par Montant de Commande :");
+            List<Client> clientsTrie = dataState.clients.OrderByDescending(c => 
+            {
+                double montantTotal = 0;
+                foreach (Commande commande in dataState.commandes)
+                {
+                    if (commande.Client.NumeroSS == c.NumeroSS)
+                    {
+                        montantTotal += commande.CalculerPrixCommande(dataState);
+                    }
+                }
+                return montantTotal;
+            }).ToList();
+
+            foreach (Client c in clientsTrie)
+            { 
+                Console.WriteLine(c.ToString());
+            }
+        }
+
         public override bool Equals(object? obj)
         {
             if (obj is Client otherClient)
@@ -31,13 +164,10 @@ namespace transconnect
             return NumeroSS.GetHashCode();
         }
 
-        
-
         public override string ToString()
         {
             return base.ToString();
         
         }
-}
-
+    }
 }

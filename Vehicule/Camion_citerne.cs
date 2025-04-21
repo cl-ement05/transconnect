@@ -3,8 +3,8 @@ namespace transconnect {
         private double volumeCuve;
         private string typeProduit;
 
-        public CamionCiterne(string immatriculation, string couleur, string marque, double volumeCuve, string typeProduit)
-            : base(immatriculation, couleur, marque)
+        public CamionCiterne(string immatriculation, string couleur, string marque, double volumeCuve, string typeProduit, string statut = vehiculeDispo)
+            : base(immatriculation, couleur, marque, statut)
         {
             this.volumeCuve = volumeCuve;
             this.typeProduit = typeProduit;

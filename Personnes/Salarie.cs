@@ -2,6 +2,9 @@ namespace transconnect
 {
     public abstract class Salarie : Personne
     {
+        public const string directeur = "Directeur";
+        public const string chefEquipe = "Chef d'équipe";
+
         private DateTime dateEntree;
         private string poste;
         private decimal salaire;
@@ -34,9 +37,84 @@ namespace transconnect
             set { salaire = value; }
         }
 
+        /// <summary>
+        /// Modifie les informations d'un salarié par son numéro de sécurité sociale.
+        /// </summary>
+        /// <param name="numeroSS"></param>
+        /// <param name="nom"></param>
+        /// <param name="prenom"></param>
+        /// <param name="dateNaissance"></param>
+        /// <param name="adressePostale"></param>
+        /// <param name="email"></param>
+        /// <param name="telephone"></param>
+        /// <param name="salaire"></param>
+        public void ModifierSalarieParNumeroSS(string nom, string prenom, DateTime dateNaissance,
+                                               string adressePostale, string email, string telephone, decimal salaire)
+        {
+            this.nom = nom;
+            this.prenom = prenom;
+            this.dateNaissance = dateNaissance;
+            this.adressePostale = adressePostale;
+            this.email = email;
+            this.telephone = telephone;
+            this.salaire = salaire;
+        }
+
+        /// <summary>
+        /// Recherche un salarié par son numéro de sécurité sociale.
+        /// </summary>
+        /// <param name="numeroSS"></param>
+        /// <returns></returns>
+        public static Salarie? RechercherSalarieParNumeroSS(DataState dataState, string numeroSS)
+        {
+            return dataState.salaries.Find(s => s.NumeroSS == numeroSS);
+        }
+
+        /// <summary>
+        /// Affiche la liste des salariés de l'entreprise.
+        /// </summary>
+
+        public static void AfficherSalaries(DataState dataState)
+        {
+            Console.WriteLine("Liste des salariés :");
+            foreach (Salarie salarie in dataState.salaries)
+            {
+                Console.WriteLine(salarie.ToString() +"\n");
+            }
+        }
+
+        /// <summary>
+        /// Ajoute ce salarié à l'entreprise et l'ajoute à l'organigramme.
+        /// </summary>
+        /// <param name="salarie"></param>
+        /// <param name="manager"></param>
+        public void Embaucher(DataState dataState, Salarie? manager = null)
+        {
+            if (manager != null && !dataState.salaries.Contains(manager)) {
+                throw new ArgumentException("Le manager doit faire partie de l'entreprise");
+            }
+            if (!dataState.salaries.Contains(this)) {
+                if (dataState.directeur != null) {
+                    dataState.directeur.AjouterSalarie(this);
+                }
+                dataState.salaries.Add(this);
+                dataState.organigramme.AjouterSalarie(this, manager);
+            }
+        }
+
+        /// <summary>
+        /// Supprime ce salarié de l'entreprise et de l'organigramme.
+        /// </summary>
+        /// <param name="salarie"></param>
+        public void Licencier(DataState dataState)
+        {
+            dataState.salaries.Remove(this);
+            dataState.organigramme.SupprimerSalarie(this);
+        }
+
         public override string ToString()
         {
-            return base.ToString() + $"Poste : {poste}, Salaire : {salaire} euros, Date d'entrée : {dateEntree.ToShortDateString()}\n";
+            return base.ToString() + $"Poste : {poste}, Salaire : {salaire} euros, Date d'entrée : {dateEntree.ToShortDateString()}";
         }
     }
 }

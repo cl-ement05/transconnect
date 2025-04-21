@@ -1,7 +1,7 @@
 namespace transconnect
 {
     public class Directeur : Salarie
-    {
+    {     
         private List<Salarie> salariesSousGestion;
 
         public List<Salarie> SalariesSousGestion
@@ -13,7 +13,7 @@ namespace transconnect
         public Directeur(string numeroSS, string nom, string prenom, DateTime dateNaissance,
                          string adressePostale, string email, string telephone,
                          DateTime dateEntree, decimal salaire)
-            : base(numeroSS, nom, prenom, dateNaissance, adressePostale, email, telephone, dateEntree, "Directeur", salaire)
+            : base(numeroSS, nom, prenom, dateNaissance, adressePostale, email, telephone, dateEntree, Salarie.directeur, salaire)
         {
             this.salariesSousGestion = new List<Salarie>();
         }
