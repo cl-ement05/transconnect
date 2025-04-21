@@ -249,7 +249,6 @@ namespace transconnect
 
             Commande commande = new Commande(numeroCommande, clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
             dataState.commandes.Add(commande);
-            clientExistant.HistoriqueCommandes.Add(commande);
             chauffeurSelectionne.LivraisonsEffectuees.Add(commande);
 
             Console.WriteLine("Commande créée avec succès :");

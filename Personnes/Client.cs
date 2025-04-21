@@ -2,19 +2,12 @@ namespace transconnect
 {
     public class Client : Personne
     {
-        private List<Commande> historiqueCommandes;
 
         public Client(string numeroSS, string nom, string prenom, DateTime dateNaissance,
                     string adressePostale, string email, string telephone)
                     : base(numeroSS, nom, prenom, dateNaissance, adressePostale, email, telephone)
         {
-            historiqueCommandes = new List<Commande>();
-        }
-
-        public List<Commande> HistoriqueCommandes
-        {
-            get { return historiqueCommandes; }
-            set { historiqueCommandes = value; }
+            
         }
 
         /// <summary>
@@ -54,6 +47,12 @@ namespace transconnect
             this.adressePostale = adressePostale;
             this.email = email;
             this.telephone = telephone;
+        }
+
+        public (string, string) TrajetFavori(DataState dataState) {
+            Dictionary<(string, string), int> trajets = new Dictionary<(string, string), int>();
+            dataState.commandes.ForEach(c => trajets[(c.VilleDepart, c.VilleArrivee)] += 1);
+            return trajets.OrderByDescending(c => c.Value).First().Key;
         }
 
         /// <summary>
