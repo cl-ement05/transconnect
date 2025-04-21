@@ -5,6 +5,10 @@ namespace transconnect {
     {
         Graph<T> graph;
         
+        /// <summary>
+        /// Natural constructor
+        /// </summary>
+        /// <param name="graph"></param>
         public GraphDrawer(Graph<T> graph)
         {
             InitializeComponent();
@@ -12,6 +16,11 @@ namespace transconnect {
             this.Paint += new PaintEventHandler(this.OnPaint);
         }
 
+        /// <summary>
+        /// Event handler which draws graph on screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnPaint(object? sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
