@@ -33,6 +33,23 @@ namespace transconnect
             return anciennete * 1;
         }
 
+        public int kmParcours(DataState dataState) {
+            int distance = 0;
+            foreach(Commande commande in livraisonsEffectuees) {
+                Noeud<string>? nd = dataState.graphe.verticies.FirstOrDefault(n => n.data == commande.VilleDepart);
+                Noeud<string>? na = dataState.graphe.verticies.FirstOrDefault(n => n.data == commande.VilleArrivee);
+                if (nd is not null && na is not null)
+                {
+                    List<Noeud<string>> chemin;
+                    int dst;
+                    (chemin, dst) = dataState.graphe.Dijkstra(nd, na);
+                    distance += dst;
+                }
+            }
+            
+            return distance;
+        }
+
         public bool EstDisponible(DateTime date)
         {
             foreach (Commande c in livraisonsEffectuees)
