@@ -42,14 +42,14 @@ namespace transconnect
             Statut = StatutReclamation.EnCours;
         }
 
-        public void MarquerCommeRésolue(string reponse)
+        public void MarquerCommeResolue(string reponse)
         {
             Statut = StatutReclamation.Résolue;
             Reponse = reponse;
             DateTraitement = DateTime.Now;
         }
 
-        public void MarquerCommeRejetée(string justification)
+        public void MarquerCommeRejetee(string justification)
         {
             Statut = StatutReclamation.Rejetée;
             Reponse = justification;
