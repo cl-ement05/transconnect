@@ -3,6 +3,15 @@ namespace transconnect {
         private double capaciteIsotherme;
         private int nombreGroupesElectrogene;
 
+        /// <summary>
+        /// Constructeur naturel
+        /// </summary>
+        /// <param name="immatriculation"></param>
+        /// <param name="couleur"></param>
+        /// <param name="marque"></param>
+        /// <param name="capaciteIsotherme"></param>
+        /// <param name="nombreGroupesElectrogene"></param>
+        /// <param name="statut"></param>
         public CamionFrigorifique(string immatriculation, string couleur, string marque, double capaciteIsotherme, int nombreGroupesElectrogene, string statut = vehiculeDispo)
             : base(immatriculation, couleur, marque, statut)
         {

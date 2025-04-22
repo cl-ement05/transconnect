@@ -3,6 +3,15 @@ namespace transconnect {
         private double volumeCuve;
         private string typeProduit;
 
+        /// <summary>
+        /// Constructeur naturel
+        /// </summary>
+        /// <param name="immatriculation"></param>
+        /// <param name="couleur"></param>
+        /// <param name="marque"></param>
+        /// <param name="volumeCuve"></param>
+        /// <param name="typeProduit"></param>
+        /// <param name="statut"></param>
         public CamionCiterne(string immatriculation, string couleur, string marque, double volumeCuve, string typeProduit, string statut = vehiculeDispo)
             : base(immatriculation, couleur, marque, statut)
         {

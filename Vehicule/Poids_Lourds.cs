@@ -4,6 +4,14 @@ namespace transconnect
     {
         private double capaciteChargement;
 
+        /// <summary>
+        /// Constructeur naturel
+        /// </summary>
+        /// <param name="immatriculation"></param>
+        /// <param name="couleur"></param>
+        /// <param name="marque"></param>
+        /// <param name="capaciteChargement"></param>
+        /// <param name="statut"></param>
         public PoidsLourds(string immatriculation, string couleur, string marque, double capaciteChargement, string statut = vehiculeDispo)
             : base(immatriculation, couleur, marque, statut)
         {

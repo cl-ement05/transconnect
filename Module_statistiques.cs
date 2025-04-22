@@ -9,6 +9,10 @@ namespace transconnect
             this.dataState = dataState;
         }
 
+
+        /// <summary>
+        /// Afficher le nombre de livraisons par chauffeur
+        /// </summary>
         public void AfficherLivraisonsParChauffeur()
         {
             Console.WriteLine("Nombre de livraison par chaffeur : ");
@@ -19,6 +23,11 @@ namespace transconnect
             }
         }
 
+        /// <summary>
+        /// Afficher les commandes sur une période donnée
+        /// </summary>
+        /// <param name="debut"></param>
+        /// <param name="fin"></param>
         public void AfficherCommandesParPeriode(DateTime debut, DateTime fin)
         {
             Console.WriteLine("Liste des commandes entre "+ debut.ToShortDateString() + " et " + fin.ToShortDateString());
@@ -31,7 +40,9 @@ namespace transconnect
             }
         }
 
-        // A compléter : Afficher la moyenne des prix des commandes
+        /// <summary>
+        /// Afficher la moyenne des prix des commandes
+        /// </summary>
         public void AfficherMoyennePrixCommandes()
         {
             if(dataState.commandes.Count == 0)
@@ -50,7 +61,9 @@ namespace transconnect
         }
 
 
-        // A compléter : Moyenne des comptes clients
+        /// <summary>
+        /// Afficher la moyenne des comptes clients
+        /// </summary>
         public void AfficherMoyenneComptesClients()
         {
             if(dataState.clients.Count == 0)
@@ -71,6 +84,10 @@ namespace transconnect
             
         }
 
+        /// <summary>
+        /// Afficher les commandes pour un client donné
+        /// </summary>
+        /// <param name="numeroSS"></param>
         public void AffichercommandesPourClient(string numeroSS)
         {
             Client? client = Client.RechercherClientNSS(dataState, numeroSS);

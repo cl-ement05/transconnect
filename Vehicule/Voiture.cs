@@ -5,6 +5,15 @@ namespace transconnect {
     {
         private int nb_passagers;
 
+
+        /// <summary>
+        /// Constructeur naturel
+        /// </summary>
+        /// <param name="immatriculation"></param>
+        /// <param name="couleur"></param>
+        /// <param name="marque"></param>
+        /// <param name="nb_passagers"></param>
+        /// <param name="statut"></param>
         public Voiture (string immatriculation, string couleur, string marque, int nb_passagers, string statut = vehiculeDispo) 
             : base(immatriculation, couleur, marque, statut)
         {

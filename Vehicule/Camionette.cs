@@ -5,6 +5,14 @@ namespace transconnect {
     {
         private string usage;
 
+        /// <summary>
+        /// Constructeur naturel
+        /// </summary>
+        /// <param name="immatriculation"></param>
+        /// <param name="couleur"></param>
+        /// <param name="marque"></param>
+        /// <param name="usage"></param>
+        /// <param name="statut"></param>
         public Camionette(string immatriculation, string couleur, string marque, string usage, string statut = vehiculeDispo)
             : base(immatriculation, couleur, marque, statut)
         {

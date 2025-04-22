@@ -3,6 +3,15 @@ namespace transconnect {
         private int nombreBennes;
         private bool grueAuxiliaire;
 
+        /// <summary>
+        /// Constructeur naturel
+        /// </summary>
+        /// <param name="immatriculation"></param>
+        /// <param name="couleur"></param>
+        /// <param name="marque"></param>
+        /// <param name="nombreBennes"></param>
+        /// <param name="grueAuxiliaire"></param>
+        /// <param name="statut"></param>
         public CamionBenne(string immatriculation, string couleur, string marque, int nombreBennes, bool grueAuxiliaire, string statut = vehiculeDispo)
             : base(immatriculation, couleur, marque, statut)
         {

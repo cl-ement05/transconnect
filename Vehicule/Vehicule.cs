@@ -12,6 +12,13 @@ namespace transconnect {
         protected string marque;
         protected string statut;
 
+        /// <summary>
+        /// Constructeur naturel
+        /// </summary>
+        /// <param name="immatriculation"></param>
+        /// <param name="couleur"></param>
+        /// <param name="marque"></param>
+        /// <param name="statut"></param>
         public Vehicule(string immatriculation, string couleur, string marque, string statut = vehiculeDispo)
         {
             this.immatriculation = immatriculation;
@@ -42,6 +49,10 @@ namespace transconnect {
             }
         }
 
+        /// <summary>
+        /// Ajout d'un véhicule
+        /// </summary>
+        /// <param name="dataState"></param>
         public void AjouterVehicule(DataState dataState)
         {
             if (!dataState.flotte.Contains(this)) {
@@ -49,6 +60,10 @@ namespace transconnect {
             }
         }
 
+        /// <summary>
+        /// Retirer un véhicule
+        /// </summary>
+        /// <param name="dataState"></param>
         public void RetirerVehicule(DataState dataState)
         {
             if (!dataState.flotte.Remove(this)) {
@@ -56,6 +71,11 @@ namespace transconnect {
             }
         }
 
+        /// <summary>
+        /// Sélectionner un véhicule disponible
+        /// </summary>
+        /// <param name="dataState"></param>
+        /// <returns></returns>
         public static Vehicule SelectionnerVehicule(DataState dataState)
         {
             Console.WriteLine("Liste des véhicules disponibles : ");
