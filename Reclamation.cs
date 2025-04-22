@@ -1,28 +1,37 @@
 namespace transconnect
-{
-    public class StatutReclamation
+{    public class Reclamation
     {
-        public static readonly string EnAttente = "EnAttente";
-        public static readonly string EnCours = "EnCours";
-        public static readonly string Résolue = "Résolue";
-        public static readonly string Rejetée = "Rejetée";
-
+        public const string EnAttente = "EnAttente";
+        public const string EnCours = "EnCours";
+        public const string Resolue = "Résolue";
+        public const string Rejetee = "Rejetée";
         
-        public static List<string> TousLesStatuts()
-        {
-            return new List<string> { EnAttente, EnCours, Résolue, Rejetée };
-        }
-    }
-
-
-    public class Reclamation
-    {
         public int Id { get; set; }
         public Client Client { get; set; }
         public string Sujet { get; set; }
         public string Description { get; set; }
         public DateTime DateReclamation { get; set; }
-        public string Statut { get; set; }
+        public string Statut {
+            get { return Statut;}
+            set {
+                switch (value) {
+                    case EnCours :
+                        Statut = EnCours;
+                        break;
+                    case EnAttente : 
+                        Statut = EnAttente;
+                        break;
+                    case Resolue :
+                        Statut = Resolue;
+                        break;
+                    case Rejetee :
+                        Statut = Rejetee;
+                        break;
+                    default :
+                        throw new ArgumentException("Satut doit être une des quatre constantes de la classe Reclamation");
+                }
+            }
+        }
 
         public DateTime? DateTraitement { get; set; }
         public string? Reponse { get; set; }
@@ -34,24 +43,24 @@ namespace transconnect
             Sujet = sujet;
             Description = description;
             DateReclamation = DateTime.Now;
-            Statut = StatutReclamation.EnAttente;
+            Statut = EnAttente;
         }
 
         public void PasserEnCours()
         {
-            Statut = StatutReclamation.EnCours;
+            Statut = EnCours;
         }
 
         public void MarquerCommeResolue(string reponse)
         {
-            Statut = StatutReclamation.Résolue;
+            Statut = Resolue;
             Reponse = reponse;
             DateTraitement = DateTime.Now;
         }
 
         public void MarquerCommeRejetee(string justification)
         {
-            Statut = StatutReclamation.Rejetée;
+            Statut = Rejetee;
             Reponse = justification;
             DateTraitement = DateTime.Now;
         }
