@@ -1,8 +1,10 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "transconnect", "transconnect.csproj", "{915EAFEC-23E1-9E13-0A2B-3D548FFD8610}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "unitTest", "..\unitTest\unitTest.csproj", "{A646C70A-E46D-4B13-9D1F-9902EF26CF38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,6 +16,10 @@ Global
 		{915EAFEC-23E1-9E13-0A2B-3D548FFD8610}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{915EAFEC-23E1-9E13-0A2B-3D548FFD8610}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{915EAFEC-23E1-9E13-0A2B-3D548FFD8610}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A646C70A-E46D-4B13-9D1F-9902EF26CF38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A646C70A-E46D-4B13-9D1F-9902EF26CF38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A646C70A-E46D-4B13-9D1F-9902EF26CF38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A646C70A-E46D-4B13-9D1F-9902EF26CF38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

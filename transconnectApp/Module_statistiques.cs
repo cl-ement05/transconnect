@@ -97,7 +97,7 @@ namespace transconnect
                 return;
             }
 
-            if(client.HistoriqueCommandes.Count == 0)
+            if(dataState.commandes.FindAll(c => c.Client.Equals(client)).Count() == 0)
             {
                 Console.WriteLine("Aucune commande enregistrée pour ce client");
                 return;
@@ -105,7 +105,7 @@ namespace transconnect
 
             Console.WriteLine("Liste des commandes pour le client " + client.Nom + " " + client.Prenom + " : ");
 
-            foreach (Commande c in client.HistoriqueCommandes)
+            foreach (Commande c in dataState.commandes.FindAll(c => c.Client.Equals(client)))
             {
                 Console.WriteLine("\t" + c);
             }
