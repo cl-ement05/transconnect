@@ -73,96 +73,98 @@ namespace transconnect
 
                 string choix = Console.ReadLine()!;
 
-                if(choix=="1")
+                switch (choix)
                 {
-                    bool trajetModifie = false;
-                    Console.Write("Nouvelle ville de départ (laisser vide pour conserver '" + villeDepart + "') : ");
-                    string nvVilleDepart = Console.ReadLine()!;
-                    if (nvVilleDepart != "")
-                    {
-                        villeDepart = nvVilleDepart;
-                        trajetModifie = true;
-                    }
-
-                    Console.Write("Nouvelle ville d'arrivée (laisser vide pour conserver '" + villeArrivee + "') : ");
-                    string nvVilleArrivee = Console.ReadLine()!;
-                    if (nvVilleArrivee != "")
-                    {
-                        villeArrivee = nvVilleArrivee;
-                        trajetModifie = true;
-                    }
-
-                    if(trajetModifie)
-                    {
-                        Noeud<string>? nd = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeDepart);
-                        Noeud<string>? na = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeArrivee);
-                        if (nd is not null && na is not null)
+                    case "1":
+                        bool trajetModifie = false;
+                        Console.Write("Nouvelle ville de départ (laisser vide pour conserver '" + villeDepart + "') : ");
+                        string nvVilleDepart = Console.ReadLine()!;
+                        if (nvVilleDepart != "")
                         {
-                            List<Noeud<string>> nouveauChemin;
-                            int nouvelleDistance;
-                            (nouveauChemin, nouvelleDistance) = dataState.graphe.Dijkstra(nd, na);
-                            Console.WriteLine("Nouvelle distance : " + nouvelleDistance + " km");
-
-                            double nouveauPrix = nouvelleDistance * chauffeur.TarifHoraire;
-                            Console.WriteLine("Nouveau prix : " + nouveauPrix + " €");
+                            villeDepart = nvVilleDepart;
+                            trajetModifie = true;
                         }
-                        else
+
+                        Console.Write("Nouvelle ville d'arrivée (laisser vide pour conserver '" + villeArrivee + "') : ");
+                        string nvVilleArrivee = Console.ReadLine()!;
+                        if (nvVilleArrivee != "")
                         {
-                            Console.WriteLine("Impossible de recalculer, ville inconnue.");
+                            villeArrivee = nvVilleArrivee;
+                            trajetModifie = true;
                         }
-                    }
-                }
-                else if(choix=="2")
-                {   
-                    Console.Write("Saisir nouvelle date de commande (JJ/MM/AAAA)");
-                    string nvDateStr = Console.ReadLine()!;
-                    if (nvDateStr != "")
-                    {
-                        DateTime nvdate=Convert.ToDateTime(nvDateStr);
-                        if(nvdate != dateCommande)
+
+                        if (trajetModifie)
                         {
-                            if(!chauffeur.EstDisponible(nvdate))
+                            Noeud<string>? nd = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeDepart);
+                            Noeud<string>? na = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeArrivee);
+                            if (nd is not null && na is not null)
                             {
-                                Console.WriteLine("Le chauffeur actuel n'est pas disponible à cette date");
-                                Chauffeur? nvchauffeur = dataState.chauffeurs.Find(ch => ch.EstDisponible(nvdate));
-                                if(nvchauffeur is null)
+                                List<Noeud<string>> nouveauChemin;
+                                int nouvelleDistance;
+                                (nouveauChemin, nouvelleDistance) = dataState.graphe.Dijkstra(nd, na);
+                                Console.WriteLine("Nouvelle distance : " + nouvelleDistance + " km");
+
+                                double nouveauPrix = nouvelleDistance * chauffeur.TarifHoraire;
+                                Console.WriteLine("Nouveau prix : " + nouveauPrix + " €");
+                            }
+                            else
+                            {
+                            Console.WriteLine("Impossible de recalculer, ville inconnue.");
+                            }
+                        }
+                        break;
+
+                    case "2":
+                        Console.Write("Saisir nouvelle date de commande (JJ/MM/AAAA)");
+                        string nvDateStr = Console.ReadLine()!;
+                        if (nvDateStr != "")
+                        {
+                            DateTime nvdate = Convert.ToDateTime(nvDateStr);
+                            if (nvdate != dateCommande)
+                            {
+                                if (!chauffeur.EstDisponible(nvdate))
                                 {
-                                    Console.WriteLine("Aucun chauffeur n'est disponible, la date ne sera pas modifié");
+                                    Console.WriteLine("Le chauffeur actuel n'est pas disponible à cette date");
+                                    Chauffeur? nvchauffeur = dataState.chauffeurs.Find(ch => ch.EstDisponible(nvdate));
+                                    if (nvchauffeur is null)
+                                    {
+                                        Console.WriteLine("Aucun chauffeur n'est disponible, la date ne sera pas modifié");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Nouveau chaffeur assigné : " + nvchauffeur.Nom + " " + nvchauffeur.Prenom);
+                                        chauffeur.LivraisonsEffectuees.Remove(this);
+                                        chauffeur = nvchauffeur;
+                                        nvchauffeur.LivraisonsEffectuees.Add(this);
+                                        dateCommande = nvdate;
+
+                                        Noeud<string>? nd = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeDepart);
+                                        Noeud<string>? na = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeArrivee);
+                                        if (nd is not null && na is not null)
+                                        {
+                                            List<Noeud<string>> cheminRecalcule;
+                                            int distanceRecalculee;
+                                            (cheminRecalcule, distanceRecalculee) = dataState.graphe.Dijkstra(nd, na);
+                                            double nouveauPrix = distanceRecalculee * nvchauffeur.TarifHoraire;
+                                            Console.WriteLine("Nouveau prix après changement de chauffeur : " + nouveauPrix + " €");
+                                        }
+                                    }
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Nouveau chaffeur assigné : " + nvchauffeur.Nom + " " + nvchauffeur.Prenom);
-                                    chauffeur.LivraisonsEffectuees.Remove(this);
-                                    chauffeur=nvchauffeur;
-                                    nvchauffeur.LivraisonsEffectuees.Add(this);
-                                    dateCommande=nvdate;
-
-                                    Noeud<string>? nd = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeDepart);
-                                    Noeud<string>? na = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeArrivee);
-                                    if (nd is not null && na is not null)
-                                    {
-                                        List<Noeud<string>> cheminRecalcule;
-                                        int distanceRecalculee;
-                                        (cheminRecalcule, distanceRecalculee) = dataState.graphe.Dijkstra(nd, na);
-                                        double nouveauPrix = distanceRecalculee * nvchauffeur.TarifHoraire;
-                                        Console.WriteLine("Nouveau prix après changement de chauffeur : " + nouveauPrix + " €");
-                                    }
+                                    dateCommande = nvdate;
                                 }
-                            } else {
-                                dateCommande=nvdate;
                             }
                         }
-                    }
-                }
+                        break;
 
-                else if (choix == "3")
-                {
-                    Console.WriteLine("Modification terminée.");
-                    continueA = false;
-                }
-                else
-                {
-                    Console.WriteLine("Choix invalide. Veuillez réessayer.");
+                    case "3":
+                        continueA = false;
+                        break;
+
+                    default:
+                        Console.WriteLine("Choix invalide. Veuillez entrer un choix valide (1-3).");
+                        break;
                 }
             }
         }
