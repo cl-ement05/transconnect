@@ -54,7 +54,7 @@ namespace transconnect
             double somme = 0;
             foreach(Commande c in dataState.commandes)
             {
-                //somme+= prix commandes
+                somme += c.CalculerPrixCommande(dataState);
             }
             double moyenne=somme / dataState.commandes.Count;
             Console.WriteLine("Moyenne des prix des commandes : " + moyenne + "€");
@@ -76,7 +76,6 @@ namespace transconnect
             foreach (Client c in dataState.clients)
             {
                 double totalclient=0;
-                // Calcul prix
                 somme+=totalclient;
             }
             double moyenne=somme / dataState.clients.Count;
