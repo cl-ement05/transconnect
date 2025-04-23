@@ -1,4 +1,4 @@
-using NUnit.Framework;
+global using Xunit;
 using transconnect;
 
 namespace unitTest
@@ -8,14 +8,13 @@ namespace unitTest
         private DataState datastate;
         private Module_statistiques module;
 
-        [SetUp]
-        public void Setup()
+        public UnitTest1()
         {
             datastate = new DataState(new Dictionary<string, List<(string data, int weight)>>());
             module = new Module_statistiques(datastate);
         }
 
-        [Test]
+        [Fact]
         public void TestAfficherLivraisonsParChauffeur()
         {
             Chauffeur chauffeur = new Chauffeur("1", "Michel", "Leblanc", DateTime.Now.AddYears(-30),"Bd Magenta", "leblanc@outlook.com", "0154278473", DateTime.Now.AddYears(-5), 2000);
@@ -28,7 +27,7 @@ namespace unitTest
 
             module.AfficherLivraisonsParChauffeur();
 
-            Assert.AreEqual(1, chauffeur.LivraisonsEffectuees.Count);
+            Assert.Single(chauffeur.LivraisonsEffectuees); // = Assert.Equal(1, chauffeur.LivraisonsEffectuees.Count);
         }
     }
 }
