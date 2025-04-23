@@ -56,10 +56,9 @@ namespace transconnect
             {
                 somme += c.CalculerPrixCommande(dataState);
             }
-            double moyenne=somme / dataState.commandes.Count;
+            double moyenne = somme / dataState.commandes.Count;
             Console.WriteLine("Moyenne des prix des commandes : " + moyenne + "€");
         }
-
 
         /// <summary>
         /// Afficher la moyenne des comptes clients

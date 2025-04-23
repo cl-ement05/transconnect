@@ -5,8 +5,6 @@ namespace unitTest
 {
     public class UnitTest1
     {
-        string[] villes = { "Paris", "Lyon", "Marseille", "Bordeaux" };
-        int[,] matrice = new int[4, 4] { {  0, 393, 660, 499 }, {393,   0, 277,   0 }, {660, 277,   0,   0 }, {499,   0,   0,   0 } };
         private DataState datastate;
         private Module_statistiques module;
 
@@ -56,31 +54,50 @@ namespace unitTest
         }
         
         [Fact]
-        public void TestMoyennePrixCommandes()
+        public void TestSupprimerClient()
+        {
+            Client client = new Client("1", "Durand", "Emma", DateTime.Now.AddYears(-28), "Toulouse", "emma@exemple.com", "0606060606");
+            
+            datastate.clients.Add(client);
+            Assert.Contains(client, datastate.clients);
+
+            client.SupprimerClient(datastate);
+            Assert.DoesNotContain(client, datastate.clients);
+        }
+
+        [Fact]
+        public void TestChauffeurDisponibilite()
         {
             Chauffeur chauffeur = new Chauffeur("1", "Michel", "Leblanc", DateTime.Now.AddYears(-30), "Bd Magenta", "leblanc@outlook.com", "0154278473", DateTime.Now.AddYears(-5), 2000);
             datastate.salaries.Add(chauffeur);
 
-            Client client = new Client("2", "Marseulli", "Véronique", DateTime.Now.AddYears(-40),"Rue de la Gare", "vero.m@gmail.com", "0698528488");
+            Client client = new Client("2", "Marseulli", "Véronique", DateTime.Now.AddYears(-40), "Rue de la Gare", "vero.m@gmail.com", "0698528488");
             Voiture voiture = new Voiture("AB-123-CD", "Rouge", "Peugeot", 4);
 
-            datastate.commandes.Add(new Commande(1, client, "Paris", "Lyon", voiture, chauffeur, DateTime.Today));
-            datastate.commandes.Add(new Commande(2, client, "Paris", "Marseille", voiture, chauffeur, DateTime.Today)); 
-            datastate.commandes.Add(new Commande(3, client, "Paris", "Bordeaux", voiture, chauffeur, DateTime.Today));
-            datastate.commandes.Add(new Commande(4, client, "Lyon", "Marseille", voiture, chauffeur, DateTime.Today));
+            Commande commande = new Commande(1, client, "Lyon", "Nice", voiture, chauffeur, DateTime.Today);
+            chauffeur.LivraisonsEffectuees.Add(commande);
 
-            double tarif = chauffeur.TarifHoraire;
-            double total = (393 + 660 + 499 + 277) * tarif;
-            double moyenne_theorique = total / 4;
+            bool dispoAujourdHui = chauffeur.EstDisponible(DateTime.Today);
+            bool dispoDemain = chauffeur.EstDisponible(DateTime.Today.AddDays(1));
 
-            double somme = 0;
-            foreach (Commande c in datastate.commandes)
-            {
-                somme += c.CalculerPrixCommande(datastate);
-            }
-            double moyenne = somme / datastate.commandes.Count;
-            
-            Assert.Equal(moyenne_theorique, moyenne, 3);
+            Assert.False(dispoAujourdHui);
+            Assert.True(dispoDemain);
+        }
+
+        [Fact]
+        public void TestAfficherSalaries()
+        {
+            Salarie salarie1 = new ChefEquipe("1", "Lemoine", "Alice", DateTime.Now.AddYears(-40), "Paris", "alice@icloud.com", "0622564636", DateTime.Now.AddYears(-5), 2800);
+            Salarie salarie2 = new Chauffeur("2", "Durand", "Lucas", DateTime.Now.AddYears(-35), "Lyon", "lucas@gmail.com", "0622462794", DateTime.Now.AddYears(-3), 2000);
+
+            datastate.salaries.Add(salarie1);
+            datastate.salaries.Add(salarie2);
+
+            Salarie.AfficherSalaries(datastate);
+
+            Assert.Equal(2, datastate.salaries.Count);
+            Assert.Contains(salarie1, datastate.salaries);
+            Assert.Contains(salarie2, datastate.salaries);
         }
     }
 }
