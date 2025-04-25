@@ -108,8 +108,68 @@ namespace transconnect
         /// <param name="salarie"></param>
         public void Licencier(DataState dataState)
         {
-            dataState.salaries.Remove(this);
-            dataState.organigramme.SupprimerSalarie(this);
+            //dataState.salaries.Remove(this);
+            //dataState.organigramme.SupprimerSalarie(this);
+            switch(this.Poste)
+            {
+                case directeur:
+                    Console.WriteLine("Suppression impossible : le directeur ne peux pas être supprimer");
+                    break;
+                 
+                case chefEquipe:
+                    ChefEquipe chef=(ChefEquipe)this;
+                    List<Chauffeur> team=chef.ChauffeursSousResponsabilite;
+
+                    if(team.Count >=2)
+                    {
+                        Chauffeur plusAncien = team.OrderBy(c=>c.DateEntree).First();
+                        ChefEquipe nouveauChef=new ChefEquipe(plusAncien.NumeroSS, plusAncien.Nom, plusAncien.Prenom, plusAncien.DateNaissance, plusAncien.AdressePostale,
+                                                                plusAncien.Email, plusAncien.Telephone, plusAncien.DateEntree,plusAncien.Salaire);
+                        
+                        foreach(Chauffeur c in team.Where(c => c!=plusAncien))
+                        {
+                            nouveauChef.AssignerChauffeur(c);
+                        }
+
+                        dataState.salaries.Add(nouveauChef);
+                        dataState.organigramme.AjouterSalarie(nouveauChef, dataState.directeur);
+                        dataState.salaries.Remove(chef);
+                        dataState.organigramme.SupprimerSalarie(chef);
+                    }
+
+                    else if (team.Count==1)
+                    {
+                        Chauffeur seulChauffeur = team[0];
+                        
+                        ChefEquipe? cible = dataState.salaries.OfType<ChefEquipe>().Where(e=> e!=chef).OrderBy(e=>e.ChauffeursSousResponsabilite.Count).FirstOrDefault();
+                        if(cible !=null)
+                        {
+                            cible.AssignerChauffeur(seulChauffeur);
+                            dataState.organigramme.AjouterSalarie(seulChauffeur,cible);
+                        }
+
+                        else
+                        {
+                            dataState.directeur!.AjouterSalarie(seulChauffeur);
+                            dataState.organigramme.AjouterSalarie(seulChauffeur,dataState.directeur);
+
+                        }
+
+                        dataState.salaries.Remove(chef);
+                        dataState.organigramme.SupprimerSalarie(chef);
+                    }
+                    else
+                    {
+                        dataState.salaries.Remove(chef);
+                        dataState.organigramme.SupprimerSalarie(chef);
+                    }
+                    break;
+                    
+                default: 
+                    dataState.salaries.Remove(this);
+                    dataState.organigramme.SupprimerSalarie(this);
+                    break;
+            }
         }
 
         public override string ToString()
