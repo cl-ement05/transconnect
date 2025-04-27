@@ -2,21 +2,81 @@ namespace transconnect
 {
     public class Organigramme
     {
-        private class Noeud
+        public class Noeud
         {
-            public Salarie Salarie { get; set; }
-            public Noeud? PremierFils { get; set; }
-            public Noeud? FrereSuivant { get; set; }
+            private Salarie salarie;
+            private Noeud succ;    
+            private Noeud frere;   
 
-            public Noeud(Salarie salarie)
+            public Noeud(Salarie salarie = null, Noeud succ = null, Noeud frere = null)
             {
-                this.Salarie = salarie;
-                this.PremierFils = null;
-                this.FrereSuivant = null;
+                this.salarie = salarie;
+                this.succ = succ;
+                this.frere = frere;
+            }
+
+            public Salarie Salarie
+            {
+                get { return salarie; }
+                set { salarie = value; }
+            }
+
+            public Noeud Succ
+            {
+                get { return succ; }
+                set { succ = value; }
+            }
+
+            public Noeud Frere
+            {
+                get { return frere; }
+                set { frere = value; }
+            }
+
+            public override string ToString()
+            {
+                return $"{salarie?.Nom} - {salarie?.Poste}";
             }
         }
 
-        private Noeud? racine;
+        private Noeud racine;
+
+        public Organigramme(Noeud racine = null)
+        {
+            this.racine = racine;
+        }
+
+        public Noeud Racine
+        {
+            get { return racine; }
+            set { racine = value; }
+        }
+
+        public bool Ajouter_Frere(Noeud start, Salarie salarie)
+        {
+            if (start == null) return false;
+            Noeud courant = start;
+            while (courant.Frere != null)
+            {
+                courant = courant.Frere;
+            }
+            courant.Frere = new Noeud(salarie);
+            return true;
+        }
+
+        public bool Ajouter_Succ(Noeud start, Salarie salarie)
+        {
+            if (start == null) return false;
+            if (start.Succ == null)
+            {
+                start.Succ = new Noeud(salarie);
+                return true;
+            }
+            else
+            {
+                return Ajouter_Frere(start.Succ, salarie);
+            }
+        }
 
         public void AjouterSalarie(Salarie salarie, Salarie? manager = null)
         {
@@ -26,75 +86,79 @@ namespace transconnect
             }
             else if (manager != null)
             {
-                Noeud? noeudManager = TrouverNoeud(racine, manager);
+                Noeud? noeudManager = Rechercher(racine, manager);
                 if (noeudManager != null)
                 {
-                    var nouveauNoeud = new Noeud(salarie);
-                    if (noeudManager.PremierFils == null)
-                    {
-                        noeudManager.PremierFils = nouveauNoeud;
-                    }
-                    else
-                    {
-                        Noeud frere = noeudManager.PremierFils;
-                        while (frere.FrereSuivant != null)
-                        {
-                            frere = frere.FrereSuivant;
-                        }
-                        frere.FrereSuivant = nouveauNoeud;
-                    }
+                    Ajouter_Succ(noeudManager, salarie);
                 }
                 else
                 {
-                    Console.WriteLine($"Manager {manager.Nom} introuvable.");
+                    Console.WriteLine($"Manager {manager.Nom} introuvable dans l'organigramme.");
                 }
             }
         }
 
+        public void Afficher(Noeud start = null, string prefix = "")
+        {
+            if (start == null) start = racine;
+            if (start != null)
+            {
+                Console.WriteLine(prefix + start.ToString());
+                Afficher(start.Succ, prefix + "    ");
+                Afficher(start.Frere, prefix);
+            }
+        }
+
+        public Noeud? Rechercher(Noeud start, Salarie salarie)
+        {
+            if (start == null) return null;
+            if (start.Salarie == salarie) return start;
+
+            Noeud? trouve = Rechercher(start.Succ, salarie);
+            if (trouve != null) return trouve;
+
+            return Rechercher(start.Frere, salarie);
+        }
+
         public void SupprimerSalarie(Salarie salarie)
         {
-            if (racine != null)
+            if (racine == null) return;
+
+            if (racine.Salarie == salarie)
             {
-                if (racine.Salarie == salarie)
-                {
-                    racine = null;
-                }
-                else
-                {
-                    SupprimerNoeud(null, racine, salarie);
-                }
+                racine = null;
+            }
+            else
+            {
+                SupprimerNoeud(null, racine, salarie);
             }
         }
 
         private void SupprimerNoeud(Noeud? parent, Noeud courant, Salarie salarie)
         {
-            if (courant.PremierFils != null)
+            if (courant == null) return;
+
+            if (courant.Succ != null)
             {
-                SupprimerNoeud(courant, courant.PremierFils, salarie);
+                SupprimerNoeud(courant, courant.Succ, salarie);
             }
-            if (courant.FrereSuivant != null)
+
+            if (courant.Frere != null)
             {
-                SupprimerNoeud(parent, courant.FrereSuivant, salarie);
+                SupprimerNoeud(parent, courant.Frere, salarie);
             }
+
             if (courant.Salarie == salarie)
             {
                 if (parent != null)
                 {
-                    if (parent.PremierFils == courant)
+                    if (parent.Succ == courant)
                     {
-                        parent.PremierFils = courant.FrereSuivant;
+                        parent.Succ = courant.Frere;
                     }
                     else
                     {
-                        Noeud frere = parent.PremierFils;
-                        while (frere != null && frere.FrereSuivant != courant)
-                        {
-                            frere = frere.FrereSuivant;
-                        }
-                        if (frere != null)
-                        {
-                            frere.FrereSuivant = courant.FrereSuivant;
-                        }
+                        parent.Frere = courant.Frere;
                     }
                 }
             }
@@ -109,51 +173,17 @@ namespace transconnect
         public List<Salarie> ObtenirSubordonnes(Salarie manager)
         {
             List<Salarie> subordonnes = new List<Salarie>();
-            Noeud? noeudManager = TrouverNoeud(racine, manager);
-            if (noeudManager != null && noeudManager.PremierFils != null)
+            Noeud? managerNoeud = Rechercher(racine, manager);
+            if (managerNoeud != null)
             {
-                Noeud? courant = noeudManager.PremierFils;
+                Noeud? courant = managerNoeud.Succ;
                 while (courant != null)
                 {
                     subordonnes.Add(courant.Salarie);
-                    courant = courant.FrereSuivant;
+                    courant = courant.Frere;
                 }
             }
             return subordonnes;
-        }
-
-        private Noeud? TrouverNoeud(Noeud? courant, Salarie salarie)
-        {
-            if (courant == null) return null;
-            if (courant.Salarie == salarie) return courant;
-            Noeud? trouve = TrouverNoeud(courant.PremierFils, salarie);
-            if (trouve != null) return trouve;
-            return TrouverNoeud(courant.FrereSuivant, salarie);
-        }
-
-        public void Afficher()
-        {
-            if (racine != null)
-            {
-                AfficherNoeud(racine, "");
-            }
-            else
-            {
-                Console.WriteLine("Organigramme vide.");
-            }
-        }
-
-        private void AfficherNoeud(Noeud noeud, string indent)
-        {
-            Console.WriteLine(indent + noeud.Salarie.Nom + " - " + noeud.Salarie.Poste);
-            if (noeud.PremierFils != null)
-            {
-                AfficherNoeud(noeud.PremierFils, indent + "    ");
-            }
-            if (noeud.FrereSuivant != null)
-            {
-                AfficherNoeud(noeud.FrereSuivant, indent);
-            }
         }
     }
 }
