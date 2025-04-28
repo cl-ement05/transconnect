@@ -24,8 +24,8 @@ namespace transconnect {
         private void OnPaint(object? sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            int Noeudsize = 40;
-            int margin = 20;
+            int Noeudsize = 80;
+            int margin = 150;
             int cst = 5;
             int cols = (int) Math.Ceiling(Math.Sqrt(graph.verticies.Count));
             int rows = (int) Math.Ceiling((double)graph.verticies.Count / cols);
@@ -40,8 +40,8 @@ namespace transconnect {
                 int y = cst + row * (Noeudsize + margin);
                 positions[noeud.data] = (x, y);
 
-                g.FillEllipse(Brushes.Blue, x, y, Noeudsize, Noeudsize);
-                g.DrawString(noeud.data.ToString(), new Font("Arial", 13), Brushes.Black, x+10, y+10);
+                g.FillEllipse(Brushes.Coral, x, y, Noeudsize, Noeudsize);
+                g.DrawString(noeud.data.ToString(), new Font("Arial", 13), Brushes.Black, x+30, y+30);
 
                 index++;
             }

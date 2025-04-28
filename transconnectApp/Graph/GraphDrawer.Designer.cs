@@ -30,7 +30,7 @@ partial class GraphDrawer<T>
     {
         this.components = new System.ComponentModel.Container();
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(800, 450);
+        this.ClientSize = new System.Drawing.Size(1000, 650);
         this.Text = "Form1";
     }
 
