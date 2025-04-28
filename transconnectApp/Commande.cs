@@ -9,17 +9,19 @@ namespace transconnect
         private Vehicule vehicule;
         private Chauffeur chauffeur;
         private DateTime dateCommande;
+        private static int lastNumber = 1;
 
-        public Commande(int numeroCommande, Client client, string villeDepart, string villeArrivee,
+        public Commande(Client client, string villeDepart, string villeArrivee,
                         Vehicule vehicule, Chauffeur chauffeur, DateTime dateCommande)
         {
-            this.numeroCommande = numeroCommande;
+            this.numeroCommande = lastNumber;
             this.client = client;
             this.villeDepart = villeDepart;
             this.villeArrivee = villeArrivee;
             this.vehicule = vehicule;
             this.chauffeur = chauffeur;
             this.dateCommande = dateCommande;
+            lastNumber++;
         }
 
         public int NumeroCommande { get { return numeroCommande; } set { numeroCommande = value; } }
@@ -115,60 +117,59 @@ namespace transconnect
                         break;
 
                     case "2":
+                        DateTime nvdate;
                         Console.Write("Saisir nouvelle date de commande (JJ/MM/AAAA)");
-                        string nvDateStr = Console.ReadLine()!;
-                        if (nvDateStr != "")
+                        while (!DateTime.TryParse(Console.ReadLine(), out nvdate)) {
+                            Console.WriteLine("Format invalide ! Veuillez réessayer.");
+                        }
+                        if (nvdate != dateCommande)
                         {
-                            DateTime nvdate = Convert.ToDateTime(nvDateStr);
-                            if (nvdate != dateCommande)
+                            if (!chauffeur.EstDisponible(nvdate))
                             {
-                                if (!chauffeur.EstDisponible(nvdate))
+                                Console.WriteLine("Le chauffeur actuel n'est pas disponible à cette date");
+                                Chauffeur? nvchauffeur = dataState.chauffeurs.Find(ch => ch.EstDisponible(nvdate));
+                                if (nvchauffeur is null)
                                 {
-                                    Console.WriteLine("Le chauffeur actuel n'est pas disponible à cette date");
-                                    Chauffeur? nvchauffeur = dataState.chauffeurs.Find(ch => ch.EstDisponible(nvdate));
-                                    if (nvchauffeur is null)
-                                    {
-                                        Console.WriteLine("Aucun chauffeur n'est disponible, la date ne sera pas modifié");
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("Nouveau chaffeur assigné : " + nvchauffeur.Nom + " " + nvchauffeur.Prenom);
-                                        chauffeur.LivraisonsEffectuees.Remove(this);
-                                        chauffeur = nvchauffeur;
-                                        nvchauffeur.LivraisonsEffectuees.Add(this);
-                                        dateCommande = nvdate;
-
-                                        Noeud<string>? nd = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeDepart);
-                                        Noeud<string>? na = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeArrivee);
-                                        if (nd is not null && na is not null)
-                                        {
-                                            List<Noeud<string>> cheminRecalcule;
-                                            int distanceRecalculee;
-                                            (cheminRecalcule, distanceRecalculee) = dataState.graphe.Dijkstra(nd, na);
-                                            double nouveauPrix = distanceRecalculee * nvchauffeur.TarifHoraire;
-                                            Console.WriteLine("Nouveau prix après changement de chauffeur : " + nouveauPrix + " €");
-                                        }
-                                    }
+                                    Console.WriteLine("Aucun chauffeur n'est disponible, la date ne sera pas modifié");
                                 }
                                 else
                                 {
+                                    Console.WriteLine("Nouveau chaffeur assigné : " + nvchauffeur.Nom + " " + nvchauffeur.Prenom);
+                                    chauffeur.LivraisonsEffectuees.Remove(this);
+                                    chauffeur = nvchauffeur;
+                                    nvchauffeur.LivraisonsEffectuees.Add(this);
+                                    dateCommande = nvdate;
+
+                                    Noeud<string>? nd = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeDepart);
+                                    Noeud<string>? na = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeArrivee);
+                                    if (nd is not null && na is not null)
+                                    {
+                                        List<Noeud<string>> cheminRecalcule;
+                                        int distanceRecalculee;
+                                        (cheminRecalcule, distanceRecalculee) = dataState.graphe.Dijkstra(nd, na);
+                                        double nouveauPrix = distanceRecalculee * nvchauffeur.TarifHoraire;
+                                        Console.WriteLine("Nouveau prix après changement de chauffeur : " + nouveauPrix + " €");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                dateCommande = nvdate;
+                            }
+
+                            if(vehicule.Statut!=Vehicule.vehiculeDispo)
+                            {
+                                Console.WriteLine("Le véhicule n'est plus disponible. Veuillez en sélectionner un nouveau");
+                                bool vehiculeLibre=dataState.flotte.Any(v => v.Statut==Vehicule.vehiculeDispo);
+                                if(vehiculeLibre)
+                                {
+                                    vehicule=Vehicule.SelectionnerVehicule(dataState);
+                                    Console.WriteLine("Nouveau véhicule sélectionner : "+ vehicule.Immatriculation);
                                     dateCommande = nvdate;
                                 }
-
-                                if(vehicule.Statut!=Vehicule.vehiculeDispo)
+                                else
                                 {
-                                    Console.WriteLine("Le véhicule n'est plus disponible. Veuillez en sélectionner un nouveau");
-                                    bool vehiculeLibre=dataState.flotte.Any(v => v.Statut==Vehicule.vehiculeDispo);
-                                    if(vehiculeLibre)
-                                    {
-                                        vehicule=Vehicule.SelectionnerVehicule(dataState);
-                                        Console.WriteLine("Nouveau véhicule sélectionner : "+ vehicule.Immatriculation);
-                                        dateCommande = nvdate;
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("Aucun véhicule disponible à cette date, modification de la commande impossible");
-                                    }
+                                    Console.WriteLine("Aucun véhicule disponible à cette date, modification de la commande impossible");
                                 }
                             }
                         }
@@ -221,13 +222,22 @@ namespace transconnect
         /// <param name="villeArrivee"></param>
         /// <param name="dateCommande"></param>
         /// <param name="vehicule"></param>
-        public static Commande? Creer_commande(DataState dataState, string numeroSS, string villeDepart, string villeArrivee, DateTime dateCommande)
+        public static Commande? Creer_commande(DataState dataState)
         {
+            Console.Write("Saisissez le numéro de SS du client qui passe commande : ");
+            string numeroSS = Console.ReadLine()!;
+            
             Client? clientExistant = Client.RechercherClientNSS(dataState, numeroSS);
             if (clientExistant is null)
             {
                 Console.WriteLine("Client non trouvé. Vous devez d'abord créer le client avant de pouvoir créer une commande");
                 return null;
+            }
+
+            DateTime dateCommande;
+            Console.Write("Saisir nouvelle date de commande (JJ/MM/AAAA)");
+            while (!DateTime.TryParse(Console.ReadLine(), out dateCommande)) {
+                Console.WriteLine("Format invalide ! Veuillez réessayer.");
             }
 
             Chauffeur? chauffeurSelectionne = dataState.chauffeurs.Find(ch => ch.EstDisponible(dateCommande));
@@ -238,6 +248,11 @@ namespace transconnect
             }
 
             Vehicule vehiculeSelectionne = Vehicule.SelectionnerVehicule(dataState);
+
+            Console.Write("Saisissez la ville de départ de la commande : ");
+            string villeDepart = Console.ReadLine()!;
+            Console.Write("Saisissez la ville d'arrivée de la commande : ");
+            string villeArrivee = Console.ReadLine()!;
 
             Noeud<string>? noeudDepart= dataState.graphe.verticies.FirstOrDefault(n => n.data == villeDepart);
             if(noeudDepart is null)
@@ -262,15 +277,16 @@ namespace transconnect
             double prix=distancekm * chauffeurSelectionne.TarifHoraire;
             Console.WriteLine("Prix de la commande : "+prix+" €");
 
-
-            int numeroCommande = dataState.commandes.Count + 1;
-
-            Commande commande = new Commande(numeroCommande, clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
+            Commande commande = new Commande(clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
             dataState.commandes.Add(commande);
             chauffeurSelectionne.LivraisonsEffectuees.Add(commande);
 
             Console.WriteLine("Commande créée avec succès :");
             return commande;
+        }
+
+        public static Commande? RechercherCommande(DataState dataState, int numero) {
+            return dataState.commandes.Find(c => c.numeroCommande == numero);
         }
 
         public override string ToString()

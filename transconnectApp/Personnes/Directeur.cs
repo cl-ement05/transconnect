@@ -48,6 +48,45 @@ namespace transconnect
             }
         }
 
+        public static Directeur CreerNouveau(DataState dataState) {
+            Console.WriteLine("Veuillez saisir les informations du nouveau salarié.");
+            PersonneDataHolder data = CreerPersonne(dataState);
+            
+            decimal salaire = 0;
+            bool validSalaire = false;
+            while (!validSalaire)
+            {
+                Console.Write("Salaire : ");
+                string salaireInput = Console.ReadLine()!;
+                try
+                {
+                    salaire = Convert.ToDecimal(salaireInput);
+                    validSalaire = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Format invalide ! Veuillez réessayer.");
+                }
+            }
+
+            DateTime dateEntree;
+            Console.Write("Date d'entrée (JJ/MM/AAAA) : ");
+            while (!DateTime.TryParse(Console.ReadLine(), out dateEntree)) {
+                Console.WriteLine("Format invalide ! Veuillez réessayer.");
+            }
+            return new Directeur(
+                data.numeroSS,
+                data.nom,
+                data.prenom,
+                data.dateNaissance,
+                data.adressePostale,
+                data.email,
+                data.telephone,
+                dateEntree,
+                salaire
+            );
+        }
+
         public override string ToString()
         {
             return base.ToString() + $" | Nombre de salariés sous gestion : {salariesSousGestion.Count}";

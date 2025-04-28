@@ -27,54 +27,32 @@ namespace transconnect
         {
             dataState.clients.Remove(this);
         }
-        /// <summary>
-        /// Modifie les informations du client.
-        /// </summary>
-        public void ModifierClient()
-        {
-            Console.WriteLine("Modification des informations du client. Appuyez sur Entrée pour conserver la valeur actuelle.");
 
-            Console.Write($"Nom ({this.nom}) : ");
-            string nom = Console.ReadLine()!;
-            if (!string.IsNullOrWhiteSpace(nom)) this.nom = nom;
-
-            Console.Write($"Prénom ({this.prenom}) : ");
-            string prenom = Console.ReadLine()!;
-            if (!string.IsNullOrWhiteSpace(prenom)) this.prenom = prenom;
-
-            Console.Write($"Date de naissance ({this.dateNaissance:dd/MM/yyyy}) (JJ/MM/AAAA) : ");
-            string dateNaissanceInput = Console.ReadLine()!;
-            if (!string.IsNullOrWhiteSpace(dateNaissanceInput))
-            {
-                if (DateTime.TryParse(dateNaissanceInput, out DateTime dateNaissance))
-                {
-                    this.dateNaissance = dateNaissance;
-                }
-                else
-                {
-                    Console.WriteLine("Date invalide. La valeur actuelle est conservée.");
-                }
-            }
-
-            Console.Write($"Adresse postale ({this.adressePostale}) : ");
-            string adressePostale = Console.ReadLine()!;
-            if (!string.IsNullOrWhiteSpace(adressePostale)) this.adressePostale = adressePostale;
-
-            Console.Write($"Email ({this.email}) : ");
-            string email = Console.ReadLine()!;
-            if (!string.IsNullOrWhiteSpace(email)) this.email = email;
-
-            Console.Write($"Téléphone ({this.telephone}) : ");
-            string telephone = Console.ReadLine()!;
-            if (!string.IsNullOrWhiteSpace(telephone)) this.telephone = telephone;
-
-            Console.WriteLine("Les informations du client ont été mises à jour.");
-        }
-
-        public (string, string) TrajetFavori(DataState dataState) {
+        public void AfficherTrajetsFavoris(DataState dataState) {
             Dictionary<(string, string), int> trajets = new Dictionary<(string, string), int>();
             dataState.commandes.ForEach(c => trajets[(c.VilleDepart, c.VilleArrivee)] += 1);
-            return trajets.OrderByDescending(c => c.Value).First().Key;
+            trajets.OrderByDescending(c => c.Value).ToList().ForEach(
+                e => Console.WriteLine($"{e.Key.Item1} -> {e.Key.Item2}"));
+        }
+
+        /// <summary>
+        /// Afficher les commandes pour un client donné
+        /// </summary>
+        /// <param name="numeroSS"></param>
+        public void AffichercommandesPourClient(DataState dataState)
+        {
+            if(dataState.commandes.FindAll(c => c.Client.Equals(this)).Count() == 0)
+            {
+                Console.WriteLine("Aucune commande enregistrée pour ce client");
+                return;
+            }
+
+            Console.WriteLine("Liste des commandes pour le client " + nom + " " + prenom + " : ");
+
+            foreach (Commande c in dataState.commandes.FindAll(c => c.Client.Equals(this)))
+            {
+                Console.WriteLine("\t" + c);
+            }
         }
 
         /// <summary>
@@ -131,25 +109,18 @@ namespace transconnect
             }
         }
 
-        public static Client CreateClient() {
+        public static Client CreerNouveau(DataState dataState) {
             Console.WriteLine("Veuillez saisir les informations du nouveau client.");
-            Console.Write("Nom : ");
-            string nom = Console.ReadLine()!;
-            Console.Write("Prénom : ");
-            string prenom = Console.ReadLine()!;
-            Console.Write("Date de naissance (JJ/MM/AAAA) : ");
-            DateTime dateNaissance = Convert.ToDateTime(Console.ReadLine()!);
-            Console.Write("Adresse postale : ");
-            string adressePostale = Console.ReadLine()!;
-            Console.Write("Email : ");
-            string email = Console.ReadLine()!;
-            Console.Write("Téléphone : ");
-            string telephone = Console.ReadLine()!;
-            Console.Write("Numéro de SS : ");
-            string numeroSS = Console.ReadLine()!;
-
-            Client nouveauClient = new Client(numeroSS, nom, prenom, dateNaissance, adressePostale, email, telephone);
-            return nouveauClient;
+            PersonneDataHolder data = CreerPersonne(dataState);
+            return new Client(
+                data.numeroSS,
+                data.nom,
+                data.prenom,
+                data.dateNaissance,
+                data.adressePostale,
+                data.email,
+                data.telephone
+            );
         }
 
         /// <summary>

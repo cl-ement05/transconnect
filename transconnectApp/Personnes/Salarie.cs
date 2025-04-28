@@ -1,9 +1,10 @@
 namespace transconnect
-{
+{  
     public abstract class Salarie : Personne
     {
         public const string directeur = "Directeur";
         public const string chefEquipe = "Chef d'équipe";
+        public const string chauffeur = "Chauffeur";
 
         private DateTime dateEntree;
         private string poste;
@@ -22,66 +23,16 @@ namespace transconnect
         public DateTime DateEntree { get => dateEntree; set => dateEntree = value; }
         public string Poste { get => poste; set => poste = value; }
         public decimal Salaire { get => salaire; set => salaire = value; }
-        /// <summary>
-        /// Modifie les informations d'un salarié
-        /// </summary>
-        /// <param name="nom"></param>
-        /// <param name="prenom"></param>
-        /// <param name="dateNaissance"></param>
-        /// <param name="adressePostale"></param>
-        /// <param name="email"></param>
-        /// <param name="telephone"></param>
-        /// <param name="salaire"></param>
-        public void ModifierSalarieParNumeroSS(string nom, string prenom, DateTime dateNaissance,
-                                               string adressePostale, string email, string telephone, decimal salaire)
-        {
-            this.nom = nom;
-            this.prenom = prenom;
-            this.dateNaissance = dateNaissance;
-            this.adressePostale = adressePostale;
-            this.email = email;
-            this.telephone = telephone;
-            this.salaire = salaire;
-        }
-        /// <summary>
-        /// Recherche un salarié par son numéro de sécurité sociale
-        /// </summary>
-        /// <param name="dataState"></param>
-        /// <param name="numeroSS"></param>
-        /// <returns></returns>
-        public static Salarie? RechercherSalarieParNumeroSS(DataState dataState, string numeroSS)
-        {
-            return dataState.salaries.Find(s => s.NumeroSS == numeroSS);
-        }
-        /// <summary>
-        /// Affiche la liste des salariés
-        /// </summary>
-        /// <param name="dataState"></param>
-        public static void AfficherSalaries(DataState dataState)
-        {
-            Console.WriteLine("Liste des salariés :");
-            foreach (Salarie salarie in dataState.salaries)
-            {
-                Console.WriteLine(salarie.ToString() + "\n");
-            }
-        }
-        /// <summary>
-        /// Ajoute un salarié à l'entreprise et à l'organigramme.
-        /// </summary>
-        /// <param name="dataState"></param>
-        /// <param name="manager"></param>
-        /// <exception cref="ArgumentException"></exception>
-        public void Embaucher(DataState dataState, Salarie? manager = null)
-        {
-            if (manager != null && !dataState.salaries.Contains(manager))
-                throw new ArgumentException("Le manager doit faire partie de l'entreprise");
 
-            if (!dataState.salaries.Contains(this))
-            {
-                dataState.salaries.Add(this);
-                dataState.organigramme.AjouterSalarie(this, manager);
-            }
+        public override void ModifierInfos()
+        {
+            base.ModifierInfos();
+            Console.Write($"Salaire ({this.salaire}) : ");
+            string salaire = Console.ReadLine()!;
+            if (!string.IsNullOrWhiteSpace(salaire) && int.TryParse(salaire, out int sal)) this.salaire = sal;
+
         }
+
         /// <summary>
         /// Supprime un salarié de l'entreprise et de l'organigramme.
         /// Si le salarié est un chef d'équipe, il doit y avoir au moins 2 chauffeurs sous sa responsabilité.
@@ -151,6 +102,60 @@ namespace transconnect
                     dataState.salaries.Remove(this);
                     dataState.organigramme.SupprimerSalarie(this);
                     break;
+            }
+            dataState.directeur!.SupprimerSalarie(this);
+        }
+
+        /// <summary>
+        /// Ajoute un salarié à l'entreprise et à l'organigramme.
+        /// </summary>
+        /// <param name="dataState"></param>
+        /// <param name="manager"></param>
+        public void Embaucher(DataState dataState, Salarie? manager = null)
+        {
+            if (manager != null && !dataState.salaries.Contains(manager))
+                Console.WriteLine("Le manager doit faire partie de l'entreprise");
+
+            if (!dataState.salaries.Contains(this))
+            {
+                dataState.salaries.Add(this);
+                if (this.GetType() == typeof(Chauffeur)) {
+                    if (manager is not null && manager.GetType() == typeof(ChefEquipe)) {
+                        ChefEquipe chef = (ChefEquipe) manager!;
+                        Chauffeur chauffeur = (Chauffeur) this;
+                        chef.AssignerChauffeur(chauffeur);
+                    } else {
+                        Console.WriteLine("Le manager saisi n'est pas valide");
+                    }
+                    dataState.directeur!.AjouterSalarie(this);
+                } else if (this.GetType() == typeof(ChefEquipe)) {
+                    dataState.directeur!.AjouterSalarie(this);
+                }
+                dataState.organigramme.AjouterSalarie(this, manager);
+            }
+        }
+
+        /// <summary>
+        /// Recherche un salarié par son numéro de sécurité sociale
+        /// </summary>
+        /// <param name="dataState"></param>
+        /// <param name="numeroSS"></param>
+        /// <returns></returns>
+        public static Salarie? RechercherSalarieParNumeroSS(DataState dataState, string numeroSS)
+        {
+            return dataState.salaries.Find(s => s.NumeroSS == numeroSS);
+        }
+
+        /// <summary>
+        /// Affiche la liste des salariés
+        /// </summary>
+        /// <param name="dataState"></param>
+        public static void AfficherSalaries(DataState dataState)
+        {
+            Console.WriteLine("Liste des salariés :");
+            foreach (Salarie salarie in dataState.salaries)
+            {
+                Console.WriteLine(salarie.ToString() + "\n");
             }
         }
 

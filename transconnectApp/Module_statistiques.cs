@@ -71,42 +71,18 @@ namespace transconnect
                 return;
             }
 
-            double somme = 0;
             foreach (Client c in dataState.clients)
             {
                 double totalclient=0;
-                somme+=totalclient;
+                List<Commande> cmds = dataState.commandes.FindAll(c => c.Client.Equals(this));
+                foreach (Commande cmd in cmds)
+                {
+                    totalclient += cmd.CalculerPrixCommande(dataState);
+                }
+                double moyenne = totalclient / cmds.Count();
+                Console.WriteLine($"Moyenne des comptes du client : {c.Prenom} {c.Nom}" + moyenne + " € ");
             }
-            double moyenne=somme / dataState.clients.Count;
-            Console.WriteLine("Moyenne des comptes clients : " + moyenne + " € ");
             
-        }
-
-        /// <summary>
-        /// Afficher les commandes pour un client donné
-        /// </summary>
-        /// <param name="numeroSS"></param>
-        public void AffichercommandesPourClient(string numeroSS)
-        {
-            Client? client = Client.RechercherClientNSS(dataState, numeroSS);
-            if(client is null)
-            {
-                Console.WriteLine("Client introuvable");
-                return;
-            }
-
-            if(dataState.commandes.FindAll(c => c.Client.Equals(client)).Count() == 0)
-            {
-                Console.WriteLine("Aucune commande enregistrée pour ce client");
-                return;
-            }
-
-            Console.WriteLine("Liste des commandes pour le client " + client.Nom + " " + client.Prenom + " : ");
-
-            foreach (Commande c in dataState.commandes.FindAll(c => c.Client.Equals(client)))
-            {
-                Console.WriteLine("\t" + c);
-            }
         }
     }
 }

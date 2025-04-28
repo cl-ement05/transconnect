@@ -334,6 +334,54 @@ namespace transconnect {
         }
 
         /// <summary>
+        /// Créer un graph à partir d'un fichier csv dont le chemin d'accès est passé en paramètre, retourne null en cas d'échec
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static Graph<string>? createGraphFromCSV(string path) {
+            int counter = 0; 
+            string[,] lines;
+            try
+            {
+                string[] readLines = File.ReadAllLines(path);
+                lines = new string[readLines.Length-1, readLines[0].Split(",").Length];
+                while (counter < readLines.Length - 1)
+                {
+                    string[] broke = readLines[counter + 1].Split(","); //skipping header
+                    for (int i = 0; i < broke.Length; i++)
+                    {
+                        lines[counter, i] = broke[i];
+                    }
+                    counter++;
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+
+            Dictionary<string, List<(string data, int weight)>> dict = new Dictionary<string, List<(string data, int weight)>>();
+            for (int i = 0; i < lines.GetLength(0); i++) {
+                try {
+                    if (!dict.ContainsKey(lines[i, 0])) dict[lines[i, 0]] = new List<(string data, int weight)>();
+                    dict[lines[i, 0]].Add((lines[i, 1], Convert.ToInt32(lines[i, 2])));
+                } catch (Exception)
+                {
+                    Console.WriteLine("Format de fichier invalide!");
+                    return null;
+                }
+            }
+
+            return new Graph<string>(dict);
+        }
+
+        /// <summary>
         /// String representation of this graph
         /// </summary>
         /// <returns></returns>
