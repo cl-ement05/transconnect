@@ -51,7 +51,12 @@
                 get { return racine; }
                 set { racine = value; }
             }
-
+            /// <summary>
+            /// Ajoute un salarié en tant que frère du noeud courant.
+            /// </summary>
+            /// <param name="start"></param>
+            /// <param name="salarie"></param>
+            /// <returns></returns>
             public bool Ajouter_Frere(Noeud? start, Salarie salarie)
             {
                 if (start == null) return false;
@@ -63,7 +68,12 @@
                 courant.Frere = new Noeud(salarie);
                 return true;
             }
-
+            /// <summary>
+            /// Ajoute un salarié en tant que successeur du noeud courant.
+            /// </summary>
+            /// <param name="start"></param>
+            /// <param name="salarie"></param>
+            /// <returns></returns>
             public bool Ajouter_Succ(Noeud? start, Salarie salarie)
             {
                 if (start == null) return false;
@@ -77,7 +87,12 @@
                     return Ajouter_Frere(start.Succ, salarie);
                 }
             }
-
+            /// <summary>
+            /// Ajoute un salarié à l'organigramme.
+            /// Si un manager est spécifié, le salarié sera ajouté comme successeur de ce manager.
+            /// </summary>
+            /// <param name="salarie"></param>
+            /// <param name="manager"></param>
             public void AjouterSalarie(Salarie salarie, Salarie? manager = null)
             {
                 if (racine == null)
@@ -97,7 +112,11 @@
                     }
                 }
             }
-
+            /// <summary>
+            /// Affiche l'organigramme à partir du noeud spécifié.
+            /// </summary>
+            /// <param name="start"></param>
+            /// <param name="prefix"></param>
             public void Afficher(Noeud? start = null, string prefix = "")
             {
                 if (start == null) start = racine;
@@ -108,7 +127,12 @@
                     Afficher(start.Frere, prefix);
                 }
             }
-
+            /// <summary>
+            /// Recherche un salarié dans l'organigramme à partir du noeud spécifié.
+            /// </summary>
+            /// <param name="start"></param>
+            /// <param name="salarie"></param>
+            /// <returns></returns>
             public Noeud? Rechercher(Noeud? start, Salarie salarie)
             {
                 if (start == null) return null;
@@ -119,7 +143,10 @@
 
                 return Rechercher(start.Frere, salarie);
             }
-
+            /// <summary>
+            /// Supprime un salarié de l'organigramme.
+            /// </summary>
+            /// <param name="salarie"></param>
             public void SupprimerSalarie(Salarie salarie)
             {
                 if (racine == null) return;
@@ -133,7 +160,13 @@
                     SupprimerNoeud(null, racine, salarie);
                 }
             }
-
+            /// <summary>
+            /// Supprime un noeud de l'organigramme.
+            /// Cette méthode est appelée récursivement pour parcourir l'organigramme.
+            /// </summary>
+            /// <param name="parent"></param>
+            /// <param name="courant"></param>
+            /// <param name="salarie"></param>
             private void SupprimerNoeud(Noeud? parent, Noeud courant, Salarie salarie)
             {
                 if (courant == null) return;
@@ -163,13 +196,21 @@
                     }
                 }
             }
-
+            /// <summary>
+            /// Modifie le manager d'un salarié dans l'organigramme.
+            /// </summary>
+            /// <param name="salarie"></param>
+            /// <param name="nouveauManager"></param>
             public void ModifierManager(Salarie salarie, Salarie nouveauManager)
             {
                 SupprimerSalarie(salarie);
                 AjouterSalarie(salarie, nouveauManager);
             }
-
+            /// <summary>
+            /// Obtenir la liste des subordonnés d'un manager.
+            /// </summary>
+            /// <param name="manager"></param>
+            /// <returns></returns>
             public List<Salarie> ObtenirSubordonnes(Salarie manager)
             {
                 List<Salarie> subordonnes = new List<Salarie>();

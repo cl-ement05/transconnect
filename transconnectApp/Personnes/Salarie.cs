@@ -22,7 +22,16 @@ namespace transconnect
         public DateTime DateEntree { get => dateEntree; set => dateEntree = value; }
         public string Poste { get => poste; set => poste = value; }
         public decimal Salaire { get => salaire; set => salaire = value; }
-
+        /// <summary>
+        /// Modifie les informations d'un salarié
+        /// </summary>
+        /// <param name="nom"></param>
+        /// <param name="prenom"></param>
+        /// <param name="dateNaissance"></param>
+        /// <param name="adressePostale"></param>
+        /// <param name="email"></param>
+        /// <param name="telephone"></param>
+        /// <param name="salaire"></param>
         public void ModifierSalarieParNumeroSS(string nom, string prenom, DateTime dateNaissance,
                                                string adressePostale, string email, string telephone, decimal salaire)
         {
@@ -34,12 +43,20 @@ namespace transconnect
             this.telephone = telephone;
             this.salaire = salaire;
         }
-
+        /// <summary>
+        /// Recherche un salarié par son numéro de sécurité sociale
+        /// </summary>
+        /// <param name="dataState"></param>
+        /// <param name="numeroSS"></param>
+        /// <returns></returns>
         public static Salarie? RechercherSalarieParNumeroSS(DataState dataState, string numeroSS)
         {
             return dataState.salaries.Find(s => s.NumeroSS == numeroSS);
         }
-
+        /// <summary>
+        /// Affiche la liste des salariés
+        /// </summary>
+        /// <param name="dataState"></param>
         public static void AfficherSalaries(DataState dataState)
         {
             Console.WriteLine("Liste des salariés :");
@@ -48,7 +65,12 @@ namespace transconnect
                 Console.WriteLine(salarie.ToString() + "\n");
             }
         }
-
+        /// <summary>
+        /// Ajoute un salarié à l'entreprise et à l'organigramme.
+        /// </summary>
+        /// <param name="dataState"></param>
+        /// <param name="manager"></param>
+        /// <exception cref="ArgumentException"></exception>
         public void Embaucher(DataState dataState, Salarie? manager = null)
         {
             if (manager != null && !dataState.salaries.Contains(manager))
@@ -60,7 +82,13 @@ namespace transconnect
                 dataState.organigramme.AjouterSalarie(this, manager);
             }
         }
-
+        /// <summary>
+        /// Supprime un salarié de l'entreprise et de l'organigramme.
+        /// Si le salarié est un chef d'équipe, il doit y avoir au moins 2 chauffeurs sous sa responsabilité.
+        /// Si le salarié est un directeur, il ne peut pas être supprimé sans procédure spéciale.
+        /// Si le salarié est un chef d'équipe avec un seul chauffeur sous sa responsabilité, le chauffeur sera transféré à un autre chef d'équipe ou au directeur.
+        /// </summary>
+        /// <param name="dataState"></param>
         public void Licencier(DataState dataState)
         {
             switch (this.Poste)
