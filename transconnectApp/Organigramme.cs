@@ -4,30 +4,30 @@
         {
             public class Noeud
             {
-                private Salarie salarie;
-                private Noeud succ;    
-                private Noeud frere;   
+                private Salarie? salarie;
+                private Noeud? succ;    
+                private Noeud? frere;   
 
-                public Noeud(Salarie salarie = null, Noeud? succ = null, Noeud? frere = null)
+                public Noeud(Salarie? salarie = null, Noeud? succ = null, Noeud? frere = null)
                 {
                     this.salarie = salarie;
                     this.succ = succ;
                     this.frere = frere;
                 }
 
-                public Salarie Salarie
+                public Salarie? Salarie
                 {
                     get { return salarie; }
                     set { salarie = value; }
                 }
 
-                public Noeud Succ
+                public Noeud? Succ
                 {
                     get { return succ; }
                     set { succ = value; }
                 }
 
-                public Noeud Frere
+                public Noeud? Frere
                 {
                     get { return frere; }
                     set { frere = value; }
@@ -39,14 +39,14 @@
                 }
             }
 
-            private Noeud racine;
+            private Noeud? racine;
 
             public Organigramme(Noeud? racine = null)
             {
                 this.racine = racine;
             }
 
-            public Noeud Racine
+            public Noeud? Racine
             {
                 get { return racine; }
                 set { racine = value; }
@@ -69,7 +69,7 @@
                 if (start == null) return false;
                 if (start.Succ == null)
                 {
-                    start.Succ = new Noeud?(salarie);
+                    start.Succ = new Noeud(salarie);
                     return true;
                 }
                 else
@@ -82,7 +82,7 @@
             {
                 if (racine == null)
                 {
-                    racine = new Noeud?(salarie);
+                    racine = new Noeud(salarie);
                 }
                 else if (manager != null)
                 {
@@ -109,7 +109,7 @@
                 }
             }
 
-            public Noeud? Rechercher(Noeud start, Salarie salarie)
+            public Noeud? Rechercher(Noeud? start, Salarie salarie)
             {
                 if (start == null) return null;
                 if (start.Salarie == salarie) return start;
@@ -179,7 +179,7 @@
                     Noeud? courant = managerNoeud.Succ;
                     while (courant != null)
                     {
-                        subordonnes.Add(courant.Salarie);
+                        subordonnes.Add(courant.Salarie!);
                         courant = courant.Frere;
                     }
                 }
