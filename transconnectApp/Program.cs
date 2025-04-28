@@ -437,7 +437,7 @@
                             int nb = int.Parse(numero);
                             Reclamation? reclamation = Reclamation.RechercherReclamation(dataState, nb);
                             if (reclamation is null) {
-                                Console.WriteLine("Commande non trouvé");
+                                Console.WriteLine("Réclamation non trouvé");
                             } else {
                                 Console.Write("Veuillez écrire le motif de rejet : ");
                                 reclamation.MarquerCommeRejetee(Console.ReadLine()!);
@@ -453,7 +453,7 @@
                             int nb = int.Parse(numero);
                             Reclamation? reclamation = Reclamation.RechercherReclamation(dataState, nb);
                             if (reclamation is null) {
-                                Console.WriteLine("Commande non trouvé");
+                                Console.WriteLine("Réclamation non trouvé");
                             } else {
                                 Console.Write("Veuillez écrire la réponse pour le client : ");
                                 reclamation.MarquerCommeResolue(Console.ReadLine()!);
