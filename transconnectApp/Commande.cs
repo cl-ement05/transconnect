@@ -154,6 +154,22 @@ namespace transconnect
                                 {
                                     dateCommande = nvdate;
                                 }
+
+                                if(vehicule.Statut!=Vehicule.vehiculeDispo)
+                                {
+                                    Console.WriteLine("Le véhicule n'est plus disponible. Veuillez en sélectionner un nouveau");
+                                    bool vehiculeLibre=dataState.flotte.Any(v => v.Statut==Vehicule.vehiculeDispo);
+                                    if(vehiculeLibre)
+                                    {
+                                        vehicule=Vehicule.SelectionnerVehicule(dataState);
+                                        Console.WriteLine("Nouveau véhicule sélectionner : "+ vehicule.Immatriculation);
+                                        dateCommande = nvdate;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Aucun véhicule disponible à cette date, modification de la commande impossible");
+                                    }
+                                }
                             }
                         }
                         break;
