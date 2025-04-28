@@ -98,9 +98,14 @@ namespace transconnect
         public static void AfficherParVille(DataState dataState, string ville)
         {
             Console.WriteLine($"Clients par Ville : {ville}");
-            foreach (Client c in dataState.clients.Where(c => c.AdressePostale.Contains(ville)))
-            {
-                Console.WriteLine(c.ToString());
+            List<Client> liste = dataState.clients.Where(c => c.AdressePostale.Contains(ville)).ToList();
+            if (liste.Count == 0) {
+                Console.WriteLine("Aucun client trouvé");
+            } else {
+                foreach (Client c in liste)
+                {
+                    Console.WriteLine(c.ToString());
+                }
             }
         }
 
