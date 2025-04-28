@@ -27,8 +27,8 @@
 
             DataState dataState = new DataState(graph);
 
-            Console.WriteLine(@"Vous pouvez commencer avec une entreprise vide ou bien charger quelques donnée pré-définies.
-            Que souhaitez-vous faire ? (VIDE/charger)");
+            Console.WriteLine("Vous pouvez commencer avec une entreprise vide ou bien charger quelques donnée pré-définies." +
+            "Que souhaitez-vous faire ? (vide/charger)");
 
             string answer = Console.ReadLine()!;
             switch (answer.ToLower()) {
@@ -115,7 +115,8 @@
                 Console.WriteLine("3 : Module Commande");
                 Console.WriteLine("4 : Module Stats");
                 Console.WriteLine("5 : Module Réclamation");
-                Console.WriteLine("6 : Quitter");
+                Console.WriteLine("6 : Afficher le graph des villes");
+                Console.WriteLine("7 : Quitter");
                 Console.Write("Faites votre choix : ");
                 string nbr = Console.ReadLine()!;
                 
@@ -130,12 +131,15 @@
                         Module_Commande(dataState);
                         break;
                     case "4":
-                    Module_Stat(dataState);
+                        Module_Stat(dataState);
                         break;
                     case "5":
                         Module_Reclamation(dataState);
                         break;
                     case "6":
+                        dataState.graphe.drawGraph();
+                        break;
+                    case "7":
                         continueApp = false;
                         break;
                     default:

@@ -33,16 +33,13 @@ namespace transconnect {
             Pen pen = new Pen(Color.Black);
 
             int index = 0;
+            //pre-processing data but not drawing => draw verticies at the end to avoid overlap with edges
             foreach(Noeud<T> noeud in graph.verticies) {
                 int row = index / cols;
                 int col = index % cols;
                 int x = cst + col * (Noeudsize + margin);
                 int y = cst + row * (Noeudsize + margin);
                 positions[noeud.data] = (x, y);
-
-                g.FillEllipse(Brushes.Coral, x, y, Noeudsize, Noeudsize);
-                g.DrawString(noeud.data.ToString(), new Font("Arial", 13), Brushes.Black, x+30, y+30);
-
                 index++;
             }
 
@@ -50,9 +47,20 @@ namespace transconnect {
                 foreach(Lien<T> lien in noeud.edges) {
                     (int, int) coordsOrg = positions[noeud.data];
                     (int, int) coordsDst = positions[lien.dest.data];
-                    g.DrawLine(pen, coordsOrg.Item1+Noeudsize/2, coordsOrg.Item2+Noeudsize/2, 
-                    coordsDst.Item1+Noeudsize/2, coordsDst.Item2+Noeudsize/2);
+                    int x1, y1, x2, y2;
+                    x1 = coordsOrg.Item1+Noeudsize/2;
+                    y1 = coordsOrg.Item2+Noeudsize/2;
+                    x2 = coordsDst.Item1+Noeudsize/2;
+                    y2 = coordsDst.Item2+Noeudsize/2;
+                    g.DrawLine(pen, x1, y1, x2, y2);
                 }
+            }
+
+            foreach(Noeud<T> noeud in graph.verticies) {
+                int x = positions[noeud.data].Item1;
+                int y = positions[noeud.data].Item2;
+                g.FillEllipse(Brushes.Coral, x, y, Noeudsize, Noeudsize);
+                g.DrawString(noeud.data.ToString(), new Font("Arial", 13), Brushes.Black, x+10, y+30);
             }
         }
     }
