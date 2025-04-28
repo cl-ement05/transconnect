@@ -23,6 +23,11 @@ namespace transconnect
             chauffeursSousResponsabilite.Add(chauffeur);
         }
 
+        public void SupprimerChauffeur(Chauffeur chauffeur)
+        {
+            chauffeursSousResponsabilite.Remove(chauffeur);
+        }
+
         public static ChefEquipe CreerNouveau(DataState dataState) {
             Console.WriteLine("Veuillez saisir les informations du nouveau salarié.");
             PersonneDataHolder data = CreerPersonne(dataState);

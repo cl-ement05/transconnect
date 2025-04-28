@@ -88,8 +88,9 @@ namespace transconnect
                             }
                             else if (dataState.directeur != null)
                             {
-                                dataState.directeur.AjouterSalarie(seulChauffeur);
-                                dataState.organigramme.ModifierManager(seulChauffeur, dataState.directeur);
+                                Console.WriteLine(@"Erreur : aucun autre chef d'équipe n'est disponible
+                                pour récupérer les chauffeurs de ce chef. La suppression n'a donc pas lieu");
+                                return;
                             }
                         }
                         // Sinon aucun chauffeur sous sa responsabilité
@@ -99,11 +100,18 @@ namespace transconnect
                     break;
 
                 default:
-                    dataState.salaries.Remove(this);
-                    dataState.organigramme.SupprimerSalarie(this);
+                    foreach(Salarie salarie in dataState.salaries) {
+                        if (salarie is ChefEquipe) {
+                            ChefEquipe manager = (ChefEquipe)salarie;
+                            manager.SupprimerChauffeur((Chauffeur)this);
+                            break;
+                        }
+                    }
                     break;
             }
             dataState.directeur!.SupprimerSalarie(this);
+            dataState.organigramme.SupprimerSalarie(this);
+            dataState.salaries.Remove(this);
         }
 
         /// <summary>
