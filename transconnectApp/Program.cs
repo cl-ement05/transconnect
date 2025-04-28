@@ -285,7 +285,7 @@
                         }
                         break;
                     case "4":
-                        dataState.organigramme.Afficher();
+                        dataState.organigramme.Afficher(dataState.organigramme.Racine); 
                         break;
                     case "5":
                         continueApp = false;
