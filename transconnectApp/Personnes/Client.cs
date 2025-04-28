@@ -27,26 +27,48 @@ namespace transconnect
         {
             dataState.clients.Remove(this);
         }
-
         /// <summary>
-        /// Modifie les informations de ce client
+        /// Modifie les informations du client.
         /// </summary>
-        /// <param name="numeroSS"></param>
-        /// <param name="nom"></param>
-        /// <param name="prenom"></param>
-        /// <param name="dateNaissance"></param>
-        /// <param name="adressePostale"></param>
-        /// <param name="email"></param>
-        /// <param name="telephone"></param>
-        public void ModifierClientParNumeroSS(string nom, string prenom, DateTime dateNaissance,
-                                      string adressePostale, string email, string telephone)
+        public void ModifierClient()
         {
-            this.nom = nom;
-            this.prenom = prenom;
-            this.dateNaissance = dateNaissance;
-            this.adressePostale = adressePostale;
-            this.email = email;
-            this.telephone = telephone;
+            Console.WriteLine("Modification des informations du client. Appuyez sur Entrée pour conserver la valeur actuelle.");
+
+            Console.Write($"Nom ({this.nom}) : ");
+            string nom = Console.ReadLine()!;
+            if (!string.IsNullOrWhiteSpace(nom)) this.nom = nom;
+
+            Console.Write($"Prénom ({this.prenom}) : ");
+            string prenom = Console.ReadLine()!;
+            if (!string.IsNullOrWhiteSpace(prenom)) this.prenom = prenom;
+
+            Console.Write($"Date de naissance ({this.dateNaissance:dd/MM/yyyy}) (JJ/MM/AAAA) : ");
+            string dateNaissanceInput = Console.ReadLine()!;
+            if (!string.IsNullOrWhiteSpace(dateNaissanceInput))
+            {
+                if (DateTime.TryParse(dateNaissanceInput, out DateTime dateNaissance))
+                {
+                    this.dateNaissance = dateNaissance;
+                }
+                else
+                {
+                    Console.WriteLine("Date invalide. La valeur actuelle est conservée.");
+                }
+            }
+
+            Console.Write($"Adresse postale ({this.adressePostale}) : ");
+            string adressePostale = Console.ReadLine()!;
+            if (!string.IsNullOrWhiteSpace(adressePostale)) this.adressePostale = adressePostale;
+
+            Console.Write($"Email ({this.email}) : ");
+            string email = Console.ReadLine()!;
+            if (!string.IsNullOrWhiteSpace(email)) this.email = email;
+
+            Console.Write($"Téléphone ({this.telephone}) : ");
+            string telephone = Console.ReadLine()!;
+            if (!string.IsNullOrWhiteSpace(telephone)) this.telephone = telephone;
+
+            Console.WriteLine("Les informations du client ont été mises à jour.");
         }
 
         public (string, string) TrajetFavori(DataState dataState) {
