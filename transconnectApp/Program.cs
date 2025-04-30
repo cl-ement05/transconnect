@@ -166,7 +166,7 @@
                 string numeroSS = "";
                 switch(nbr) {
                     case "1":
-                        Client.AfficherClients(dataState);
+                        Client.AfficherParNom(dataState);
                         break;
                     case "2":
                         Console.Write("Quelle ville souhaitez-vous chercher : ");
@@ -187,7 +187,8 @@
                         }
                         break;
                     case "5":
-                        dataState.clients.Add(Client.CreerNouveau(dataState));
+                       Client.CreerNouveau(dataState).AjouterClient(dataState);
+                        Console.WriteLine("Client créé avec succés");
                         break;
                     case "6":
                         Console.WriteLine("Saisissez le numéro de SS du client cherché : ");
@@ -207,6 +208,8 @@
                             Console.WriteLine("Client non trouvé");
                         } else {
                             client.SupprimerClient(dataState);
+                            Console.WriteLine("Client supprimé");
+
                         }
                         break;
                     case "8":

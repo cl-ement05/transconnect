@@ -107,7 +107,7 @@ namespace transconnect{
             while (!valid) {
                 Console.Write("Date de naissance (JJ/MM/AAAA) : ");
                 try {
-                    dateNaissance = Convert.ToDateTime(Console.ReadLine()!);
+                    dateNaissance = DateTime.Parse(Console.ReadLine()!);
                     valid = true;
                 } catch (FormatException) {
                     Console.WriteLine("Format invalide ! Veuillez réessayer.");
@@ -161,7 +161,7 @@ namespace transconnect{
         
         public override string ToString()
         {
-            return $"Nom : {nom}, Prénom : {prenom}, Date de naissance : {dateNaissance.ToShortDateString()}, Adresse : {adressePostale}, Email : {email}, Téléphone : {telephone}";
+            return $"{numeroSS} Nom : {nom}, Prénom : {prenom}, Date de naissance : {dateNaissance.ToShortDateString()}, Adresse : {adressePostale}, Email : {email}, Téléphone : {telephone}";
         }
     }
 }
