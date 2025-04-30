@@ -126,7 +126,7 @@
 
                 if (start.Salarie != null)
                 {
-                    Console.WriteLine($"{prefix}- {start.Salarie.Nom} {start.Salarie.Prenom} ({start.Salarie.Poste}) ");
+                    Console.WriteLine($"{prefix}- {start.Salarie.Nom} {start.Salarie.Prenom} ({start.Salarie.Poste}) {start.Salarie.NumeroSS}");
                 }
 
                 if (start.Succ != null)
