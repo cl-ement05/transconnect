@@ -148,6 +148,16 @@ namespace transconnect{
             set { telephone = value; }
         }
 
+        public override bool Equals(object? obj)
+        {
+            try { 
+                Personne p = (Personne)obj!;
+                return p.numeroSS == numeroSS;
+            } catch (Exception) {
+                return false;
+            }
+        }
+
         
         public override string ToString()
         {

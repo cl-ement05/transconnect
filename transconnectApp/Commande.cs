@@ -83,7 +83,6 @@ namespace transconnect
                         string nvVilleDepart = Console.ReadLine()!;
                         if (nvVilleDepart != "")
                         {
-                            villeDepart = nvVilleDepart;
                             trajetModifie = true;
                         }
 
@@ -91,23 +90,25 @@ namespace transconnect
                         string nvVilleArrivee = Console.ReadLine()!;
                         if (nvVilleArrivee != "")
                         {
-                            villeArrivee = nvVilleArrivee;
                             trajetModifie = true;
                         }
 
                         if (trajetModifie)
                         {
-                            Noeud<string>? nd = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeDepart);
-                            Noeud<string>? na = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeArrivee);
+                            Noeud<string>? nd = dataState.graphe.verticies.FirstOrDefault(n => n.data == nvVilleDepart);
+                            Noeud<string>? na = dataState.graphe.verticies.FirstOrDefault(n => n.data == nvVilleArrivee);
                             if (nd is not null && na is not null)
                             {
                                 List<Noeud<string>> nouveauChemin;
                                 int nouvelleDistance;
+                                villeDepart = nvVilleDepart;
+                                villeArrivee = nvVilleArrivee;
+
                                 (nouveauChemin, nouvelleDistance) = dataState.graphe.Dijkstra(nd, na);
                                 Console.WriteLine("Nouvelle distance : " + nouvelleDistance + " km");
 
                                 double nouveauPrix = nouvelleDistance * chauffeur.TarifHoraire;
-                                Console.WriteLine("Nouveau prix : " + nouveauPrix + " €");
+                                Console.WriteLine("Nouveau prix : " + nouveauPrix + " euros");
                             }
                             else
                             {
@@ -124,10 +125,10 @@ namespace transconnect
                         }
                         if (nvdate != dateCommande)
                         {
-                            if (!chauffeur.EstDisponible(nvdate))
+                            if (!chauffeur.EstDisponible(dataState, nvdate))
                             {
                                 Console.WriteLine("Le chauffeur actuel n'est pas disponible à cette date");
-                                Chauffeur? nvchauffeur = dataState.chauffeurs.Find(ch => ch.EstDisponible(nvdate));
+                                Chauffeur? nvchauffeur = dataState.chauffeurs.Find(ch => ch.EstDisponible(dataState, nvdate));
                                 if (nvchauffeur is null)
                                 {
                                     Console.WriteLine("Aucun chauffeur n'est disponible, la date ne sera pas modifié");
@@ -135,9 +136,7 @@ namespace transconnect
                                 else
                                 {
                                     Console.WriteLine("Nouveau chaffeur assigné : " + nvchauffeur.Nom + " " + nvchauffeur.Prenom);
-                                    chauffeur.LivraisonsEffectuees.Remove(this);
                                     chauffeur = nvchauffeur;
-                                    nvchauffeur.LivraisonsEffectuees.Add(this);
                                     dateCommande = nvdate;
 
                                     Noeud<string>? nd = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeDepart);
@@ -148,7 +147,7 @@ namespace transconnect
                                         int distanceRecalculee;
                                         (cheminRecalcule, distanceRecalculee) = dataState.graphe.Dijkstra(nd, na);
                                         double nouveauPrix = distanceRecalculee * nvchauffeur.TarifHoraire;
-                                        Console.WriteLine("Nouveau prix après changement de chauffeur : " + nouveauPrix + " €");
+                                        Console.WriteLine("Nouveau prix après changement de chauffeur : " + nouveauPrix + " euros");
                                     }
                                 }
                             }
@@ -218,7 +217,6 @@ namespace transconnect
         public void AjouterCommander(DataState dataState) {
             if (!dataState.commandes.Contains(this)) {
                 dataState.commandes.Add(this);
-                chauffeur.LivraisonsEffectuees.Add(this);
                 Console.WriteLine("Commande ajoutée avec succès");
             } else {
                 Console.WriteLine("Commande déjà présente dans la liste");
@@ -254,12 +252,12 @@ namespace transconnect
             }
 
             DateTime dateCommande;
-            Console.Write("Saisir nouvelle date de commande (JJ/MM/AAAA)");
+            Console.Write("Saisir nouvelle date de commande (JJ/MM/AAAA) : ");
             while (!DateTime.TryParse(Console.ReadLine(), out dateCommande)) {
                 Console.WriteLine("Format invalide ! Veuillez réessayer.");
             }
 
-            Chauffeur? chauffeurSelectionne = dataState.chauffeurs.Find(ch => ch.EstDisponible(dateCommande));
+            Chauffeur? chauffeurSelectionne = dataState.chauffeurs.Find(ch => ch.EstDisponible(dataState, dateCommande));
             if(chauffeurSelectionne is null)
             {
                 Console.WriteLine("Aucun chaufeur n'est disponible à la date demandée : "+ dateCommande);
@@ -294,11 +292,11 @@ namespace transconnect
             Console.WriteLine("Distance estimée : "+distancekm+" km");
 
             double prix=distancekm * chauffeurSelectionne.TarifHoraire;
-            Console.WriteLine("Prix de la commande : "+prix+" €");
+            Console.WriteLine("Prix de la commande : "+prix+" euros");
 
             Commande commande = new Commande(clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
 
-            Console.WriteLine("Commande créée avec succès :");
+            Console.WriteLine("Commande créée avec succès");
             return commande;
         }
 
@@ -318,7 +316,8 @@ namespace transconnect
 
         public override string ToString()
         {
-            return "Commande : " + numeroCommande + " | " + villeDepart + " -> " + villeArrivee + " | Date : " + dateCommande.ToShortDateString() + " | Véhicule : " + vehicule;
+            return "Commande : " + numeroCommande + " de " + client.Nom + " " + client.Prenom + "| " + villeDepart + " -> " + villeArrivee + 
+            " | Date : " + dateCommande.ToShortDateString() + " | Véhicule : " + vehicule;
         }
     }
 }

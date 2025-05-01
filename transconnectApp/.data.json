@@ -28,10 +28,6 @@
         },
         "Chauffeur": {
           "$type": "transconnect.Chauffeur, transconnect",
-          "LivraisonsEffectuees": {
-            "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-            "$values": []
-          },
           "TarifHoraire": 9.0,
           "DateEntree": "2015-06-01T00:00:00",
           "Poste": "Chauffeur",
@@ -71,10 +67,6 @@
         },
         "Chauffeur": {
           "$type": "transconnect.Chauffeur, transconnect",
-          "LivraisonsEffectuees": {
-            "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-            "$values": []
-          },
           "TarifHoraire": 4.0,
           "DateEntree": "2020-09-01T00:00:00",
           "Poste": "Chauffeur",
@@ -114,10 +106,6 @@
         },
         "Chauffeur": {
           "$type": "transconnect.Chauffeur, transconnect",
-          "LivraisonsEffectuees": {
-            "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-            "$values": []
-          },
           "TarifHoraire": 9.0,
           "DateEntree": "2016-02-10T00:00:00",
           "Poste": "Chauffeur",
@@ -188,10 +176,6 @@
                 "$values": [
                   {
                     "$type": "transconnect.Chauffeur, transconnect",
-                    "LivraisonsEffectuees": {
-                      "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                      "$values": []
-                    },
                     "TarifHoraire": 9.0,
                     "DateEntree": "2015-06-01T00:00:00",
                     "Poste": "Chauffeur",
@@ -206,10 +190,6 @@
                   },
                   {
                     "$type": "transconnect.Chauffeur, transconnect",
-                    "LivraisonsEffectuees": {
-                      "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                      "$values": []
-                    },
                     "TarifHoraire": 4.0,
                     "DateEntree": "2020-09-01T00:00:00",
                     "Poste": "Chauffeur",
@@ -237,10 +217,6 @@
             },
             {
               "$type": "transconnect.Chauffeur, transconnect",
-              "LivraisonsEffectuees": {
-                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                "$values": []
-              },
               "TarifHoraire": 9.0,
               "DateEntree": "2015-06-01T00:00:00",
               "Poste": "Chauffeur",
@@ -255,10 +231,6 @@
             },
             {
               "$type": "transconnect.Chauffeur, transconnect",
-              "LivraisonsEffectuees": {
-                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                "$values": []
-              },
               "TarifHoraire": 4.0,
               "DateEntree": "2020-09-01T00:00:00",
               "Poste": "Chauffeur",
@@ -272,52 +244,12 @@
               "Telephone": "0612345678"
             },
             {
-              "$type": "transconnect.ChefEquipe, transconnect",
-              "ChauffeursSousResponsabilite": {
-                "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
-                "$values": [
-                  {
-                    "$type": "transconnect.Chauffeur, transconnect",
-                    "LivraisonsEffectuees": {
-                      "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                      "$values": []
-                    },
-                    "TarifHoraire": 5.0,
-                    "DateEntree": "2019-07-22T00:00:00",
-                    "Poste": "Chauffeur",
-                    "Salaire": 2200.0,
-                    "NumeroSS": "987654321",
-                    "Nom": "Rousseau",
-                    "Prenom": "Marie",
-                    "DateNaissance": "1992-04-18T00:00:00",
-                    "AdressePostale": "60 allée des Saules",
-                    "Email": "marie.rousseau@example.com",
-                    "Telephone": "0633445566"
-                  }
-                ]
-              },
-              "DateEntree": "2017-05-01T00:00:00",
-              "Poste": "Chef d'équipe",
-              "Salaire": 3200.0,
-              "NumeroSS": "456789123",
-              "Nom": "Dubois",
-              "Prenom": "Pierre",
-              "DateNaissance": "1983-09-12T00:00:00",
-              "AdressePostale": "70 rue des Peupliers",
-              "Email": "pierre.dubois@example.com",
-              "Telephone": "0644556677"
-            },
-            {
               "$type": "transconnect.Chauffeur, transconnect",
-              "LivraisonsEffectuees": {
-                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                "$values": []
-              },
               "TarifHoraire": 5.0,
               "DateEntree": "2019-07-22T00:00:00",
               "Poste": "Chauffeur",
               "Salaire": 2200.0,
-              "NumeroSS": "987654321",
+              "NumeroSS": "987654322",
               "Nom": "Rousseau",
               "Prenom": "Marie",
               "DateNaissance": "1992-04-18T00:00:00",
@@ -345,10 +277,6 @@
           "$values": [
             {
               "$type": "transconnect.Chauffeur, transconnect",
-              "LivraisonsEffectuees": {
-                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                "$values": []
-              },
               "TarifHoraire": 9.0,
               "DateEntree": "2015-06-01T00:00:00",
               "Poste": "Chauffeur",
@@ -363,10 +291,6 @@
             },
             {
               "$type": "transconnect.Chauffeur, transconnect",
-              "LivraisonsEffectuees": {
-                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                "$values": []
-              },
               "TarifHoraire": 4.0,
               "DateEntree": "2020-09-01T00:00:00",
               "Poste": "Chauffeur",
@@ -394,10 +318,6 @@
       },
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "LivraisonsEffectuees": {
-          "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-          "$values": []
-        },
         "TarifHoraire": 9.0,
         "DateEntree": "2015-06-01T00:00:00",
         "Poste": "Chauffeur",
@@ -412,10 +332,6 @@
       },
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "LivraisonsEffectuees": {
-          "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-          "$values": []
-        },
         "TarifHoraire": 4.0,
         "DateEntree": "2020-09-01T00:00:00",
         "Poste": "Chauffeur",
@@ -429,52 +345,12 @@
         "Telephone": "0612345678"
       },
       {
-        "$type": "transconnect.ChefEquipe, transconnect",
-        "ChauffeursSousResponsabilite": {
-          "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
-          "$values": [
-            {
-              "$type": "transconnect.Chauffeur, transconnect",
-              "LivraisonsEffectuees": {
-                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                "$values": []
-              },
-              "TarifHoraire": 5.0,
-              "DateEntree": "2019-07-22T00:00:00",
-              "Poste": "Chauffeur",
-              "Salaire": 2200.0,
-              "NumeroSS": "987654321",
-              "Nom": "Rousseau",
-              "Prenom": "Marie",
-              "DateNaissance": "1992-04-18T00:00:00",
-              "AdressePostale": "60 allée des Saules",
-              "Email": "marie.rousseau@example.com",
-              "Telephone": "0633445566"
-            }
-          ]
-        },
-        "DateEntree": "2017-05-01T00:00:00",
-        "Poste": "Chef d'équipe",
-        "Salaire": 3200.0,
-        "NumeroSS": "456789123",
-        "Nom": "Dubois",
-        "Prenom": "Pierre",
-        "DateNaissance": "1983-09-12T00:00:00",
-        "AdressePostale": "70 rue des Peupliers",
-        "Email": "pierre.dubois@example.com",
-        "Telephone": "0644556677"
-      },
-      {
         "$type": "transconnect.Chauffeur, transconnect",
-        "LivraisonsEffectuees": {
-          "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-          "$values": []
-        },
         "TarifHoraire": 5.0,
         "DateEntree": "2019-07-22T00:00:00",
         "Poste": "Chauffeur",
         "Salaire": 2200.0,
-        "NumeroSS": "987654321",
+        "NumeroSS": "987654322",
         "Nom": "Rousseau",
         "Prenom": "Marie",
         "DateNaissance": "1992-04-18T00:00:00",
@@ -500,10 +376,6 @@
                 "$values": [
                   {
                     "$type": "transconnect.Chauffeur, transconnect",
-                    "LivraisonsEffectuees": {
-                      "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                      "$values": []
-                    },
                     "TarifHoraire": 9.0,
                     "DateEntree": "2015-06-01T00:00:00",
                     "Poste": "Chauffeur",
@@ -518,10 +390,6 @@
                   },
                   {
                     "$type": "transconnect.Chauffeur, transconnect",
-                    "LivraisonsEffectuees": {
-                      "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                      "$values": []
-                    },
                     "TarifHoraire": 4.0,
                     "DateEntree": "2020-09-01T00:00:00",
                     "Poste": "Chauffeur",
@@ -549,10 +417,6 @@
             },
             {
               "$type": "transconnect.Chauffeur, transconnect",
-              "LivraisonsEffectuees": {
-                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                "$values": []
-              },
               "TarifHoraire": 9.0,
               "DateEntree": "2015-06-01T00:00:00",
               "Poste": "Chauffeur",
@@ -567,10 +431,6 @@
             },
             {
               "$type": "transconnect.Chauffeur, transconnect",
-              "LivraisonsEffectuees": {
-                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                "$values": []
-              },
               "TarifHoraire": 4.0,
               "DateEntree": "2020-09-01T00:00:00",
               "Poste": "Chauffeur",
@@ -584,52 +444,12 @@
               "Telephone": "0612345678"
             },
             {
-              "$type": "transconnect.ChefEquipe, transconnect",
-              "ChauffeursSousResponsabilite": {
-                "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
-                "$values": [
-                  {
-                    "$type": "transconnect.Chauffeur, transconnect",
-                    "LivraisonsEffectuees": {
-                      "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                      "$values": []
-                    },
-                    "TarifHoraire": 5.0,
-                    "DateEntree": "2019-07-22T00:00:00",
-                    "Poste": "Chauffeur",
-                    "Salaire": 2200.0,
-                    "NumeroSS": "987654321",
-                    "Nom": "Rousseau",
-                    "Prenom": "Marie",
-                    "DateNaissance": "1992-04-18T00:00:00",
-                    "AdressePostale": "60 allée des Saules",
-                    "Email": "marie.rousseau@example.com",
-                    "Telephone": "0633445566"
-                  }
-                ]
-              },
-              "DateEntree": "2017-05-01T00:00:00",
-              "Poste": "Chef d'équipe",
-              "Salaire": 3200.0,
-              "NumeroSS": "456789123",
-              "Nom": "Dubois",
-              "Prenom": "Pierre",
-              "DateNaissance": "1983-09-12T00:00:00",
-              "AdressePostale": "70 rue des Peupliers",
-              "Email": "pierre.dubois@example.com",
-              "Telephone": "0644556677"
-            },
-            {
               "$type": "transconnect.Chauffeur, transconnect",
-              "LivraisonsEffectuees": {
-                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                "$values": []
-              },
               "TarifHoraire": 5.0,
               "DateEntree": "2019-07-22T00:00:00",
               "Poste": "Chauffeur",
               "Salaire": 2200.0,
-              "NumeroSS": "987654321",
+              "NumeroSS": "987654322",
               "Nom": "Rousseau",
               "Prenom": "Marie",
               "DateNaissance": "1992-04-18T00:00:00",
@@ -659,10 +479,6 @@
             "$values": [
               {
                 "$type": "transconnect.Chauffeur, transconnect",
-                "LivraisonsEffectuees": {
-                  "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                  "$values": []
-                },
                 "TarifHoraire": 9.0,
                 "DateEntree": "2015-06-01T00:00:00",
                 "Poste": "Chauffeur",
@@ -677,10 +493,6 @@
               },
               {
                 "$type": "transconnect.Chauffeur, transconnect",
-                "LivraisonsEffectuees": {
-                  "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                  "$values": []
-                },
                 "TarifHoraire": 4.0,
                 "DateEntree": "2020-09-01T00:00:00",
                 "Poste": "Chauffeur",
@@ -710,10 +522,6 @@
           "$type": "transconnect.Organigramme+Noeud, transconnect",
           "Salarie": {
             "$type": "transconnect.Chauffeur, transconnect",
-            "LivraisonsEffectuees": {
-              "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-              "$values": []
-            },
             "TarifHoraire": 9.0,
             "DateEntree": "2015-06-01T00:00:00",
             "Poste": "Chauffeur",
@@ -731,10 +539,6 @@
             "$type": "transconnect.Organigramme+Noeud, transconnect",
             "Salarie": {
               "$type": "transconnect.Chauffeur, transconnect",
-              "LivraisonsEffectuees": {
-                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                "$values": []
-              },
               "TarifHoraire": 4.0,
               "DateEntree": "2020-09-01T00:00:00",
               "Poste": "Chauffeur",
@@ -751,69 +555,7 @@
             "Frere": null
           }
         },
-        "Frere": {
-          "$type": "transconnect.Organigramme+Noeud, transconnect",
-          "Salarie": {
-            "$type": "transconnect.ChefEquipe, transconnect",
-            "ChauffeursSousResponsabilite": {
-              "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
-              "$values": [
-                {
-                  "$type": "transconnect.Chauffeur, transconnect",
-                  "LivraisonsEffectuees": {
-                    "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                    "$values": []
-                  },
-                  "TarifHoraire": 5.0,
-                  "DateEntree": "2019-07-22T00:00:00",
-                  "Poste": "Chauffeur",
-                  "Salaire": 2200.0,
-                  "NumeroSS": "987654321",
-                  "Nom": "Rousseau",
-                  "Prenom": "Marie",
-                  "DateNaissance": "1992-04-18T00:00:00",
-                  "AdressePostale": "60 allée des Saules",
-                  "Email": "marie.rousseau@example.com",
-                  "Telephone": "0633445566"
-                }
-              ]
-            },
-            "DateEntree": "2017-05-01T00:00:00",
-            "Poste": "Chef d'équipe",
-            "Salaire": 3200.0,
-            "NumeroSS": "456789123",
-            "Nom": "Dubois",
-            "Prenom": "Pierre",
-            "DateNaissance": "1983-09-12T00:00:00",
-            "AdressePostale": "70 rue des Peupliers",
-            "Email": "pierre.dubois@example.com",
-            "Telephone": "0644556677"
-          },
-          "Succ": {
-            "$type": "transconnect.Organigramme+Noeud, transconnect",
-            "Salarie": {
-              "$type": "transconnect.Chauffeur, transconnect",
-              "LivraisonsEffectuees": {
-                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                "$values": []
-              },
-              "TarifHoraire": 5.0,
-              "DateEntree": "2019-07-22T00:00:00",
-              "Poste": "Chauffeur",
-              "Salaire": 2200.0,
-              "NumeroSS": "987654321",
-              "Nom": "Rousseau",
-              "Prenom": "Marie",
-              "DateNaissance": "1992-04-18T00:00:00",
-              "AdressePostale": "60 allée des Saules",
-              "Email": "marie.rousseau@example.com",
-              "Telephone": "0633445566"
-            },
-            "Succ": null,
-            "Frere": null
-          },
-          "Frere": null
-        }
+        "Frere": null
       },
       "Frere": null
     }
@@ -2022,10 +1764,6 @@
     "$values": [
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "LivraisonsEffectuees": {
-          "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-          "$values": []
-        },
         "TarifHoraire": 9.0,
         "DateEntree": "2015-06-01T00:00:00",
         "Poste": "Chauffeur",
@@ -2040,10 +1778,6 @@
       },
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "LivraisonsEffectuees": {
-          "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-          "$values": []
-        },
         "TarifHoraire": 4.0,
         "DateEntree": "2020-09-01T00:00:00",
         "Poste": "Chauffeur",
@@ -2058,15 +1792,11 @@
       },
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "LivraisonsEffectuees": {
-          "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-          "$values": []
-        },
         "TarifHoraire": 5.0,
         "DateEntree": "2019-07-22T00:00:00",
         "Poste": "Chauffeur",
         "Salaire": 2200.0,
-        "NumeroSS": "987654321",
+        "NumeroSS": "987654322",
         "Nom": "Rousseau",
         "Prenom": "Marie",
         "DateNaissance": "1992-04-18T00:00:00",
@@ -2088,10 +1818,6 @@
             "$values": [
               {
                 "$type": "transconnect.Chauffeur, transconnect",
-                "LivraisonsEffectuees": {
-                  "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                  "$values": []
-                },
                 "TarifHoraire": 9.0,
                 "DateEntree": "2015-06-01T00:00:00",
                 "Poste": "Chauffeur",
@@ -2106,10 +1832,6 @@
               },
               {
                 "$type": "transconnect.Chauffeur, transconnect",
-                "LivraisonsEffectuees": {
-                  "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                  "$values": []
-                },
                 "TarifHoraire": 4.0,
                 "DateEntree": "2020-09-01T00:00:00",
                 "Poste": "Chauffeur",
@@ -2137,10 +1859,6 @@
         },
         {
           "$type": "transconnect.Chauffeur, transconnect",
-          "LivraisonsEffectuees": {
-            "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-            "$values": []
-          },
           "TarifHoraire": 9.0,
           "DateEntree": "2015-06-01T00:00:00",
           "Poste": "Chauffeur",
@@ -2155,10 +1873,6 @@
         },
         {
           "$type": "transconnect.Chauffeur, transconnect",
-          "LivraisonsEffectuees": {
-            "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-            "$values": []
-          },
           "TarifHoraire": 4.0,
           "DateEntree": "2020-09-01T00:00:00",
           "Poste": "Chauffeur",
@@ -2172,52 +1886,12 @@
           "Telephone": "0612345678"
         },
         {
-          "$type": "transconnect.ChefEquipe, transconnect",
-          "ChauffeursSousResponsabilite": {
-            "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
-            "$values": [
-              {
-                "$type": "transconnect.Chauffeur, transconnect",
-                "LivraisonsEffectuees": {
-                  "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-                  "$values": []
-                },
-                "TarifHoraire": 5.0,
-                "DateEntree": "2019-07-22T00:00:00",
-                "Poste": "Chauffeur",
-                "Salaire": 2200.0,
-                "NumeroSS": "987654321",
-                "Nom": "Rousseau",
-                "Prenom": "Marie",
-                "DateNaissance": "1992-04-18T00:00:00",
-                "AdressePostale": "60 allée des Saules",
-                "Email": "marie.rousseau@example.com",
-                "Telephone": "0633445566"
-              }
-            ]
-          },
-          "DateEntree": "2017-05-01T00:00:00",
-          "Poste": "Chef d'équipe",
-          "Salaire": 3200.0,
-          "NumeroSS": "456789123",
-          "Nom": "Dubois",
-          "Prenom": "Pierre",
-          "DateNaissance": "1983-09-12T00:00:00",
-          "AdressePostale": "70 rue des Peupliers",
-          "Email": "pierre.dubois@example.com",
-          "Telephone": "0644556677"
-        },
-        {
           "$type": "transconnect.Chauffeur, transconnect",
-          "LivraisonsEffectuees": {
-            "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-            "$values": []
-          },
           "TarifHoraire": 5.0,
           "DateEntree": "2019-07-22T00:00:00",
           "Poste": "Chauffeur",
           "Salaire": 2200.0,
-          "NumeroSS": "987654321",
+          "NumeroSS": "987654322",
           "Nom": "Rousseau",
           "Prenom": "Marie",
           "DateNaissance": "1992-04-18T00:00:00",

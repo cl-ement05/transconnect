@@ -2,7 +2,6 @@ namespace transconnect
 {
     public class Chauffeur : Salarie
     {
-        private List<Commande> livraisonsEffectuees;
         private double tarifHoraire;
 
         public Chauffeur(string numeroSS, string nom, string prenom, DateTime dateNaissance,
@@ -10,14 +9,7 @@ namespace transconnect
                          DateTime dateEntree, decimal salaire)
             : base(numeroSS, nom, prenom, dateNaissance, adressePostale, email, telephone, dateEntree, chauffeur, salaire)
         {
-            livraisonsEffectuees = new List<Commande>();
             tarifHoraire = CalculerTarifHoraire();
-        }
-
-        public List<Commande> LivraisonsEffectuees
-        {
-            get { return livraisonsEffectuees; }
-            set { livraisonsEffectuees = value; }
         }
 
         public double TarifHoraire
@@ -35,7 +27,7 @@ namespace transconnect
 
         public int kmParcours(DataState dataState) {
             int distance = 0;
-            foreach(Commande commande in livraisonsEffectuees) {
+            foreach(Commande commande in dataState.commandes.FindAll(c => c.Chauffeur.Equals(this))) {
                 Noeud<string>? nd = dataState.graphe.verticies.FirstOrDefault(n => n.data == commande.VilleDepart);
                 Noeud<string>? na = dataState.graphe.verticies.FirstOrDefault(n => n.data == commande.VilleArrivee);
                 if (nd is not null && na is not null)
@@ -50,9 +42,9 @@ namespace transconnect
             return distance;
         }
 
-        public bool EstDisponible(DateTime date)
+        public bool EstDisponible(DataState dataState, DateTime date)
         {
-            foreach (Commande c in livraisonsEffectuees)
+            foreach (Commande c in dataState.commandes.FindAll(c => c.Chauffeur.Equals(this)))
             {
                 if (c.DateCommande.Date == date.Date)
                     return false;

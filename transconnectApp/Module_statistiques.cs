@@ -16,10 +16,10 @@ namespace transconnect
         public void AfficherLivraisonsParChauffeur()
         {
             Console.WriteLine("Nombre de livraison par chaffeur : ");
-            foreach(Chauffeur c in dataState.chauffeurs)
+            foreach(Chauffeur chf in dataState.chauffeurs)
             {
-                int nb_livraisons=c.LivraisonsEffectuees.Count;
-                Console.WriteLine(c.Nom + " " + c.Prenom + " :" + nb_livraisons + " livraisons");
+                int nb_livraisons = dataState.commandes.FindAll(c => c.Chauffeur.Equals(chf)).Count;
+                Console.WriteLine(chf.Nom + " " + chf.Prenom + " : " + nb_livraisons + " livraisons");
             }
         }
 
@@ -57,7 +57,7 @@ namespace transconnect
                 somme += c.CalculerPrixCommande(dataState);
             }
             double moyenne = somme / dataState.commandes.Count;
-            Console.WriteLine("Moyenne des prix des commandes : " + moyenne + "€");
+            Console.WriteLine("Moyenne des prix des commandes : " + moyenne + " euros");
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace transconnect
             foreach (Client c in dataState.clients)
             {
                 double totalclient=0;
-                List<Commande> cmds = dataState.commandes.FindAll(c => c.Client.Equals(this));
+                List<Commande> cmds = dataState.commandes.FindAll(cmd => cmd.Client.Equals(c));
                 foreach (Commande cmd in cmds)
                 {
                     totalclient += cmd.CalculerPrixCommande(dataState);

@@ -34,9 +34,16 @@ namespace transconnect
 
         public void AfficherTrajetsFavoris(DataState dataState) {
             Dictionary<(string, string), int> trajets = new Dictionary<(string, string), int>();
-            dataState.commandes.ForEach(c => trajets[(c.VilleDepart, c.VilleArrivee)] += 1);
+            List<Commande> commandes = dataState.commandes.FindAll(c => c.Client.Equals(this));
+            commandes.ForEach(c => {
+                if (trajets.ContainsKey((c.VilleDepart, c.VilleArrivee))) {
+                    trajets[(c.VilleDepart, c.VilleArrivee)] += 1;
+                } else {
+                    trajets[(c.VilleDepart, c.VilleArrivee)] = 1;
+                }
+            });
             trajets.OrderByDescending(c => c.Value).ToList().ForEach(
-                e => Console.WriteLine($"{e.Key.Item1} -> {e.Key.Item2}"));
+                e => Console.WriteLine($"{e.Key.Item1} -> {e.Key.Item2} : {e.Value} fois"));
         }
 
         /// <summary>
@@ -125,6 +132,7 @@ namespace transconnect
         /// </summary>
         public static void AfficherParMontantCommande(DataState dataState)  
         {
+            Dictionary<Client, double> dict = new Dictionary<Client, double>();
             List<Client> clientsTrie = dataState.clients.OrderByDescending(c => 
             {
                 double montantTotal = 0;
@@ -135,6 +143,7 @@ namespace transconnect
                         montantTotal += commande.CalculerPrixCommande(dataState);
                     }
                 }
+                dict[c] = montantTotal;
                 return montantTotal;
             }).ToList();
 
@@ -144,7 +153,7 @@ namespace transconnect
                 Console.WriteLine("Clients par Montant de Commande :");
                 foreach (Client c in clientsTrie)
                 { 
-                    Console.WriteLine(c.ToString());
+                    Console.WriteLine(c.ToString() + ", Montant : " + dict[c] + " euros");
                 }
             }
         }

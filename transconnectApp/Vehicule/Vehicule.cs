@@ -82,13 +82,19 @@ namespace transconnect {
         public static Vehicule SelectionnerVehicule(DataState dataState)
         {
             Console.WriteLine("Liste des véhicules disponibles : ");
-            for(int i=0; i < dataState.flotte.Count; i++)
+            int counter = 1;
+            List<int> validIndexes = new List<int>();
+            for(int i = 0; i < dataState.flotte.Count; i++)
             {
-                Console.WriteLine(i+" : " + dataState.flotte[i]);
+                if (dataState.flotte[i].Statut == vehiculeDispo) {
+                    Console.WriteLine(counter+" : " + dataState.flotte[i]);
+                    validIndexes.Add(counter);
+                    counter++;
+                }
             }
             Console.WriteLine("Saisir le véhicule voulu");
             int index = Convert.ToInt32(Console.ReadLine());
-            while (index < 0 || index >= dataState.flotte.Count()) {
+            while (!validIndexes.Contains(index)) {
                 Console.WriteLine("Saisie invalide, veuillez réessayer : ");
                 index = Convert.ToInt32(Console.ReadLine());
             }
