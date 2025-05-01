@@ -77,6 +77,12 @@ namespace transconnect
             }
         }
 
+        public void SupprimerReclamation(DataState dataState) {
+            if (!dataState.reclamations.Remove(this)) {
+                Console.WriteLine("Réclamation absent de la liste");
+            }
+        }
+
         public static void AfficherReclamations(DataState dataState) {
             if (dataState.reclamations.Count == 0) {
                 Console.WriteLine("Aucune réclamation");

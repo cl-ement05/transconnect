@@ -29,6 +29,9 @@ namespace transconnect
         {
             if (!dataState.clients.Remove(this)) {
                 Console.WriteLine("Client absent de la liste");
+            } else {
+                dataState.commandes.FindAll(c => c.Client.Equals(this)).ForEach(cmd => cmd.SupprimerCommander(dataState));
+                dataState.reclamations.FindAll(c => c.Client.Equals(this)).ForEach(cmd => cmd.SupprimerReclamation(dataState));
             }
         }
 

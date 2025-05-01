@@ -69,8 +69,12 @@ namespace transconnect {
         /// <param name="dataState"></param>
         public void RetirerVehicule(DataState dataState)
         {
-            if (!dataState.flotte.Remove(this)) {
-                Console.WriteLine("Véhicule absent de la flotte");
+            if (dataState.commandes.FindAll(c => c.Vehicule.Equals(this)).Count > 0) {
+                Console.WriteLine("Le véhicule est rattaché à une commande, suppression impossible");
+            } else {
+                if (!dataState.flotte.Remove(this)) {
+                    Console.WriteLine("Véhicule absent de la flotte");
+                }
             }
         }
 
