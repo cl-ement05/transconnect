@@ -80,7 +80,7 @@ namespace transconnect
                     totalclient += cmd.CalculerPrixCommande(dataState);
                 }
                 double moyenne = totalclient / cmds.Count();
-                Console.WriteLine($"Moyenne des comptes du client : {c.Prenom} {c.Nom}" + moyenne + " € ");
+                Console.WriteLine($"Moyenne des comptes du client : {c.Prenom} {c.Nom} " + moyenne + " euros ");
             }
             
         }

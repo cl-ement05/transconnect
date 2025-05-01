@@ -25,81 +25,26 @@
                 }
             }
 
-            DataState dataState = new DataState(graph);
+            DataState dataState;
 
-            Console.WriteLine("Vous pouvez commencer avec une entreprise vide ou bien charger quelques donnée pré-définies." +
-            "Que souhaitez-vous faire ? (vide/charger)");
+            Console.Write("Vous pouvez commencer avec une entreprise vide ou bien charger le dernier état sauvegardé" +
+            "Que souhaitez-vous faire (vide/charger) ? ");
 
             string answer = Console.ReadLine()!;
             switch (answer.ToLower()) {
                 case "vide":
-
+                    dataState = new DataState(graph);
                     break;
                 case "charger":
-                    Directeur directeur = new Directeur("123456789", "Dupont", "Jean", new DateTime(1980, 5, 20),
-                                                "10 rue des Lilas", "jean.dupont@example.com", "0601020304",
-                                                new DateTime(2010, 1, 1), 5000);
-
-                    Chauffeur chauffeur1 = new Chauffeur("987654321", "Martin", "Paul", new DateTime(1990, 8, 15),
-                                                        "20 avenue des Roses", "paul.martin@example.com", "0605060708",
-                                                        new DateTime(2015, 6, 1), 2500);
-
-                    Chauffeur chauffeur2 = new Chauffeur("456789123", "Durand", "Alice", new DateTime(1995, 3, 10),
-                                                        "30 boulevard des Champs", "alice.durand@example.com", "0612345678",
-                                                        new DateTime(2020, 9, 1), 2000);
-
-                    ChefEquipe chefEquipe = new ChefEquipe("789123456", "Lemoine", "Claire", new DateTime(1985, 7, 25),
-                                                        "50 rue des Fleurs", "claire.lemoine@example.com", "0611223344",
-                                                        new DateTime(2018, 4, 15), 3000);
-
-                    Chauffeur chauffeur3 = new Chauffeur("123456789", "Garnier", "Luc", new DateTime(1988, 11, 3),
-                                    "40 impasse des Tilleuls", "luc.garnier@example.com", "0622334455",
-                                    new DateTime(2016, 2, 10), 2800);
-
-                    Chauffeur chauffeur4 = new Chauffeur("987654321", "Rousseau", "Marie", new DateTime(1992, 4, 18),
-                                                        "60 allée des Saules", "marie.rousseau@example.com", "0633445566",
-                                                        new DateTime(2019, 7, 22), 2200);
-
-                    ChefEquipe chefEquipe2 = new ChefEquipe("456789123", "Dubois", "Pierre", new DateTime(1983, 9, 12),
-                                                            "70 rue des Peupliers", "pierre.dubois@example.com", "0644556677",
-                                                            new DateTime(2017, 5, 1), 3200);
-
-
-                    directeur.Embaucher(dataState); 
-                    chefEquipe.Embaucher(dataState, directeur);
-                    chauffeur1.Embaucher(dataState, chefEquipe);
-                    chauffeur2.Embaucher(dataState, chefEquipe);
-                    chefEquipe2.Embaucher(dataState, directeur);
-                    chauffeur4.Embaucher(dataState, chefEquipe2);
-
-
-                    // Création de clients
-                    Client client1 = new Client("123456789", "Dupont", "Jean", new DateTime(1980, 5, 20),
-                                                "10 rue des Lilas, Paris", "jean.dupont@example.com", "0601020304");
-
-                    Client client2 = new Client("987654321", "Martin", "Paul", new DateTime(1990, 8, 15),
-                                                "20 avenue des Roses, Lyon", "paul.martin@example.com", "0605060708");
-
-                    Client client3 = new Client("456789123", "Durand", "Alice", new DateTime(1995, 3, 10),
-                                                "30 boulevard des Champs, Marseille", "alice.durand@example.com", "0612345678");
-
-                    // Ajouter des clients
-                    client1.AjouterClient(dataState);
-                    client2.AjouterClient(dataState);
-                    client3.AjouterClient(dataState);
-
-                    // Création de véhicules
-                    Vehicule vehicule1 = new Voiture("AB-123-CD", "Rouge", "Renault",3);
-                    Vehicule vehicule2 = new Camionette("EF-456-GH", "Bleu", "Mercedes","Transport de marchandises", Vehicule.vehiculeMaintenance);
-                    Vehicule vehicule3 = new CamionFrigorifique("IJ-789-KL", "Noir", "Peugeot", 1000, 100, Vehicule.vehiculeOccupe);
-
-                    vehicule1.AjouterVehicule(dataState);
-                    vehicule2.AjouterVehicule(dataState);
-                    vehicule3.AjouterVehicule(dataState);
-
-                    Commande commande1 = new Commande(client1, "Paris", "Lyon", vehicule1, chauffeur1, new DateTime(2023, 10, 1));
-                    Commande commande2 = new Commande(client2, "Marseille", "Toulouse", vehicule1, chauffeur2, new DateTime(2023, 10, 5));
-                    Commande commande3 = new Commande(client3, "Bordeaux", "Nantes", vehicule1, chauffeur3, new DateTime(2023, 10, 10));
+                    DataState? loaded = DataState.Load(".data.json");
+                    if (loaded is null) {
+                        Console.WriteLine("Une erreur est survenue lors de la lecture du fichier de données, vous commencerez donc avec une entreprise vide");
+                        dataState = new DataState(graph);
+                    } else {
+                        dataState = loaded;
+                        Console.WriteLine("Données chargées avec succès");
+                    }
+                    // dataState = DataState.predefinedState(graph);
                     break;
                 default:
                     Console.WriteLine("Choix invalide");
@@ -116,7 +61,8 @@
                 Console.WriteLine("4 : Module Stats");
                 Console.WriteLine("5 : Module Réclamation");
                 Console.WriteLine("6 : Afficher le graph des villes");
-                Console.WriteLine("7 : Quitter");
+                Console.WriteLine("7 : Sauvegarder l'état actuel des données");
+                Console.WriteLine("8 : Quitter");
                 Console.Write("Faites votre choix : ");
                 string nbr = Console.ReadLine()!;
                 
@@ -140,6 +86,11 @@
                         dataState.graphe.drawGraph();
                         break;
                     case "7":
+                        if (dataState.Save(".data.json")) {
+                            Console.WriteLine("Sauvegarde effectuée");
+                        }
+                        break;
+                    case "8":
                         continueApp = false;
                         break;
                     default:
@@ -187,7 +138,7 @@
                         }
                         break;
                     case "5":
-                       Client.CreerNouveau(dataState).AjouterClient(dataState);
+                        Client.CreerNouveau().AjouterClient(dataState);
                         Console.WriteLine("Client créé avec succés");
                         break;
                     case "6":
@@ -237,19 +188,19 @@
                 switch(nbr) {
                     case "1":
                         if (dataState.directeur is not null) {
-                            Console.Write(@$"Veuillez choisir le poste à créer 
-                            ({Salarie.chefEquipe}, {Salarie.directeur}, {Salarie.chauffeur}) : ");
+                            Console.Write($"Veuillez choisir le poste à créer " +
+                            $"({Salarie.chefEquipe}, {Salarie.directeur}, {Salarie.chauffeur}) : ");
                             string choice = Console.ReadLine()!;
                             switch (choice) {
                                 case Salarie.directeur:
                                     if (dataState.directeur is not null) {
                                         Console.WriteLine("Erreur : il y a déjà un directeur");
                                     } else {
-                                        Directeur.CreerNouveau(dataState).Embaucher(dataState);
+                                        Directeur.CreerNouveau().Embaucher(dataState);
                                     }
                                     break;
                                 case Salarie.chefEquipe:
-                                    ChefEquipe.CreerNouveau(dataState).Embaucher(dataState, dataState.directeur);
+                                    ChefEquipe.CreerNouveau().Embaucher(dataState, dataState.directeur);
                                     break;
                                 case Salarie.chauffeur:
                                     Console.WriteLine("Saisissez le numéro de SS du chef du chauffeur : ");
@@ -258,13 +209,16 @@
                                     if (chef is null) {
                                         Console.WriteLine("Chef non trouvé");
                                     } else {
-                                        Chauffeur.CreerNouveau(dataState).Embaucher(dataState, chef);
+                                        Chauffeur.CreerNouveau().Embaucher(dataState, chef);
                                     }
+                                    break;
+                                default:
+                                    Console.WriteLine("Choix invalide");
                                     break;
                             }
                         } else {
                             Console.WriteLine("Votre entreprise est vide, commencez par créer un directeuré");
-                            Directeur.CreerNouveau(dataState).Embaucher(dataState);
+                            Directeur.CreerNouveau().Embaucher(dataState);
                         }
                         break;
                     case "2":
@@ -308,12 +262,16 @@
                 Console.WriteLine("2 : Modifier une commande");
                 Console.WriteLine("3 : Calculer plan de route");
                 Console.WriteLine("4 : Calculer prix");
-                Console.WriteLine("5 : Revenir au menu principal");
+                Console.WriteLine("5 : Lister les commandes");
+                Console.WriteLine("6 : Revenir au menu principal");
 
                 string nbr = Console.ReadLine()!;
                 switch(nbr) {
                     case "1":
-                        Commande.Creer_commande(dataState);
+                        Commande? c = Commande.Creer_commande(dataState);
+                        if (c is not null) {
+                            c.AjouterCommander(dataState);
+                        }
                         break;
                     case "2":
                         Console.WriteLine("Saisissez le numéro de la commande à modifier : ");
@@ -361,6 +319,9 @@
                         }
                         break;
                     case "5":
+                        Commande.AfficherCommandes(dataState);
+                        break;
+                    case "6":
                         continueApp = false;
                         break;
                     default:
@@ -428,7 +389,10 @@
                 string nbr = Console.ReadLine()!;
                 switch(nbr) {
                     case "1":
-                        Reclamation.CreerReclamation(dataState);
+                        Reclamation? c = Reclamation.CreerReclamation(dataState);
+                        if (c is not null) {
+                            c.AjouterReclamation(dataState);
+                        }
                         break;
                     case "2":
                         Reclamation.AfficherReclamations(dataState);

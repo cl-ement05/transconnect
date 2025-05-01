@@ -28,9 +28,9 @@ namespace transconnect
             chauffeursSousResponsabilite.Remove(chauffeur);
         }
 
-        public static ChefEquipe CreerNouveau(DataState dataState) {
+        public static ChefEquipe CreerNouveau() {
             Console.WriteLine("Veuillez saisir les informations du nouveau salarié.");
-            PersonneDataHolder data = CreerPersonne(dataState);
+            PersonneDataHolder data = CreerPersonne();
             
             decimal salaire = 0;
             bool validSalaire = false;
@@ -49,11 +49,6 @@ namespace transconnect
                 }
             }
 
-            DateTime dateEntree;
-            Console.Write("Date d'entrée (JJ/MM/AAAA) : ");
-            while (!DateTime.TryParse(Console.ReadLine(), out dateEntree)) {
-                Console.WriteLine("Format invalide ! Veuillez réessayer.");
-            }
             return new ChefEquipe(
                 data.numeroSS,
                 data.nom,
@@ -62,7 +57,7 @@ namespace transconnect
                 data.adressePostale,
                 data.email,
                 data.telephone,
-                dateEntree,
+                DateTime.Now,
                 salaire
             );
         }

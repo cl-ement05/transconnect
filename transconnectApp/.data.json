@@ -1,0 +1,2241 @@
+{
+  "$type": "transconnect.DataState, transconnect",
+  "commandes": {
+    "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "transconnect.Commande, transconnect",
+        "NumeroCommande": 1,
+        "Client": {
+          "$type": "transconnect.Client, transconnect",
+          "NumeroSS": "123456789",
+          "Nom": "Dupont",
+          "Prenom": "Jean",
+          "DateNaissance": "1980-05-20T00:00:00",
+          "AdressePostale": "10 rue des Lilas, Paris",
+          "Email": "jean.dupont@example.com",
+          "Telephone": "0601020304"
+        },
+        "VilleDepart": "Paris",
+        "VilleArrivee": "Lyon",
+        "Vehicule": {
+          "$type": "transconnect.Voiture, transconnect",
+          "Nb_passager": 3,
+          "Immatriculation": "AB-123-CD",
+          "Couleur": "Rouge",
+          "Marque": "Renault",
+          "Statut": "disponible"
+        },
+        "Chauffeur": {
+          "$type": "transconnect.Chauffeur, transconnect",
+          "LivraisonsEffectuees": {
+            "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+            "$values": []
+          },
+          "TarifHoraire": 9.0,
+          "DateEntree": "2015-06-01T00:00:00",
+          "Poste": "Chauffeur",
+          "Salaire": 2500.0,
+          "NumeroSS": "987654321",
+          "Nom": "Martin",
+          "Prenom": "Paul",
+          "DateNaissance": "1990-08-15T00:00:00",
+          "AdressePostale": "20 avenue des Roses",
+          "Email": "paul.martin@example.com",
+          "Telephone": "0605060708"
+        },
+        "DateCommande": "2023-10-01T00:00:00"
+      },
+      {
+        "$type": "transconnect.Commande, transconnect",
+        "NumeroCommande": 2,
+        "Client": {
+          "$type": "transconnect.Client, transconnect",
+          "NumeroSS": "987654321",
+          "Nom": "Martin",
+          "Prenom": "Paul",
+          "DateNaissance": "1990-08-15T00:00:00",
+          "AdressePostale": "20 avenue des Roses, Lyon",
+          "Email": "paul.martin@example.com",
+          "Telephone": "0605060708"
+        },
+        "VilleDepart": "Marseille",
+        "VilleArrivee": "Toulouse",
+        "Vehicule": {
+          "$type": "transconnect.Voiture, transconnect",
+          "Nb_passager": 3,
+          "Immatriculation": "AB-123-CD",
+          "Couleur": "Rouge",
+          "Marque": "Renault",
+          "Statut": "disponible"
+        },
+        "Chauffeur": {
+          "$type": "transconnect.Chauffeur, transconnect",
+          "LivraisonsEffectuees": {
+            "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+            "$values": []
+          },
+          "TarifHoraire": 4.0,
+          "DateEntree": "2020-09-01T00:00:00",
+          "Poste": "Chauffeur",
+          "Salaire": 2000.0,
+          "NumeroSS": "456789123",
+          "Nom": "Durand",
+          "Prenom": "Alice",
+          "DateNaissance": "1995-03-10T00:00:00",
+          "AdressePostale": "30 boulevard des Champs",
+          "Email": "alice.durand@example.com",
+          "Telephone": "0612345678"
+        },
+        "DateCommande": "2023-10-05T00:00:00"
+      },
+      {
+        "$type": "transconnect.Commande, transconnect",
+        "NumeroCommande": 3,
+        "Client": {
+          "$type": "transconnect.Client, transconnect",
+          "NumeroSS": "456789123",
+          "Nom": "Durand",
+          "Prenom": "Alice",
+          "DateNaissance": "1995-03-10T00:00:00",
+          "AdressePostale": "30 boulevard des Champs, Marseille",
+          "Email": "alice.durand@example.com",
+          "Telephone": "0612345678"
+        },
+        "VilleDepart": "Bordeaux",
+        "VilleArrivee": "Nantes",
+        "Vehicule": {
+          "$type": "transconnect.Voiture, transconnect",
+          "Nb_passager": 3,
+          "Immatriculation": "AB-123-CD",
+          "Couleur": "Rouge",
+          "Marque": "Renault",
+          "Statut": "disponible"
+        },
+        "Chauffeur": {
+          "$type": "transconnect.Chauffeur, transconnect",
+          "LivraisonsEffectuees": {
+            "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+            "$values": []
+          },
+          "TarifHoraire": 9.0,
+          "DateEntree": "2016-02-10T00:00:00",
+          "Poste": "Chauffeur",
+          "Salaire": 2800.0,
+          "NumeroSS": "123456789",
+          "Nom": "Garnier",
+          "Prenom": "Luc",
+          "DateNaissance": "1988-11-03T00:00:00",
+          "AdressePostale": "40 impasse des Tilleuls",
+          "Email": "luc.garnier@example.com",
+          "Telephone": "0622334455"
+        },
+        "DateCommande": "2023-10-10T00:00:00"
+      }
+    ]
+  },
+  "reclamations": {
+    "$type": "System.Collections.Generic.List`1[[transconnect.Reclamation, transconnect]], System.Private.CoreLib",
+    "$values": []
+  },
+  "clients": {
+    "$type": "System.Collections.Generic.List`1[[transconnect.Client, transconnect]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "transconnect.Client, transconnect",
+        "NumeroSS": "123456789",
+        "Nom": "Dupont",
+        "Prenom": "Jean",
+        "DateNaissance": "1980-05-20T00:00:00",
+        "AdressePostale": "10 rue des Lilas, Paris",
+        "Email": "jean.dupont@example.com",
+        "Telephone": "0601020304"
+      },
+      {
+        "$type": "transconnect.Client, transconnect",
+        "NumeroSS": "987654321",
+        "Nom": "Martin",
+        "Prenom": "Paul",
+        "DateNaissance": "1990-08-15T00:00:00",
+        "AdressePostale": "20 avenue des Roses, Lyon",
+        "Email": "paul.martin@example.com",
+        "Telephone": "0605060708"
+      },
+      {
+        "$type": "transconnect.Client, transconnect",
+        "NumeroSS": "456789123",
+        "Nom": "Durand",
+        "Prenom": "Alice",
+        "DateNaissance": "1995-03-10T00:00:00",
+        "AdressePostale": "30 boulevard des Champs, Marseille",
+        "Email": "alice.durand@example.com",
+        "Telephone": "0612345678"
+      }
+    ]
+  },
+  "salaries": {
+    "$type": "System.Collections.Generic.List`1[[transconnect.Salarie, transconnect]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "transconnect.Directeur, transconnect",
+        "SalariesSousGestion": {
+          "$type": "System.Collections.Generic.List`1[[transconnect.Salarie, transconnect]], System.Private.CoreLib",
+          "$values": [
+            {
+              "$type": "transconnect.ChefEquipe, transconnect",
+              "ChauffeursSousResponsabilite": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$type": "transconnect.Chauffeur, transconnect",
+                    "LivraisonsEffectuees": {
+                      "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                      "$values": []
+                    },
+                    "TarifHoraire": 9.0,
+                    "DateEntree": "2015-06-01T00:00:00",
+                    "Poste": "Chauffeur",
+                    "Salaire": 2500.0,
+                    "NumeroSS": "987654321",
+                    "Nom": "Martin",
+                    "Prenom": "Paul",
+                    "DateNaissance": "1990-08-15T00:00:00",
+                    "AdressePostale": "20 avenue des Roses",
+                    "Email": "paul.martin@example.com",
+                    "Telephone": "0605060708"
+                  },
+                  {
+                    "$type": "transconnect.Chauffeur, transconnect",
+                    "LivraisonsEffectuees": {
+                      "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                      "$values": []
+                    },
+                    "TarifHoraire": 4.0,
+                    "DateEntree": "2020-09-01T00:00:00",
+                    "Poste": "Chauffeur",
+                    "Salaire": 2000.0,
+                    "NumeroSS": "456789123",
+                    "Nom": "Durand",
+                    "Prenom": "Alice",
+                    "DateNaissance": "1995-03-10T00:00:00",
+                    "AdressePostale": "30 boulevard des Champs",
+                    "Email": "alice.durand@example.com",
+                    "Telephone": "0612345678"
+                  }
+                ]
+              },
+              "DateEntree": "2018-04-15T00:00:00",
+              "Poste": "Chef d'équipe",
+              "Salaire": 3000.0,
+              "NumeroSS": "789123456",
+              "Nom": "Lemoine",
+              "Prenom": "Claire",
+              "DateNaissance": "1985-07-25T00:00:00",
+              "AdressePostale": "50 rue des Fleurs",
+              "Email": "claire.lemoine@example.com",
+              "Telephone": "0611223344"
+            },
+            {
+              "$type": "transconnect.Chauffeur, transconnect",
+              "LivraisonsEffectuees": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                "$values": []
+              },
+              "TarifHoraire": 9.0,
+              "DateEntree": "2015-06-01T00:00:00",
+              "Poste": "Chauffeur",
+              "Salaire": 2500.0,
+              "NumeroSS": "987654321",
+              "Nom": "Martin",
+              "Prenom": "Paul",
+              "DateNaissance": "1990-08-15T00:00:00",
+              "AdressePostale": "20 avenue des Roses",
+              "Email": "paul.martin@example.com",
+              "Telephone": "0605060708"
+            },
+            {
+              "$type": "transconnect.Chauffeur, transconnect",
+              "LivraisonsEffectuees": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                "$values": []
+              },
+              "TarifHoraire": 4.0,
+              "DateEntree": "2020-09-01T00:00:00",
+              "Poste": "Chauffeur",
+              "Salaire": 2000.0,
+              "NumeroSS": "456789123",
+              "Nom": "Durand",
+              "Prenom": "Alice",
+              "DateNaissance": "1995-03-10T00:00:00",
+              "AdressePostale": "30 boulevard des Champs",
+              "Email": "alice.durand@example.com",
+              "Telephone": "0612345678"
+            },
+            {
+              "$type": "transconnect.ChefEquipe, transconnect",
+              "ChauffeursSousResponsabilite": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$type": "transconnect.Chauffeur, transconnect",
+                    "LivraisonsEffectuees": {
+                      "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                      "$values": []
+                    },
+                    "TarifHoraire": 5.0,
+                    "DateEntree": "2019-07-22T00:00:00",
+                    "Poste": "Chauffeur",
+                    "Salaire": 2200.0,
+                    "NumeroSS": "987654321",
+                    "Nom": "Rousseau",
+                    "Prenom": "Marie",
+                    "DateNaissance": "1992-04-18T00:00:00",
+                    "AdressePostale": "60 allée des Saules",
+                    "Email": "marie.rousseau@example.com",
+                    "Telephone": "0633445566"
+                  }
+                ]
+              },
+              "DateEntree": "2017-05-01T00:00:00",
+              "Poste": "Chef d'équipe",
+              "Salaire": 3200.0,
+              "NumeroSS": "456789123",
+              "Nom": "Dubois",
+              "Prenom": "Pierre",
+              "DateNaissance": "1983-09-12T00:00:00",
+              "AdressePostale": "70 rue des Peupliers",
+              "Email": "pierre.dubois@example.com",
+              "Telephone": "0644556677"
+            },
+            {
+              "$type": "transconnect.Chauffeur, transconnect",
+              "LivraisonsEffectuees": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                "$values": []
+              },
+              "TarifHoraire": 5.0,
+              "DateEntree": "2019-07-22T00:00:00",
+              "Poste": "Chauffeur",
+              "Salaire": 2200.0,
+              "NumeroSS": "987654321",
+              "Nom": "Rousseau",
+              "Prenom": "Marie",
+              "DateNaissance": "1992-04-18T00:00:00",
+              "AdressePostale": "60 allée des Saules",
+              "Email": "marie.rousseau@example.com",
+              "Telephone": "0633445566"
+            }
+          ]
+        },
+        "DateEntree": "2010-01-01T00:00:00",
+        "Poste": "Directeur",
+        "Salaire": 5000.0,
+        "NumeroSS": "123456789",
+        "Nom": "Dupont",
+        "Prenom": "Jean",
+        "DateNaissance": "1980-05-20T00:00:00",
+        "AdressePostale": "10 rue des Lilas",
+        "Email": "jean.dupont@example.com",
+        "Telephone": "0601020304"
+      },
+      {
+        "$type": "transconnect.ChefEquipe, transconnect",
+        "ChauffeursSousResponsabilite": {
+          "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
+          "$values": [
+            {
+              "$type": "transconnect.Chauffeur, transconnect",
+              "LivraisonsEffectuees": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                "$values": []
+              },
+              "TarifHoraire": 9.0,
+              "DateEntree": "2015-06-01T00:00:00",
+              "Poste": "Chauffeur",
+              "Salaire": 2500.0,
+              "NumeroSS": "987654321",
+              "Nom": "Martin",
+              "Prenom": "Paul",
+              "DateNaissance": "1990-08-15T00:00:00",
+              "AdressePostale": "20 avenue des Roses",
+              "Email": "paul.martin@example.com",
+              "Telephone": "0605060708"
+            },
+            {
+              "$type": "transconnect.Chauffeur, transconnect",
+              "LivraisonsEffectuees": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                "$values": []
+              },
+              "TarifHoraire": 4.0,
+              "DateEntree": "2020-09-01T00:00:00",
+              "Poste": "Chauffeur",
+              "Salaire": 2000.0,
+              "NumeroSS": "456789123",
+              "Nom": "Durand",
+              "Prenom": "Alice",
+              "DateNaissance": "1995-03-10T00:00:00",
+              "AdressePostale": "30 boulevard des Champs",
+              "Email": "alice.durand@example.com",
+              "Telephone": "0612345678"
+            }
+          ]
+        },
+        "DateEntree": "2018-04-15T00:00:00",
+        "Poste": "Chef d'équipe",
+        "Salaire": 3000.0,
+        "NumeroSS": "789123456",
+        "Nom": "Lemoine",
+        "Prenom": "Claire",
+        "DateNaissance": "1985-07-25T00:00:00",
+        "AdressePostale": "50 rue des Fleurs",
+        "Email": "claire.lemoine@example.com",
+        "Telephone": "0611223344"
+      },
+      {
+        "$type": "transconnect.Chauffeur, transconnect",
+        "LivraisonsEffectuees": {
+          "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+          "$values": []
+        },
+        "TarifHoraire": 9.0,
+        "DateEntree": "2015-06-01T00:00:00",
+        "Poste": "Chauffeur",
+        "Salaire": 2500.0,
+        "NumeroSS": "987654321",
+        "Nom": "Martin",
+        "Prenom": "Paul",
+        "DateNaissance": "1990-08-15T00:00:00",
+        "AdressePostale": "20 avenue des Roses",
+        "Email": "paul.martin@example.com",
+        "Telephone": "0605060708"
+      },
+      {
+        "$type": "transconnect.Chauffeur, transconnect",
+        "LivraisonsEffectuees": {
+          "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+          "$values": []
+        },
+        "TarifHoraire": 4.0,
+        "DateEntree": "2020-09-01T00:00:00",
+        "Poste": "Chauffeur",
+        "Salaire": 2000.0,
+        "NumeroSS": "456789123",
+        "Nom": "Durand",
+        "Prenom": "Alice",
+        "DateNaissance": "1995-03-10T00:00:00",
+        "AdressePostale": "30 boulevard des Champs",
+        "Email": "alice.durand@example.com",
+        "Telephone": "0612345678"
+      },
+      {
+        "$type": "transconnect.ChefEquipe, transconnect",
+        "ChauffeursSousResponsabilite": {
+          "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
+          "$values": [
+            {
+              "$type": "transconnect.Chauffeur, transconnect",
+              "LivraisonsEffectuees": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                "$values": []
+              },
+              "TarifHoraire": 5.0,
+              "DateEntree": "2019-07-22T00:00:00",
+              "Poste": "Chauffeur",
+              "Salaire": 2200.0,
+              "NumeroSS": "987654321",
+              "Nom": "Rousseau",
+              "Prenom": "Marie",
+              "DateNaissance": "1992-04-18T00:00:00",
+              "AdressePostale": "60 allée des Saules",
+              "Email": "marie.rousseau@example.com",
+              "Telephone": "0633445566"
+            }
+          ]
+        },
+        "DateEntree": "2017-05-01T00:00:00",
+        "Poste": "Chef d'équipe",
+        "Salaire": 3200.0,
+        "NumeroSS": "456789123",
+        "Nom": "Dubois",
+        "Prenom": "Pierre",
+        "DateNaissance": "1983-09-12T00:00:00",
+        "AdressePostale": "70 rue des Peupliers",
+        "Email": "pierre.dubois@example.com",
+        "Telephone": "0644556677"
+      },
+      {
+        "$type": "transconnect.Chauffeur, transconnect",
+        "LivraisonsEffectuees": {
+          "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+          "$values": []
+        },
+        "TarifHoraire": 5.0,
+        "DateEntree": "2019-07-22T00:00:00",
+        "Poste": "Chauffeur",
+        "Salaire": 2200.0,
+        "NumeroSS": "987654321",
+        "Nom": "Rousseau",
+        "Prenom": "Marie",
+        "DateNaissance": "1992-04-18T00:00:00",
+        "AdressePostale": "60 allée des Saules",
+        "Email": "marie.rousseau@example.com",
+        "Telephone": "0633445566"
+      }
+    ]
+  },
+  "organigramme": {
+    "$type": "transconnect.Organigramme, transconnect",
+    "Racine": {
+      "$type": "transconnect.Organigramme+Noeud, transconnect",
+      "Salarie": {
+        "$type": "transconnect.Directeur, transconnect",
+        "SalariesSousGestion": {
+          "$type": "System.Collections.Generic.List`1[[transconnect.Salarie, transconnect]], System.Private.CoreLib",
+          "$values": [
+            {
+              "$type": "transconnect.ChefEquipe, transconnect",
+              "ChauffeursSousResponsabilite": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$type": "transconnect.Chauffeur, transconnect",
+                    "LivraisonsEffectuees": {
+                      "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                      "$values": []
+                    },
+                    "TarifHoraire": 9.0,
+                    "DateEntree": "2015-06-01T00:00:00",
+                    "Poste": "Chauffeur",
+                    "Salaire": 2500.0,
+                    "NumeroSS": "987654321",
+                    "Nom": "Martin",
+                    "Prenom": "Paul",
+                    "DateNaissance": "1990-08-15T00:00:00",
+                    "AdressePostale": "20 avenue des Roses",
+                    "Email": "paul.martin@example.com",
+                    "Telephone": "0605060708"
+                  },
+                  {
+                    "$type": "transconnect.Chauffeur, transconnect",
+                    "LivraisonsEffectuees": {
+                      "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                      "$values": []
+                    },
+                    "TarifHoraire": 4.0,
+                    "DateEntree": "2020-09-01T00:00:00",
+                    "Poste": "Chauffeur",
+                    "Salaire": 2000.0,
+                    "NumeroSS": "456789123",
+                    "Nom": "Durand",
+                    "Prenom": "Alice",
+                    "DateNaissance": "1995-03-10T00:00:00",
+                    "AdressePostale": "30 boulevard des Champs",
+                    "Email": "alice.durand@example.com",
+                    "Telephone": "0612345678"
+                  }
+                ]
+              },
+              "DateEntree": "2018-04-15T00:00:00",
+              "Poste": "Chef d'équipe",
+              "Salaire": 3000.0,
+              "NumeroSS": "789123456",
+              "Nom": "Lemoine",
+              "Prenom": "Claire",
+              "DateNaissance": "1985-07-25T00:00:00",
+              "AdressePostale": "50 rue des Fleurs",
+              "Email": "claire.lemoine@example.com",
+              "Telephone": "0611223344"
+            },
+            {
+              "$type": "transconnect.Chauffeur, transconnect",
+              "LivraisonsEffectuees": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                "$values": []
+              },
+              "TarifHoraire": 9.0,
+              "DateEntree": "2015-06-01T00:00:00",
+              "Poste": "Chauffeur",
+              "Salaire": 2500.0,
+              "NumeroSS": "987654321",
+              "Nom": "Martin",
+              "Prenom": "Paul",
+              "DateNaissance": "1990-08-15T00:00:00",
+              "AdressePostale": "20 avenue des Roses",
+              "Email": "paul.martin@example.com",
+              "Telephone": "0605060708"
+            },
+            {
+              "$type": "transconnect.Chauffeur, transconnect",
+              "LivraisonsEffectuees": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                "$values": []
+              },
+              "TarifHoraire": 4.0,
+              "DateEntree": "2020-09-01T00:00:00",
+              "Poste": "Chauffeur",
+              "Salaire": 2000.0,
+              "NumeroSS": "456789123",
+              "Nom": "Durand",
+              "Prenom": "Alice",
+              "DateNaissance": "1995-03-10T00:00:00",
+              "AdressePostale": "30 boulevard des Champs",
+              "Email": "alice.durand@example.com",
+              "Telephone": "0612345678"
+            },
+            {
+              "$type": "transconnect.ChefEquipe, transconnect",
+              "ChauffeursSousResponsabilite": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$type": "transconnect.Chauffeur, transconnect",
+                    "LivraisonsEffectuees": {
+                      "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                      "$values": []
+                    },
+                    "TarifHoraire": 5.0,
+                    "DateEntree": "2019-07-22T00:00:00",
+                    "Poste": "Chauffeur",
+                    "Salaire": 2200.0,
+                    "NumeroSS": "987654321",
+                    "Nom": "Rousseau",
+                    "Prenom": "Marie",
+                    "DateNaissance": "1992-04-18T00:00:00",
+                    "AdressePostale": "60 allée des Saules",
+                    "Email": "marie.rousseau@example.com",
+                    "Telephone": "0633445566"
+                  }
+                ]
+              },
+              "DateEntree": "2017-05-01T00:00:00",
+              "Poste": "Chef d'équipe",
+              "Salaire": 3200.0,
+              "NumeroSS": "456789123",
+              "Nom": "Dubois",
+              "Prenom": "Pierre",
+              "DateNaissance": "1983-09-12T00:00:00",
+              "AdressePostale": "70 rue des Peupliers",
+              "Email": "pierre.dubois@example.com",
+              "Telephone": "0644556677"
+            },
+            {
+              "$type": "transconnect.Chauffeur, transconnect",
+              "LivraisonsEffectuees": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                "$values": []
+              },
+              "TarifHoraire": 5.0,
+              "DateEntree": "2019-07-22T00:00:00",
+              "Poste": "Chauffeur",
+              "Salaire": 2200.0,
+              "NumeroSS": "987654321",
+              "Nom": "Rousseau",
+              "Prenom": "Marie",
+              "DateNaissance": "1992-04-18T00:00:00",
+              "AdressePostale": "60 allée des Saules",
+              "Email": "marie.rousseau@example.com",
+              "Telephone": "0633445566"
+            }
+          ]
+        },
+        "DateEntree": "2010-01-01T00:00:00",
+        "Poste": "Directeur",
+        "Salaire": 5000.0,
+        "NumeroSS": "123456789",
+        "Nom": "Dupont",
+        "Prenom": "Jean",
+        "DateNaissance": "1980-05-20T00:00:00",
+        "AdressePostale": "10 rue des Lilas",
+        "Email": "jean.dupont@example.com",
+        "Telephone": "0601020304"
+      },
+      "Succ": {
+        "$type": "transconnect.Organigramme+Noeud, transconnect",
+        "Salarie": {
+          "$type": "transconnect.ChefEquipe, transconnect",
+          "ChauffeursSousResponsabilite": {
+            "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
+            "$values": [
+              {
+                "$type": "transconnect.Chauffeur, transconnect",
+                "LivraisonsEffectuees": {
+                  "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                  "$values": []
+                },
+                "TarifHoraire": 9.0,
+                "DateEntree": "2015-06-01T00:00:00",
+                "Poste": "Chauffeur",
+                "Salaire": 2500.0,
+                "NumeroSS": "987654321",
+                "Nom": "Martin",
+                "Prenom": "Paul",
+                "DateNaissance": "1990-08-15T00:00:00",
+                "AdressePostale": "20 avenue des Roses",
+                "Email": "paul.martin@example.com",
+                "Telephone": "0605060708"
+              },
+              {
+                "$type": "transconnect.Chauffeur, transconnect",
+                "LivraisonsEffectuees": {
+                  "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                  "$values": []
+                },
+                "TarifHoraire": 4.0,
+                "DateEntree": "2020-09-01T00:00:00",
+                "Poste": "Chauffeur",
+                "Salaire": 2000.0,
+                "NumeroSS": "456789123",
+                "Nom": "Durand",
+                "Prenom": "Alice",
+                "DateNaissance": "1995-03-10T00:00:00",
+                "AdressePostale": "30 boulevard des Champs",
+                "Email": "alice.durand@example.com",
+                "Telephone": "0612345678"
+              }
+            ]
+          },
+          "DateEntree": "2018-04-15T00:00:00",
+          "Poste": "Chef d'équipe",
+          "Salaire": 3000.0,
+          "NumeroSS": "789123456",
+          "Nom": "Lemoine",
+          "Prenom": "Claire",
+          "DateNaissance": "1985-07-25T00:00:00",
+          "AdressePostale": "50 rue des Fleurs",
+          "Email": "claire.lemoine@example.com",
+          "Telephone": "0611223344"
+        },
+        "Succ": {
+          "$type": "transconnect.Organigramme+Noeud, transconnect",
+          "Salarie": {
+            "$type": "transconnect.Chauffeur, transconnect",
+            "LivraisonsEffectuees": {
+              "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+              "$values": []
+            },
+            "TarifHoraire": 9.0,
+            "DateEntree": "2015-06-01T00:00:00",
+            "Poste": "Chauffeur",
+            "Salaire": 2500.0,
+            "NumeroSS": "987654321",
+            "Nom": "Martin",
+            "Prenom": "Paul",
+            "DateNaissance": "1990-08-15T00:00:00",
+            "AdressePostale": "20 avenue des Roses",
+            "Email": "paul.martin@example.com",
+            "Telephone": "0605060708"
+          },
+          "Succ": null,
+          "Frere": {
+            "$type": "transconnect.Organigramme+Noeud, transconnect",
+            "Salarie": {
+              "$type": "transconnect.Chauffeur, transconnect",
+              "LivraisonsEffectuees": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                "$values": []
+              },
+              "TarifHoraire": 4.0,
+              "DateEntree": "2020-09-01T00:00:00",
+              "Poste": "Chauffeur",
+              "Salaire": 2000.0,
+              "NumeroSS": "456789123",
+              "Nom": "Durand",
+              "Prenom": "Alice",
+              "DateNaissance": "1995-03-10T00:00:00",
+              "AdressePostale": "30 boulevard des Champs",
+              "Email": "alice.durand@example.com",
+              "Telephone": "0612345678"
+            },
+            "Succ": null,
+            "Frere": null
+          }
+        },
+        "Frere": {
+          "$type": "transconnect.Organigramme+Noeud, transconnect",
+          "Salarie": {
+            "$type": "transconnect.ChefEquipe, transconnect",
+            "ChauffeursSousResponsabilite": {
+              "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
+              "$values": [
+                {
+                  "$type": "transconnect.Chauffeur, transconnect",
+                  "LivraisonsEffectuees": {
+                    "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                    "$values": []
+                  },
+                  "TarifHoraire": 5.0,
+                  "DateEntree": "2019-07-22T00:00:00",
+                  "Poste": "Chauffeur",
+                  "Salaire": 2200.0,
+                  "NumeroSS": "987654321",
+                  "Nom": "Rousseau",
+                  "Prenom": "Marie",
+                  "DateNaissance": "1992-04-18T00:00:00",
+                  "AdressePostale": "60 allée des Saules",
+                  "Email": "marie.rousseau@example.com",
+                  "Telephone": "0633445566"
+                }
+              ]
+            },
+            "DateEntree": "2017-05-01T00:00:00",
+            "Poste": "Chef d'équipe",
+            "Salaire": 3200.0,
+            "NumeroSS": "456789123",
+            "Nom": "Dubois",
+            "Prenom": "Pierre",
+            "DateNaissance": "1983-09-12T00:00:00",
+            "AdressePostale": "70 rue des Peupliers",
+            "Email": "pierre.dubois@example.com",
+            "Telephone": "0644556677"
+          },
+          "Succ": {
+            "$type": "transconnect.Organigramme+Noeud, transconnect",
+            "Salarie": {
+              "$type": "transconnect.Chauffeur, transconnect",
+              "LivraisonsEffectuees": {
+                "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                "$values": []
+              },
+              "TarifHoraire": 5.0,
+              "DateEntree": "2019-07-22T00:00:00",
+              "Poste": "Chauffeur",
+              "Salaire": 2200.0,
+              "NumeroSS": "987654321",
+              "Nom": "Rousseau",
+              "Prenom": "Marie",
+              "DateNaissance": "1992-04-18T00:00:00",
+              "AdressePostale": "60 allée des Saules",
+              "Email": "marie.rousseau@example.com",
+              "Telephone": "0633445566"
+            },
+            "Succ": null,
+            "Frere": null
+          },
+          "Frere": null
+        }
+      },
+      "Frere": null
+    }
+  },
+  "graphe": {
+    "$type": "transconnect.Graph`1[[System.String, System.Private.CoreLib]], transconnect",
+    "verticies": {
+      "$type": "System.Collections.Generic.List`1[[transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect]], System.Private.CoreLib",
+      "$values": [
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Paris"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Lyon"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Marseille"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Bordeaux"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Toulouse"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Lille"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Nantes"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Strasbourg"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Nice"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Rennes"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Lyon"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Marseille"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Bordeaux"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Toulouse"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Lille"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Nantes"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Strasbourg"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Nice"
+        },
+        {
+          "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+          "data": "Rennes"
+        }
+      ]
+    },
+    "edges": {
+      "$type": "System.Collections.Generic.HashSet`1[[transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect]], System.Private.CoreLib",
+      "$values": [
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "weight": 393
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "weight": 660
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "weight": 499
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "weight": 588
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "weight": 204
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "weight": 342
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "weight": 397
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "weight": 685
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "weight": 307
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "weight": 393
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "weight": 277
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "weight": 436
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "weight": 359
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "weight": 559
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "weight": 516
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "weight": 383
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "weight": 297
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "weight": 560
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "weight": 660
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "weight": 277
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "weight": 506
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "weight": 319
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "weight": 889
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "weight": 694
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "weight": 617
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "weight": 159
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "weight": 770
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "weight": 499
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "weight": 436
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "weight": 506
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "weight": 212
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "weight": 700
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "weight": 274
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "weight": 758
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "weight": 646
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "weight": 373
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "weight": 588
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "weight": 359
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "weight": 319
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "weight": 212
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "weight": 783
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "weight": 465
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "weight": 736
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "weight": 469
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "weight": 556
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "weight": 204
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "weight": 559
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "weight": 889
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "weight": 700
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "weight": 783
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "weight": 507
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "weight": 407
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "weight": 982
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "weight": 460
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "weight": 342
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "weight": 516
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "weight": 694
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "weight": 274
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "weight": 465
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "weight": 507
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "weight": 761
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "weight": 790
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "weight": 107
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "weight": 397
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "weight": 383
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "weight": 617
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "weight": 758
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "weight": 736
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "weight": 407
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "weight": 761
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "weight": 592
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "weight": 764
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "weight": 685
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "weight": 297
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "weight": 159
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "weight": 646
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "weight": 469
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "weight": 982
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "weight": 790
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "weight": 592
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "weight": 886
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Paris"
+          },
+          "weight": 307
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lyon"
+          },
+          "weight": 560
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Marseille"
+          },
+          "weight": 770
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Bordeaux"
+          },
+          "weight": 373
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Toulouse"
+          },
+          "weight": 556
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Lille"
+          },
+          "weight": 460
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nantes"
+          },
+          "weight": 107
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Strasbourg"
+          },
+          "weight": 764
+        },
+        {
+          "$type": "transconnect.Lien`1[[System.String, System.Private.CoreLib]], transconnect",
+          "origin": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Rennes"
+          },
+          "dest": {
+            "$type": "transconnect.Noeud`1[[System.String, System.Private.CoreLib]], transconnect",
+            "data": "Nice"
+          },
+          "weight": 886
+        }
+      ]
+    }
+  },
+  "flotte": {
+    "$type": "System.Collections.Generic.List`1[[transconnect.Vehicule, transconnect]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "transconnect.Voiture, transconnect",
+        "Nb_passager": 3,
+        "Immatriculation": "AB-123-CD",
+        "Couleur": "Rouge",
+        "Marque": "Renault",
+        "Statut": "disponible"
+      },
+      {
+        "$type": "transconnect.Camionette, transconnect",
+        "Usage": "Transport de marchandises",
+        "Immatriculation": "EF-456-GH",
+        "Couleur": "Bleu",
+        "Marque": "Mercedes",
+        "Statut": "maintenance"
+      },
+      {
+        "$type": "transconnect.CamionFrigorifique, transconnect",
+        "CapaciteIsotherme": 1000.0,
+        "NombreGroupesElectrogene": 100,
+        "Immatriculation": "IJ-789-KL",
+        "Couleur": "Noir",
+        "Marque": "Peugeot",
+        "Statut": "occupe"
+      }
+    ]
+  },
+  "chauffeurs": {
+    "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "transconnect.Chauffeur, transconnect",
+        "LivraisonsEffectuees": {
+          "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+          "$values": []
+        },
+        "TarifHoraire": 9.0,
+        "DateEntree": "2015-06-01T00:00:00",
+        "Poste": "Chauffeur",
+        "Salaire": 2500.0,
+        "NumeroSS": "987654321",
+        "Nom": "Martin",
+        "Prenom": "Paul",
+        "DateNaissance": "1990-08-15T00:00:00",
+        "AdressePostale": "20 avenue des Roses",
+        "Email": "paul.martin@example.com",
+        "Telephone": "0605060708"
+      },
+      {
+        "$type": "transconnect.Chauffeur, transconnect",
+        "LivraisonsEffectuees": {
+          "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+          "$values": []
+        },
+        "TarifHoraire": 4.0,
+        "DateEntree": "2020-09-01T00:00:00",
+        "Poste": "Chauffeur",
+        "Salaire": 2000.0,
+        "NumeroSS": "456789123",
+        "Nom": "Durand",
+        "Prenom": "Alice",
+        "DateNaissance": "1995-03-10T00:00:00",
+        "AdressePostale": "30 boulevard des Champs",
+        "Email": "alice.durand@example.com",
+        "Telephone": "0612345678"
+      },
+      {
+        "$type": "transconnect.Chauffeur, transconnect",
+        "LivraisonsEffectuees": {
+          "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+          "$values": []
+        },
+        "TarifHoraire": 5.0,
+        "DateEntree": "2019-07-22T00:00:00",
+        "Poste": "Chauffeur",
+        "Salaire": 2200.0,
+        "NumeroSS": "987654321",
+        "Nom": "Rousseau",
+        "Prenom": "Marie",
+        "DateNaissance": "1992-04-18T00:00:00",
+        "AdressePostale": "60 allée des Saules",
+        "Email": "marie.rousseau@example.com",
+        "Telephone": "0633445566"
+      }
+    ]
+  },
+  "directeur": {
+    "$type": "transconnect.Directeur, transconnect",
+    "SalariesSousGestion": {
+      "$type": "System.Collections.Generic.List`1[[transconnect.Salarie, transconnect]], System.Private.CoreLib",
+      "$values": [
+        {
+          "$type": "transconnect.ChefEquipe, transconnect",
+          "ChauffeursSousResponsabilite": {
+            "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
+            "$values": [
+              {
+                "$type": "transconnect.Chauffeur, transconnect",
+                "LivraisonsEffectuees": {
+                  "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                  "$values": []
+                },
+                "TarifHoraire": 9.0,
+                "DateEntree": "2015-06-01T00:00:00",
+                "Poste": "Chauffeur",
+                "Salaire": 2500.0,
+                "NumeroSS": "987654321",
+                "Nom": "Martin",
+                "Prenom": "Paul",
+                "DateNaissance": "1990-08-15T00:00:00",
+                "AdressePostale": "20 avenue des Roses",
+                "Email": "paul.martin@example.com",
+                "Telephone": "0605060708"
+              },
+              {
+                "$type": "transconnect.Chauffeur, transconnect",
+                "LivraisonsEffectuees": {
+                  "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                  "$values": []
+                },
+                "TarifHoraire": 4.0,
+                "DateEntree": "2020-09-01T00:00:00",
+                "Poste": "Chauffeur",
+                "Salaire": 2000.0,
+                "NumeroSS": "456789123",
+                "Nom": "Durand",
+                "Prenom": "Alice",
+                "DateNaissance": "1995-03-10T00:00:00",
+                "AdressePostale": "30 boulevard des Champs",
+                "Email": "alice.durand@example.com",
+                "Telephone": "0612345678"
+              }
+            ]
+          },
+          "DateEntree": "2018-04-15T00:00:00",
+          "Poste": "Chef d'équipe",
+          "Salaire": 3000.0,
+          "NumeroSS": "789123456",
+          "Nom": "Lemoine",
+          "Prenom": "Claire",
+          "DateNaissance": "1985-07-25T00:00:00",
+          "AdressePostale": "50 rue des Fleurs",
+          "Email": "claire.lemoine@example.com",
+          "Telephone": "0611223344"
+        },
+        {
+          "$type": "transconnect.Chauffeur, transconnect",
+          "LivraisonsEffectuees": {
+            "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+            "$values": []
+          },
+          "TarifHoraire": 9.0,
+          "DateEntree": "2015-06-01T00:00:00",
+          "Poste": "Chauffeur",
+          "Salaire": 2500.0,
+          "NumeroSS": "987654321",
+          "Nom": "Martin",
+          "Prenom": "Paul",
+          "DateNaissance": "1990-08-15T00:00:00",
+          "AdressePostale": "20 avenue des Roses",
+          "Email": "paul.martin@example.com",
+          "Telephone": "0605060708"
+        },
+        {
+          "$type": "transconnect.Chauffeur, transconnect",
+          "LivraisonsEffectuees": {
+            "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+            "$values": []
+          },
+          "TarifHoraire": 4.0,
+          "DateEntree": "2020-09-01T00:00:00",
+          "Poste": "Chauffeur",
+          "Salaire": 2000.0,
+          "NumeroSS": "456789123",
+          "Nom": "Durand",
+          "Prenom": "Alice",
+          "DateNaissance": "1995-03-10T00:00:00",
+          "AdressePostale": "30 boulevard des Champs",
+          "Email": "alice.durand@example.com",
+          "Telephone": "0612345678"
+        },
+        {
+          "$type": "transconnect.ChefEquipe, transconnect",
+          "ChauffeursSousResponsabilite": {
+            "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
+            "$values": [
+              {
+                "$type": "transconnect.Chauffeur, transconnect",
+                "LivraisonsEffectuees": {
+                  "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+                  "$values": []
+                },
+                "TarifHoraire": 5.0,
+                "DateEntree": "2019-07-22T00:00:00",
+                "Poste": "Chauffeur",
+                "Salaire": 2200.0,
+                "NumeroSS": "987654321",
+                "Nom": "Rousseau",
+                "Prenom": "Marie",
+                "DateNaissance": "1992-04-18T00:00:00",
+                "AdressePostale": "60 allée des Saules",
+                "Email": "marie.rousseau@example.com",
+                "Telephone": "0633445566"
+              }
+            ]
+          },
+          "DateEntree": "2017-05-01T00:00:00",
+          "Poste": "Chef d'équipe",
+          "Salaire": 3200.0,
+          "NumeroSS": "456789123",
+          "Nom": "Dubois",
+          "Prenom": "Pierre",
+          "DateNaissance": "1983-09-12T00:00:00",
+          "AdressePostale": "70 rue des Peupliers",
+          "Email": "pierre.dubois@example.com",
+          "Telephone": "0644556677"
+        },
+        {
+          "$type": "transconnect.Chauffeur, transconnect",
+          "LivraisonsEffectuees": {
+            "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
+            "$values": []
+          },
+          "TarifHoraire": 5.0,
+          "DateEntree": "2019-07-22T00:00:00",
+          "Poste": "Chauffeur",
+          "Salaire": 2200.0,
+          "NumeroSS": "987654321",
+          "Nom": "Rousseau",
+          "Prenom": "Marie",
+          "DateNaissance": "1992-04-18T00:00:00",
+          "AdressePostale": "60 allée des Saules",
+          "Email": "marie.rousseau@example.com",
+          "Telephone": "0633445566"
+        }
+      ]
+    },
+    "DateEntree": "2010-01-01T00:00:00",
+    "Poste": "Directeur",
+    "Salaire": 5000.0,
+    "NumeroSS": "123456789",
+    "Nom": "Dupont",
+    "Prenom": "Jean",
+    "DateNaissance": "1980-05-20T00:00:00",
+    "AdressePostale": "10 rue des Lilas",
+    "Email": "jean.dupont@example.com",
+    "Telephone": "0601020304"
+  }
+}

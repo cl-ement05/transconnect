@@ -16,7 +16,9 @@ namespace transconnect
         /// <param name="client"></param>
         public void AjouterClient(DataState dataState)
         {
-            dataState.clients.Add(this);
+            if (!dataState.clients.Contains(this)) {
+                dataState.clients.Add(this);
+            }
         }
 
         /// <summary>
@@ -25,7 +27,9 @@ namespace transconnect
         /// <param name="client"></param>
         public void SupprimerClient(DataState dataState)
         {
-            dataState.clients.Remove(this);
+            if (!dataState.clients.Remove(this)) {
+                Console.WriteLine("Client absent de la liste");
+            }
         }
 
         public void AfficherTrajetsFavoris(DataState dataState) {
@@ -55,18 +59,6 @@ namespace transconnect
             }
         }
 
-        /// <summary>
-        /// Affiche la liste des clients.
-        /// </summary>
-        public static void AfficherClients(DataState dataState)
-        {
-            Console.WriteLine("Liste des clients :");
-            foreach (Client client in dataState.clients)
-            {
-                Console.WriteLine(client.ToString());
-            }
-        }
-
         
         /// <summary>
         /// Recherche un client par son numéro de sécurité sociale.
@@ -83,10 +75,15 @@ namespace transconnect
         /// </summary>
         public static void AfficherParNom(DataState dataState)
         {
-            Console.WriteLine("IClients par Nom :");
-            foreach (Client c in dataState.clients.OrderBy(c => c.Nom))
-            {
-                Console.WriteLine(c.ToString());
+            List<Client> liste = dataState.clients.OrderBy(c => c.Nom).ToList();
+            if (liste.Count > 0) {
+                Console.WriteLine("Clients par Nom :");
+                foreach (Client c in liste)
+                {
+                    Console.WriteLine(c.ToString());
+                }
+            } else {
+                Console.WriteLine("Aucun client");
             }
         }
 
@@ -97,11 +94,11 @@ namespace transconnect
         /// <param name="ville"></param>
         public static void AfficherParVille(DataState dataState, string ville)
         {
-            Console.WriteLine($"Clients par Ville : {ville}");
             List<Client> liste = dataState.clients.Where(c => c.AdressePostale.Contains(ville)).ToList();
             if (liste.Count == 0) {
                 Console.WriteLine("Aucun client trouvé");
             } else {
+                Console.WriteLine($"Clients par Ville : {ville}");
                 foreach (Client c in liste)
                 {
                     Console.WriteLine(c.ToString());
@@ -109,9 +106,9 @@ namespace transconnect
             }
         }
 
-        public static Client CreerNouveau(DataState dataState) {
+        public static Client CreerNouveau() {
             Console.WriteLine("Veuillez saisir les informations du nouveau client.");
-            PersonneDataHolder data = CreerPersonne(dataState);
+            PersonneDataHolder data = CreerPersonne();
             return new Client(
                 data.numeroSS,
                 data.nom,
@@ -128,7 +125,6 @@ namespace transconnect
         /// </summary>
         public static void AfficherParMontantCommande(DataState dataState)  
         {
-            Console.WriteLine("Clients par Montant de Commande :");
             List<Client> clientsTrie = dataState.clients.OrderByDescending(c => 
             {
                 double montantTotal = 0;
@@ -142,9 +138,14 @@ namespace transconnect
                 return montantTotal;
             }).ToList();
 
-            foreach (Client c in clientsTrie)
-            { 
-                Console.WriteLine(c.ToString());
+            if (clientsTrie.Count == 0) {
+                Console.WriteLine("Aucun client");
+            } else {
+                Console.WriteLine("Clients par Montant de Commande :");
+                foreach (Client c in clientsTrie)
+                { 
+                    Console.WriteLine(c.ToString());
+                }
             }
         }
 

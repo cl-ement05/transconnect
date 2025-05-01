@@ -58,9 +58,22 @@ namespace transconnect
             DateTraitement = DateTime.Now;
         }
 
+        public void AjouterReclamation(DataState dataState) {
+            if (!dataState.reclamations.Contains(this)) {
+                dataState.reclamations.Add(this);
+                Console.WriteLine("Réclamation enregistrée avec succès");
+            } else {
+                Console.WriteLine("Réclamation déjà enregistrée");
+            }
+        }
+
         public static void AfficherReclamations(DataState dataState) {
-            foreach(Reclamation reclamation in dataState.reclamations) {
-                Console.WriteLine(reclamation);
+            if (dataState.reclamations.Count == 0) {
+                Console.WriteLine("Aucune réclamation");
+            } else {
+                foreach(Reclamation reclamation in dataState.reclamations) {
+                    Console.WriteLine(reclamation);
+                }
             }
         }
 
@@ -75,13 +88,13 @@ namespace transconnect
             Client? clientExistant = Client.RechercherClientNSS(dataState, numeroSS);
             if (clientExistant is null)
             {
-                Console.WriteLine("Client non trouvé. Vous devez d'abord créer le client avant de pouvoir créer une commande");
+                Console.WriteLine("Client non trouvé. Vous devez d'abord créer le client avant de pouvoir créer une réclamation");
                 return null;
             }
 
-            Console.Write("Saisissez le sujet de la réclamation");
+            Console.Write("Saisissez le sujet de la réclamation : ");
             string sujet = Console.ReadLine()!;
-            Console.Write("Saisissez la description");
+            Console.Write("Saisissez la description : ");
             string desc = Console.ReadLine()!;
 
             return new Reclamation(clientExistant, sujet, desc);

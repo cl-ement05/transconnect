@@ -206,12 +206,31 @@ namespace transconnect
             (chemin, a) = dataState.graphe.Dijkstra(noeudDepart, noeudArrivee);
 
             Console.WriteLine("Plant de route de " + villeDepart+ " à " + villeArrivee);   
-            foreach(Noeud<string> noeud in chemin)
+            for(int i = 0; i < chemin.Count; i++)
             {
-                Console.WriteLine(" - " + noeud.data);
+                if (i != 0) Console.WriteLine(" - " + chemin[i].data);
+                else Console.WriteLine(chemin[i].data);
             }
 
             dataState.graphe.drawGraph();
+        }
+
+        public void AjouterCommander(DataState dataState) {
+            if (!dataState.commandes.Contains(this)) {
+                dataState.commandes.Add(this);
+                chauffeur.LivraisonsEffectuees.Add(this);
+                Console.WriteLine("Commande ajoutée avec succès");
+            } else {
+                Console.WriteLine("Commande déjà présente dans la liste");
+            }
+        }
+
+        public void SupprimerCommander(DataState dataState) {
+            if (!dataState.commandes.Remove(this)) {
+                Console.WriteLine("Commande absente de l'historique");
+            } else {
+                Console.WriteLine("Commande supprimée avec succès");
+            }
         }
 
         /// <summary>
@@ -278,11 +297,19 @@ namespace transconnect
             Console.WriteLine("Prix de la commande : "+prix+" €");
 
             Commande commande = new Commande(clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
-            dataState.commandes.Add(commande);
-            chauffeurSelectionne.LivraisonsEffectuees.Add(commande);
 
             Console.WriteLine("Commande créée avec succès :");
             return commande;
+        }
+
+        public static void AfficherCommandes(DataState dataState) {
+            if (dataState.commandes.Count == 0) {
+                Console.WriteLine("Aucune commande");
+            } else {
+                foreach(Commande c in dataState.commandes) {
+                    Console.WriteLine(c);
+                }
+            }
         }
 
         public static Commande? RechercherCommande(DataState dataState, int numero) {

@@ -43,17 +43,15 @@ namespace transconnect {
                 index++;
             }
 
-            foreach (Noeud<T> noeud in graph.verticies) {
-                foreach(Lien<T> lien in noeud.edges) {
-                    (int, int) coordsOrg = positions[noeud.data];
-                    (int, int) coordsDst = positions[lien.dest.data];
-                    int x1, y1, x2, y2;
-                    x1 = coordsOrg.Item1+Noeudsize/2;
-                    y1 = coordsOrg.Item2+Noeudsize/2;
-                    x2 = coordsDst.Item1+Noeudsize/2;
-                    y2 = coordsDst.Item2+Noeudsize/2;
-                    g.DrawLine(pen, x1, y1, x2, y2);
-                }
+            foreach(Lien<T> lien in graph.edges) {
+                (int, int) coordsOrg = positions[lien.origin.data];
+                (int, int) coordsDst = positions[lien.dest.data];
+                int x1, y1, x2, y2;
+                x1 = coordsOrg.Item1+Noeudsize/2;
+                y1 = coordsOrg.Item2+Noeudsize/2;
+                x2 = coordsDst.Item1+Noeudsize/2;
+                y2 = coordsDst.Item2+Noeudsize/2;
+                g.DrawLine(pen, x1, y1, x2, y2);
             }
 
             foreach(Noeud<T> noeud in graph.verticies) {

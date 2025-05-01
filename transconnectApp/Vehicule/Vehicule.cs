@@ -57,6 +57,9 @@ namespace transconnect {
         {
             if (!dataState.flotte.Contains(this)) {
                 dataState.flotte.Add(this);
+                Console.WriteLine("Véhicule rajouté avec succès");
+            } else {
+                Console.WriteLine("Véhicule déjà présent dans la flotte");
             }
         }
 

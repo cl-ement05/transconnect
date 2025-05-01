@@ -84,19 +84,9 @@ namespace transconnect{
             Console.WriteLine("Les informations ont été mises à jour.");
         }
 
-        protected static PersonneDataHolder CreerPersonne(DataState dataState) {
-            bool validSS = false;
-            string numeroSS = "";
-            while (!validSS) {  
-                Console.Write("Numéro de SS : ");
-                numeroSS = Console.ReadLine()!;
-                if (dataState.clients.Any(c => c.NumeroSS == numeroSS) ||
-                dataState.salaries.Any(c => c.NumeroSS == numeroSS)) {
-                    Console.WriteLine("Erreur : ce numéro de SS est déjà dans la base de données");
-                } else {
-                    validSS = true;
-                }
-            }
+        protected static PersonneDataHolder CreerPersonne() {
+            Console.Write("Numéro de SS : ");
+            string numeroSS = Console.ReadLine()!;
             
             Console.Write("Nom : ");
             string nom = Console.ReadLine()!;

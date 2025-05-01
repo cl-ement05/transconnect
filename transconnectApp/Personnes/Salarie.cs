@@ -121,8 +121,9 @@ namespace transconnect
         /// <param name="manager"></param>
         public void Embaucher(DataState dataState, Salarie? manager = null)
         {
-            if (manager != null && !dataState.salaries.Contains(manager))
-                Console.WriteLine("Le manager doit faire partie de l'entreprise");
+            if (manager != null && !dataState.salaries.Contains(manager)) {
+                Console.WriteLine("Erreur : le manager doit faire partie de l'entreprise");
+            }
 
             if (!dataState.salaries.Contains(this))
             {
@@ -133,14 +134,15 @@ namespace transconnect
                         Chauffeur chauffeur = (Chauffeur) this;
                         chef.AssignerChauffeur(chauffeur);
                     } else {
-                        Console.WriteLine("Le manager saisi n'est pas valide");
+                        Console.WriteLine("Erreur : le manager saisi n'est pas valide");
                     }
                     dataState.directeur!.AjouterSalarie(this);
                 } else if (this.GetType() == typeof(ChefEquipe)) {
                     dataState.directeur!.AjouterSalarie(this);
                 }
                 dataState.organigramme.AjouterSalarie(this, manager);
-            }
+                Console.WriteLine("Salarié embauché avec succès");
+            } else Console.WriteLine("Salarié déjà embauché");
         }
 
         /// <summary>

@@ -1,13 +1,19 @@
+using Newtonsoft.Json;
+
 namespace transconnect {
     public class Graph<T> where T : notnull, IComparable<T>, IEquatable<T> {
         public List<Noeud<T>> verticies { get; }
+        public HashSet<Lien<T>> edges { get; }
 
         /// <summary>
         /// Natural constructor
         /// </summary>
         /// <param name="verticies"></param>
-        public Graph(List<Noeud<T>> verticies) {
+        /// <param name="edges"></param>
+        [JsonConstructor]
+        public Graph(List<Noeud<T>> verticies, HashSet<Lien<T>> edges) {
             this.verticies = verticies;
+            this.edges = edges;
         }
 
         /// <summary>
@@ -18,6 +24,7 @@ namespace transconnect {
         /// <exception cref="ArgumentException"></exception>
         public Graph(int[,] matrix, T[] labels) {
             verticies = new List<Noeud<T>>();
+            edges = new HashSet<Lien<T>>();
             if (matrix.GetLength(0) != labels.Length) {
                 throw new ArgumentException("Numbers of labels must match nbr of rows in matrix");
             }
@@ -32,7 +39,7 @@ namespace transconnect {
             }
             for(int i = 0; i < matrix.GetLength(0); i++) {
                 for (int j = 0; j < matrix.GetLength(1); j++) {
-                    if (matrix[i, j] != 0) verticies[i].addEdge(verticies[j], matrix[i, j]);
+                    if (matrix[i, j] != 0) edges.Add(new Lien<T>(verticies[i], verticies[j], matrix[i, j]));
                 }
             }
         }
@@ -47,18 +54,35 @@ namespace transconnect {
                 throw new ArgumentException("Graph cannot contain 2 verticies with the same label");
             }
             verticies = new List<Noeud<T>>();
+            edges = new HashSet<Lien<T>>();
             foreach(T val in adjacencyList.Keys) {
-                verticies.Add(new Noeud<T>(val));
-            }
-            int counter = 0;
-            foreach(T val in adjacencyList.Keys) {
+                Noeud<T> noeud = new Noeud<T>(val);
+                verticies.Add(noeud);
                 foreach(var adjacencies in adjacencyList[val]) {
-                    verticies[counter].addEdge(verticies.Find((e) => e.data.Equals(adjacencies.Item1))!, adjacencies.Item2);
+                    Noeud<T> dest = new Noeud<T>(adjacencies.Item1);
+                    if (!verticies.Contains(dest)) {
+                        verticies.Add(dest);
+                    }
+                    edges.Add(new Lien<T>(noeud, dest, adjacencies.Item2));
                 }
-                counter++;
             }
         }
 
+        /// <summary>
+        /// returns list of edges connected to vertex in parameter
+        /// </summary>
+        /// <param name="noeud"></param>
+        /// <returns></returns>
+        private List<Lien<T>> GetAdjacency(Noeud<T> noeud) {
+            List<Lien<T>> adj = new List<Lien<T>>();
+            foreach(Lien<T> l in edges) {
+                if (l.origin == noeud) {
+                    adj.Add(l);
+                }
+            }
+            return adj;
+        }
+        
         /// <summary>
         /// Itertative version of DFS which looks for cycle
         /// </summary>
@@ -72,7 +96,7 @@ namespace transconnect {
             while (dfs.Count > 0 && !found) {
                 Noeud<T> cur = dfs.Peek();
                 bool successor = false;
-                foreach(Lien<T> lien in cur.edges) {
+                foreach(Lien<T> lien in GetAdjacency(cur)) {
                     if (dfs.Contains(lien.dest) && dfs.Count > 2) { // > 2 because otherwise round-trip A-B-A is returned
                         dfs.Push(lien.dest);
                         found = true;
@@ -104,7 +128,7 @@ namespace transconnect {
         /// <returns>List of visited verticies, ordered by "date" visited by algo</returns>
         private List<Noeud<T>> DFS(Noeud<T> start, Stack<Noeud<T>> visiting, HashSet<Noeud<T>> visited) {
             List<Noeud<T>> dfs = new List<Noeud<T>>();
-            foreach(Lien<T> lien in start.edges) {
+            foreach(Lien<T> lien in GetAdjacency(start)) {
                 if (!visiting.Contains(lien.dest) && !visited.Contains(lien.dest)) {
                     visiting.Push(lien.dest);
                     dfs = dfs.Concat(DFS(lien.dest, visiting, visited)).ToList();
@@ -141,7 +165,7 @@ namespace transconnect {
             while (queue.Count > 0) {
                 Noeud<T> vertex = queue.Dequeue();
                 result.Add(vertex);
-                foreach(Lien<T> edge in vertex.edges) {
+                foreach(Lien<T> edge in GetAdjacency(vertex)) {
                     if (!visited.Contains(edge.dest)) {
                         visited.Add(edge.dest);
                         queue.Enqueue(edge.dest);
@@ -180,7 +204,7 @@ namespace transconnect {
         /// <returns>Item1: list of verticies making the path from start to end, Item2: path length</returns>
         /// <exception cref="InvalidOperationException"></exception>
         public (List<Noeud<T>>, int) Dijkstra(Noeud<T> start, Noeud<T> end) {
-            if (verticies.Any((e) => e.edges.Any((edge) => edge.weight < 0))) {
+            if (verticies.Any((e) => GetAdjacency(e).Any((edge) => edge.weight < 0))) {
                 throw new InvalidOperationException("Cannot use Dijkstra if weights are < 0");
             }
             List<Noeud<T>> result = new List<Noeud<T>>();
@@ -210,7 +234,7 @@ namespace transconnect {
                     }
                 }
                 visited.Add(minNoeud);
-                foreach(Lien<T> lien in minNoeud.edges) {
+                foreach(Lien<T> lien in GetAdjacency(minNoeud)) {
                     if (!visited.Contains(lien.dest)) {
                         if (minDistance + lien.weight < distances[lien.dest]) {
                             distances[lien.dest] = minDistance + lien.weight;
@@ -253,7 +277,7 @@ namespace transconnect {
             }
 
             HashSet<Lien<T>> liens = new HashSet<Lien<T>>();
-            verticies.ForEach((noeud) => liens = liens.Union(noeud.edges).ToHashSet());
+            verticies.ForEach((noeud) => liens = liens.Union(GetAdjacency(noeud)).ToHashSet());
             for (int i = 0; i < verticies.Count()-1; i++) {
                 foreach (Lien<T> lien in liens) {
                     if (distances[lien.origin] + lien.weight < distances[lien.dest]) {
@@ -307,7 +331,7 @@ namespace transconnect {
                 }
             }
             foreach (Noeud<T> noeud in verticies) {
-                foreach (Lien<T> lien in noeud.edges) {
+                foreach (Lien<T> lien in GetAdjacency(noeud)) {
                     matrix[associations[noeud], associations[lien.dest]] = lien.weight;
                 }
             }
