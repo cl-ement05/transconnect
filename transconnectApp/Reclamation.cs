@@ -11,18 +11,20 @@ namespace transconnect
         public string Description { get; set; }
         public DateTime DateReclamation { get; set; }
         private static int lastNumber = 1;
+
+        private string statut;
         public string Statut {
-            get { return Statut;}
+            get { return statut;}
             set {
                 switch (value) {
                     case EnAttente : 
-                        Statut = EnAttente;
+                        statut = EnAttente;
                         break;
                     case Resolue :
-                        Statut = Resolue;
+                        statut = Resolue;
                         break;
                     case Rejetee :
-                        Statut = Rejetee;
+                        statut = Rejetee;
                         break;
                     default :
                         throw new ArgumentException("Satut doit être une des quatre constantes de la classe Reclamation");
@@ -40,22 +42,30 @@ namespace transconnect
             Sujet = sujet;
             Description = description;
             DateReclamation = DateTime.Now;
-            Statut = EnAttente;
+            statut = EnAttente;
             lastNumber++;
         }
 
         public void MarquerCommeResolue(string reponse)
         {
-            Statut = Resolue;
-            Reponse = reponse;
-            DateTraitement = DateTime.Now;
+            if (statut == EnAttente) {
+                statut = Resolue;
+                Reponse = reponse;
+                DateTraitement = DateTime.Now;
+            } else {
+                Console.WriteLine("Erreur : cette réclamation n'est plus en attente");
+            }
         }
 
         public void MarquerCommeRejetee(string justification)
         {
-            Statut = Rejetee;
-            Reponse = justification;
-            DateTraitement = DateTime.Now;
+            if (statut == EnAttente) {
+                statut = Rejetee;
+                Reponse = justification;
+                DateTraitement = DateTime.Now;
+            } else {
+                Console.WriteLine("Erreur : cette réclamation n'est plus en attente");
+            }
         }
 
         public void AjouterReclamation(DataState dataState) {
