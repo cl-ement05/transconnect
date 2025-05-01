@@ -119,24 +119,35 @@ namespace transconnect
 
                     case "2":
                         DateTime nvdate;
-                        Console.Write("Saisir nouvelle date de commande (JJ/MM/AAAA)");
+                        Console.Write("Saisir nouvelle date de commande (JJ/MM/AAAA) : ");
                         while (!DateTime.TryParse(Console.ReadLine(), out nvdate)) {
                             Console.WriteLine("Format invalide ! Veuillez réessayer.");
                         }
                         if (nvdate != dateCommande)
                         {
-                            if (!chauffeur.EstDisponible(dataState, nvdate))
+                            bool continueModif = true;
+                            Vehicule? v = null;
+                            Chauffeur? nvchauffeur = null;
+                            if (!vehicule.EstDisponible(dataState, nvdate)) {
+                                Console.WriteLine("Le véhicule n'est plus disponible. Veuillez en sélectionner un nouveau");
+                                v = Vehicule.SelectionnerVehicule(dataState, nvdate);
+                                if (v is null) {
+                                    Console.WriteLine("Aucun véhicule disponible, la date ne sera pas modifiée");
+                                    continueModif = false;
+                                }                                
+                            }
+                            if (!chauffeur.EstDisponible(dataState, nvdate) && continueModif)
                             {
                                 Console.WriteLine("Le chauffeur actuel n'est pas disponible à cette date");
-                                Chauffeur? nvchauffeur = dataState.chauffeurs.Find(ch => ch.EstDisponible(dataState, nvdate));
+                                nvchauffeur = dataState.chauffeurs.Find(ch => ch.EstDisponible(dataState, nvdate));
                                 if (nvchauffeur is null)
                                 {
                                     Console.WriteLine("Aucun chauffeur n'est disponible, la date ne sera pas modifié");
+                                    continueModif = false;
                                 }
                                 else
                                 {
                                     Console.WriteLine("Nouveau chaffeur assigné : " + nvchauffeur.Nom + " " + nvchauffeur.Prenom);
-                                    chauffeur = nvchauffeur;
                                     dateCommande = nvdate;
 
                                     Noeud<string>? nd = dataState.graphe.verticies.FirstOrDefault(n => n.data == villeDepart);
@@ -151,25 +162,12 @@ namespace transconnect
                                     }
                                 }
                             }
-                            else
+                            
+                            if (continueModif)
                             {
                                 dateCommande = nvdate;
-                            }
-
-                            if(vehicule.Statut!=Vehicule.vehiculeDispo)
-                            {
-                                Console.WriteLine("Le véhicule n'est plus disponible. Veuillez en sélectionner un nouveau");
-                                bool vehiculeLibre=dataState.flotte.Any(v => v.Statut==Vehicule.vehiculeDispo);
-                                if(vehiculeLibre)
-                                {
-                                    vehicule=Vehicule.SelectionnerVehicule(dataState);
-                                    Console.WriteLine("Nouveau véhicule sélectionner : "+ vehicule.Immatriculation);
-                                    dateCommande = nvdate;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Aucun véhicule disponible à cette date, modification de la commande impossible");
-                                }
+                                if (v is not null) vehicule = v;
+                                if (nvchauffeur is not null) chauffeur = nvchauffeur;
                             }
                         }
                         break;
@@ -252,7 +250,7 @@ namespace transconnect
             }
 
             DateTime dateCommande;
-            Console.Write("Saisir nouvelle date de commande (JJ/MM/AAAA) : ");
+            Console.Write("Saisir date de commande (JJ/MM/AAAA) : ");
             while (!DateTime.TryParse(Console.ReadLine(), out dateCommande)) {
                 Console.WriteLine("Format invalide ! Veuillez réessayer.");
             }
@@ -264,7 +262,12 @@ namespace transconnect
                 return null;
             }
 
-            Vehicule vehiculeSelectionne = Vehicule.SelectionnerVehicule(dataState);
+            Vehicule? vehiculeSelectionne = Vehicule.SelectionnerVehicule(dataState, dateCommande);
+            if(vehiculeSelectionne is null)
+            {
+                Console.WriteLine("Aucun véhicule n'est disponible à la date demandée : "+ dateCommande);
+                return null;
+            }
 
             Console.Write("Saisissez la ville de départ de la commande : ");
             string villeDepart = Console.ReadLine()!;
@@ -317,7 +320,8 @@ namespace transconnect
         public override string ToString()
         {
             return "Commande : " + numeroCommande + " de " + client.Nom + " " + client.Prenom + "| " + villeDepart + " -> " + villeArrivee + 
-            " | Date : " + dateCommande.ToShortDateString() + " | Véhicule : " + vehicule;
+            " | Date : " + dateCommande.ToShortDateString() + " | Véhicule : " + vehicule.Immatriculation + " | Chauffeur : " + 
+            chauffeur.Nom + " " + chauffeur.Prenom;
         }
     }
 }

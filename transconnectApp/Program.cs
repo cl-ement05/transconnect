@@ -492,8 +492,6 @@
                             Console.WriteLine("Véhicule non trouvé");
                         } else {
                             v.SupprimerVehicule(dataState);
-                            Console.WriteLine("Véhicule supprimé");
-
                         }
                         break;
                     case "4":

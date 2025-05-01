@@ -18,7 +18,6 @@ namespace transconnect {
     public abstract class Vehicule
     {
         public const string vehiculeDispo = "disponible";
-        public const string vehiculeOccupe = "occupe";
         public const string vehiculeMaintenance = "maintenance";
         
         protected string immatriculation;
@@ -54,9 +53,6 @@ namespace transconnect {
                     case vehiculeMaintenance : 
                         statut = vehiculeMaintenance;
                         break;
-                    case vehiculeOccupe :
-                        statut = vehiculeOccupe;
-                        break;
                     default :
                         throw new ArgumentException("Satut doit être une des trois constantes de la classe Vehicule");
                 }
@@ -88,13 +84,15 @@ namespace transconnect {
             } else {
                 if (!dataState.flotte.Remove(this)) {
                     Console.WriteLine("Véhicule absent de la flotte");
+                } else {
+                    Console.WriteLine("Véhicule supprimé");
                 }
             }
         }
 
         public void ChangerStatut(DataState dataState) {
             Console.WriteLine("Statut actuel : " + statut);
-            Console.Write("Veuillez saisir le nouveau statut (disponible/occupe/maintenance) : ");
+            Console.Write("Veuillez saisir le nouveau statut (disponible/maintenance) : ");
             List<Commande> cmd = dataState.commandes.FindAll(c => c.Vehicule.Equals(this));
             string st = Console.ReadLine()!;
             bool valid = false;
@@ -130,26 +128,23 @@ namespace transconnect {
         /// </summary>
         /// <param name="dataState"></param>
         /// <returns></returns>
-        public static Vehicule SelectionnerVehicule(DataState dataState)
+        public static Vehicule? SelectionnerVehicule(DataState dataState, DateTime date)
         {
-            Console.WriteLine("Liste des véhicules disponibles : ");
-            int counter = 1;
-            List<int> validIndexes = new List<int>();
-            for(int i = 0; i < dataState.flotte.Count; i++)
-            {
-                if (dataState.flotte[i].Statut == vehiculeDispo) {
-                    Console.WriteLine(counter+" : " + dataState.flotte[i]);
-                    validIndexes.Add(counter);
-                    counter++;
+            List<Vehicule> dispos = dataState.flotte.FindAll(v => v.EstDisponible(dataState, date));
+            if (dispos.Count > 0) {
+                Console.WriteLine("Liste des véhicules disponibles : ");
+                for(int i = 0; i < dispos.Count; i++)
+                {
+                    Console.WriteLine(i + " : " + dispos[i]);
                 }
-            }
-            Console.WriteLine("Saisir le véhicule voulu");
-            int index = Convert.ToInt32(Console.ReadLine());
-            while (!validIndexes.Contains(index)) {
-                Console.WriteLine("Saisie invalide, veuillez réessayer : ");
-                index = Convert.ToInt32(Console.ReadLine());
-            }
-            return dataState.flotte[index];
+                Console.WriteLine("Saisir le véhicule voulu");
+                int index = Convert.ToInt32(Console.ReadLine());
+                while (index < 0 || index >= dispos.Count) {
+                    Console.WriteLine("Saisie invalide, veuillez réessayer : ");
+                    index = Convert.ToInt32(Console.ReadLine());
+                }
+                return dispos[index];
+            } else return null;
         }
 
         public static void AfficherVehicules(DataState dataState) {
@@ -160,6 +155,16 @@ namespace transconnect {
                     Console.WriteLine(c);
                 }
             }
+        }
+
+        public bool EstDisponible(DataState dataState, DateTime date) {
+            if (statut != vehiculeDispo) return false;
+            foreach (Commande c in dataState.commandes.FindAll(c => c.Vehicule.Equals(this)))
+            {
+                if (c.DateCommande.Date == date.Date)
+                    return false;
+            }
+            return true;
         }
 
         public static Vehicule? RechercherVehicule(DataState dataState, string immat)
