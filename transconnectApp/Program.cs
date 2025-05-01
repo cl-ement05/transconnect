@@ -27,7 +27,7 @@
 
             DataState dataState;
 
-            Console.Write("Vous pouvez commencer avec une entreprise vide ou bien charger le dernier état sauvegardé" +
+            Console.Write("Vous pouvez commencer avec une entreprise vide ou bien charger le dernier état sauvegardé " +
             "Que souhaitez-vous faire (vide/charger) ? ");
 
             string answer = Console.ReadLine()!;
@@ -60,9 +60,10 @@
                 Console.WriteLine("3 : Module Commande");
                 Console.WriteLine("4 : Module Stats");
                 Console.WriteLine("5 : Module Réclamation");
-                Console.WriteLine("6 : Afficher le graph des villes");
-                Console.WriteLine("7 : Sauvegarder l'état actuel des données");
-                Console.WriteLine("8 : Quitter");
+                Console.WriteLine("6 : Module Véhicule");
+                Console.WriteLine("7 : Afficher le graph des villes");
+                Console.WriteLine("8 : Sauvegarder l'état actuel des données");
+                Console.WriteLine("9 : Quitter");
                 Console.Write("Faites votre choix : ");
                 string nbr = Console.ReadLine()!;
                 
@@ -83,14 +84,17 @@
                         Module_Reclamation(dataState);
                         break;
                     case "6":
-                        dataState.graphe.drawGraph();
+                        Module_Vehicule(dataState);
                         break;
                     case "7":
+                        dataState.graphe.drawGraph();
+                        break;
+                    case "8":
                         if (dataState.Save(".data.json")) {
                             Console.WriteLine("Sauvegarde effectuée");
                         }
                         break;
-                    case "8":
+                    case "9":
                         continueApp = false;
                         break;
                     default:
@@ -437,6 +441,100 @@
                         break;
                 }
             }
+        }
+
+        public static void Module_Vehicule(DataState dataState) {
+            bool continueApp = true;
+            while (continueApp) {
+                Console.WriteLine("\nModule véhicule");
+                Console.WriteLine("1 : Afficher liste des véhicules");
+                Console.WriteLine("2 : Créer un véhicule");
+                Console.WriteLine("3 : Supprimer un véhicule");
+                Console.WriteLine("4 : Changer un statut de véhicule");
+                Console.WriteLine("5 : Revenir au menu principal");
+
+                string nbr = Console.ReadLine()!;
+                string immat = "";
+                switch(nbr) {
+                    case "1":
+                        Vehicule.AfficherVehicules(dataState);
+                        break;
+                    case "2":
+                        Console.WriteLine("Veuillez choisir le type de véhicule à créer : \n1. Voiture\n2. Camionette\n3. Camion Benne\n4." +
+                        " Camion Citerne\n5. Camion Frigorifique");
+                        string choice = Console.ReadLine()!;
+                        switch(choice) {
+                            case "1":
+                                Voiture.CreerNouveau().AjouterVehicule(dataState);
+                                break;
+                            case "2":
+                                Camionette.CreerNouveau().AjouterVehicule(dataState);
+                                break;
+                            case "3":
+                                CamionBenne.CreerNouveau().AjouterVehicule(dataState);
+                                break;
+                            case "4":
+                                CamionCiterne.CreerNouveau().AjouterVehicule(dataState);
+                                break;
+                            case "5":
+                                CamionFrigorifique.CreerNouveau().AjouterVehicule(dataState);
+                                break;
+                            default:
+                                Console.WriteLine("Choix invalide");
+                                break;
+                        }
+                        break;
+                    case "3":
+                        Console.WriteLine("Saisissez l'immat du véhicule à supprimer : ");
+                        immat = Console.ReadLine()!;
+                        Vehicule? v = Vehicule.RechercherVehicule(dataState, immat);
+                        if (v is null) {
+                            Console.WriteLine("Véhicule non trouvé");
+                        } else {
+                            v.SupprimerVehicule(dataState);
+                            Console.WriteLine("Véhicule supprimé");
+
+                        }
+                        break;
+                    case "4":
+                        Console.WriteLine("Saisissez l'immat du véhicule à modifier : ");
+                        immat = Console.ReadLine()!;
+                        v = Vehicule.RechercherVehicule(dataState, immat);
+                        if (v is null) {
+                            Console.WriteLine("Véhicule non trouvé");
+                        } else {
+                            v.ChangerStatut(dataState);
+
+                        }
+                        break;
+                    case "5":
+                        continueApp = false;
+                        break;
+                    default:
+                        Console.WriteLine("Choix invalide");
+                        break;
+                }
+            }
+        }
+
+        public static int ParseInt(string prompt) {
+            int nb = 0;
+            bool valid = false;
+            while (!valid)
+            {
+                Console.Write(prompt);
+                string input = Console.ReadLine()!;
+                try
+                {
+                    nb = Convert.ToInt32(input);
+                    valid = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Format invalide ! Veuillez réessayer.");
+                }
+            }
+            return nb;
         }
     }
 }

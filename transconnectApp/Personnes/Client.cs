@@ -116,9 +116,9 @@ namespace transconnect
             }
         }
 
-        public static Client CreerNouveau() {
+        public static new Client CreerNouveau() {
             Console.WriteLine("Veuillez saisir les informations du nouveau client.");
-            PersonneDataHolder data = CreerPersonne();
+            PersonneDataHolder data = Personne.CreerNouveau();
             return new Client(
                 data.numeroSS,
                 data.nom,

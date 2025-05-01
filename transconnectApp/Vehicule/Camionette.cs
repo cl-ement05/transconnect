@@ -21,6 +21,22 @@ namespace transconnect {
 
         public string Usage { get { return usage; } set { usage = value; } }
 
+        public static new Camionette CreerNouveau() {
+            Console.WriteLine("Veuillez saisir les informations du nouveau véhicule.");
+            VehiculeDataHolder data = Vehicule.CreerNouveau();
+            
+            Console.Write("Usage : ");
+            string usage = Console.ReadLine()!;
+
+            return new Camionette(
+                data.immatriculation,
+                data.couleur,
+                data.marque,
+                usage,
+                data.statut
+            );
+        }
+
         public override string ToString()
         {
             return base.ToString()+ " | Usage : " + usage;

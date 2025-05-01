@@ -48,26 +48,11 @@ namespace transconnect
             }
         }
 
-        public static Directeur CreerNouveau() {
+        public static new Directeur CreerNouveau() {
             Console.WriteLine("Veuillez saisir les informations du nouveau salarié.");
-            PersonneDataHolder data = CreerPersonne();
+            PersonneDataHolder data = Personne.CreerNouveau();
             
-            decimal salaire = 0;
-            bool validSalaire = false;
-            while (!validSalaire)
-            {
-                Console.Write("Salaire : ");
-                string salaireInput = Console.ReadLine()!;
-                try
-                {
-                    salaire = Convert.ToDecimal(salaireInput);
-                    validSalaire = true;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Format invalide ! Veuillez réessayer.");
-                }
-            }
+            decimal salaire = Convert.ToDecimal(Program.ParseInt("Salaire : "));
 
             return new Directeur(
                 data.numeroSS,

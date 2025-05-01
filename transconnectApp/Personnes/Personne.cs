@@ -84,7 +84,7 @@ namespace transconnect{
             Console.WriteLine("Les informations ont été mises à jour.");
         }
 
-        protected static PersonneDataHolder CreerPersonne() {
+        protected static PersonneDataHolder CreerNouveau() {
             Console.Write("Numéro de SS : ");
             string numeroSS = Console.ReadLine()!;
             

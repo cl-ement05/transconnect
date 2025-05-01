@@ -1749,13 +1749,14 @@
         "Statut": "maintenance"
       },
       {
-        "$type": "transconnect.CamionFrigorifique, transconnect",
-        "CapaciteIsotherme": 1000.0,
-        "NombreGroupesElectrogene": 100,
-        "Immatriculation": "IJ-789-KL",
-        "Couleur": "Noir",
-        "Marque": "Peugeot",
-        "Statut": "occupe"
+        "$type": "transconnect.CamionBenne, transconnect",
+        "NombreBennes": 2,
+        "GrueAuxiliaire": false,
+        "CapaciteChargement": 5000.0,
+        "Immatriculation": "AA-111-AA",
+        "Couleur": "bleu",
+        "Marque": "Renault",
+        "Statut": "disponible"
       }
     ]
   },

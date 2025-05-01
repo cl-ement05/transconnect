@@ -1,6 +1,20 @@
 using System;
 
 namespace transconnect {
+    public struct VehiculeDataHolder {
+        public VehiculeDataHolder(string immatriculation, string couleur, string marque, string statut = Vehicule.vehiculeDispo)
+        {
+            this.immatriculation = immatriculation;
+            this.couleur = couleur;
+            this.marque = marque;
+            this.statut = statut;
+        }
+        public string immatriculation;
+        public string couleur;
+        public string marque;
+        public string statut;
+    }
+    
     public abstract class Vehicule
     {
         public const string vehiculeDispo = "disponible";
@@ -67,7 +81,7 @@ namespace transconnect {
         /// Retirer un véhicule
         /// </summary>
         /// <param name="dataState"></param>
-        public void RetirerVehicule(DataState dataState)
+        public void SupprimerVehicule(DataState dataState)
         {
             if (dataState.commandes.FindAll(c => c.Vehicule.Equals(this)).Count > 0) {
                 Console.WriteLine("Le véhicule est rattaché à une commande, suppression impossible");
@@ -76,6 +90,39 @@ namespace transconnect {
                     Console.WriteLine("Véhicule absent de la flotte");
                 }
             }
+        }
+
+        public void ChangerStatut(DataState dataState) {
+            Console.WriteLine("Statut actuel : " + statut);
+            Console.Write("Veuillez saisir le nouveau statut (disponible/occupe/maintenance) : ");
+            List<Commande> cmd = dataState.commandes.FindAll(c => c.Vehicule.Equals(this));
+            string st = Console.ReadLine()!;
+            bool valid = false;
+            while (!valid) {
+                try {
+                    if (st == vehiculeMaintenance && cmd.Count > 0) {
+                        Console.WriteLine("Erreur : le véhicule est rattaché à une commande, impossible de changer son statut");
+                        return;
+                    }
+                    Statut = st;
+                    valid = true;
+                } catch (ArgumentException) {
+                    Console.WriteLine("Saisie invalide, veuillez réessayer : ");
+                    st = Console.ReadLine()!;
+                }
+            }
+            Console.WriteLine("Statut modifié avec succès");
+        }
+
+        protected static VehiculeDataHolder CreerNouveau() {
+            Console.Write("Numéro d'immat : ");
+            string immat = Console.ReadLine()!;
+            Console.Write("Couleur : ");
+            string couleur = Console.ReadLine()!;
+            Console.Write("Marque : ");
+            string marque = Console.ReadLine()!;
+
+            return new VehiculeDataHolder(immat, couleur, marque);
         }
 
         /// <summary>
@@ -103,6 +150,31 @@ namespace transconnect {
                 index = Convert.ToInt32(Console.ReadLine());
             }
             return dataState.flotte[index];
+        }
+
+        public static void AfficherVehicules(DataState dataState) {
+            if (dataState.flotte.Count == 0) {
+                Console.WriteLine("Aucun véhicule");
+            } else {
+                foreach(Vehicule c in dataState.flotte) {
+                    Console.WriteLine(c);
+                }
+            }
+        }
+
+        public static Vehicule? RechercherVehicule(DataState dataState, string immat)
+        {
+            return dataState.flotte.Find(v => v.Immatriculation == immat);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            try { 
+                Vehicule p = (Vehicule)obj!;
+                return p.immatriculation == immatriculation;
+            } catch (Exception) {
+                return false;
+            }
         }
 
         public override string ToString()

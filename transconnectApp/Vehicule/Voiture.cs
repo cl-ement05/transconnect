@@ -22,6 +22,21 @@ namespace transconnect {
 
         public int Nb_passager { get {return nb_passagers;} set {nb_passagers = value;} }
 
+        public static new Voiture CreerNouveau() {
+            Console.WriteLine("Veuillez saisir les informations du nouveau véhicule.");
+            VehiculeDataHolder data = Vehicule.CreerNouveau();
+            
+            int nb_passagers = Program.ParseInt("Nombre passagers : ");
+
+            return new Voiture(
+                data.immatriculation,
+                data.couleur,
+                data.marque,
+                nb_passagers,
+                data.statut
+            );
+        }
+
         public override string ToString ()
         {
             return base.ToString () + " | Nombre de passagers : " + nb_passagers;
