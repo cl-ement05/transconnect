@@ -1,3 +1,5 @@
+using System;
+
 namespace transconnect
 {  
     public abstract class Salarie : Personne
@@ -42,6 +44,17 @@ namespace transconnect
         /// <param name="dataState"></param>
         public void Licencier(DataState dataState)
         {
+            if (this is Chauffeur chauffeurEnCours)
+            {
+                bool commandesEnCours = dataState.commandes
+                                    .Any(cmd => cmd.Chauffeur.Equals(chauffeurEnCours));   // Commande.Chauffeur :contentReference[oaicite:0]{index=0}:contentReference[oaicite:1]{index=1}
+
+                if (commandesEnCours)
+                {
+                    Console.WriteLine("Impossible de licencier : ce chauffeur possède encore des commandes actives.");
+                    return;                                             // On sort sans toucher aux listes
+                }
+            }
             switch (this.Poste)
             {
                 case directeur:
