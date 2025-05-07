@@ -2,6 +2,10 @@ using System;
 
 namespace transconnect
 {  
+    /// <summary>
+    /// Classe abstraite représentant un salarié de l'entreprise.
+    /// Elle hérite de la classe Personne et contient des informations spécifiques aux salariés.
+    /// </summary>
     public abstract class Salarie : Personne
     {
         public const string directeur = "Directeur";
@@ -25,106 +29,111 @@ namespace transconnect
         public DateTime DateEntree { get => dateEntree; set => dateEntree = value; }
         public string Poste { get => poste; set => poste = value; }
         public decimal Salaire { get => salaire; set => salaire = value; }
-
+        
+        /// <summary>
+        /// Méthode pour modifier les informations d'un salarié.
+        /// </summary>
         public override void ModifierInfos()
         {
             base.ModifierInfos();
-            Console.Write($"Salaire ({this.salaire}) : ");
-            string salaire = Console.ReadLine()!;
-            if (!string.IsNullOrWhiteSpace(salaire) && int.TryParse(salaire, out int sal)) this.salaire = sal;
+
+            Console.Write($"Salaire ({salaire}) : ");
+            string saisie = Console.ReadLine()!;
+            if (!string.IsNullOrWhiteSpace(saisie) &&
+                decimal.TryParse(saisie, out var nouveauSalaire))
+            {
+                salaire = nouveauSalaire;
+            }
 
         }
 
         /// <summary>
-        /// Supprime un salarié de l'entreprise et de l'organigramme.
-        /// Si le salarié est un chef d'équipe, il doit y avoir au moins 2 chauffeurs sous sa responsabilité.
-        /// Si le salarié est un directeur, il ne peut pas être supprimé sans procédure spéciale.
-        /// Si le salarié est un chef d'équipe avec un seul chauffeur sous sa responsabilité, le chauffeur sera transféré à un autre chef d'équipe ou au directeur.
+        /// Méthode pour licencier un salarié.
+        /// Elle vérifie si le salarié peut être licencié en fonction de son poste et de ses responsabilités.
+        /// Si le salarié est un chauffeur, elle vérifie également s'il a des commandes actives.
+        /// Si le salarié est un chef d'équipe, elle gère la réaffectation de ses chauffeurs sous responsabilité.
+        /// Si le salarié est le directeur, elle affiche un message d'erreur.
         /// </summary>
         /// <param name="dataState"></param>
         public void Licencier(DataState dataState)
         {
-            if (this is Chauffeur chauffeurEnCours)
+            if (this is Chauffeur chActif &&
+                dataState.commandes.Any(cmd => cmd.Chauffeur.Equals(chActif)))
             {
-                bool commandesEnCours = dataState.commandes
-                                    .Any(cmd => cmd.Chauffeur.Equals(chauffeurEnCours));   // Commande.Chauffeur :contentReference[oaicite:0]{index=0}:contentReference[oaicite:1]{index=1}
+                Console.WriteLine("Impossible de licencier : ce chauffeur possède encore des commandes actives.");
+                return;
+            }
 
-                if (commandesEnCours)
+            if (Poste == directeur)
+            {
+                Console.WriteLine("Suppression impossible : le directeur nécessite une procédure spéciale.");
+                return;
+            }
+
+            if (this is ChefEquipe chef)
+            {
+                var team = chef.ChauffeursSousResponsabilite;
+
+                // ≥2 chauffeurs : promotion du plus ancien
+                if (team.Count >= 2)
                 {
-                    Console.WriteLine("Impossible de licencier : ce chauffeur possède encore des commandes actives.");
-                    return;                                             // On sort sans toucher aux listes
+                    var doyen = team.OrderBy(c => c.DateEntree).First();
+                    var nouveauChef = new ChefEquipe(doyen.NumeroSS, doyen.Nom, doyen.Prenom, doyen.DateNaissance,
+                                                     doyen.AdressePostale, doyen.Email, doyen.Telephone,
+                                                     doyen.DateEntree, doyen.Salaire);
+
+                    foreach (var c in team.Where(c => c != doyen))
+                        nouveauChef.AssignerChauffeur(c);
+
+                    dataState.salaries.Remove(doyen);
+                    dataState.salaries.Add(nouveauChef);
+                    dataState.organigramme.AjouterSalarie(nouveauChef, dataState.directeur);
                 }
-            }
-            switch (this.Poste)
-            {
-                case directeur:
-                    Console.WriteLine("Suppression impossible : Le directeur ne peut pas être supprimé sans procédure spéciale.");
-                    return;
+                else if (team.Count == 1)
+                {
+                    var seul = team[0];
+                    var cible = dataState.salaries
+                                         .OfType<ChefEquipe>()
+                                         .Where(c => c != chef)
+                                         .OrderBy(c => c.ChauffeursSousResponsabilite.Count)
+                                         .FirstOrDefault();
 
-                case chefEquipe:
-                    if (this is ChefEquipe chef)
+                    if (cible == null)
                     {
-                        List<Chauffeur> team = chef.ChauffeursSousResponsabilite;
-
-                        if (team.Count >= 2)
-                        {
-                            Chauffeur plusAncien = team.OrderBy(c => c.DateEntree).First();
-
-                            ChefEquipe nouveauChef = new ChefEquipe(
-                                plusAncien.NumeroSS, plusAncien.Nom, plusAncien.Prenom, plusAncien.DateNaissance,
-                                plusAncien.AdressePostale, plusAncien.Email, plusAncien.Telephone,
-                                plusAncien.DateEntree, plusAncien.Salaire
-                            );
-
-                            foreach (Chauffeur chauffeur in team.Where(c => c != plusAncien))
-                            {
-                                nouveauChef.AssignerChauffeur(chauffeur);
-                            }
-
-                            dataState.salaries.Add(nouveauChef);
-                            dataState.organigramme.AjouterSalarie(nouveauChef, dataState.directeur);
-                            dataState.salaries.Remove(plusAncien);
-                        }
-                        else if (team.Count == 1)
-                        {
-                            Chauffeur seulChauffeur = team[0];
-                            ChefEquipe? cible = dataState.salaries
-                                .OfType<ChefEquipe>()
-                                .Where(e => e != chef)
-                                .OrderBy(e => e.ChauffeursSousResponsabilite.Count)
-                                .FirstOrDefault();
-
-                            if (cible != null)
-                            {
-                                cible.AssignerChauffeur(seulChauffeur);
-                                dataState.organigramme.ModifierManager(seulChauffeur, cible);
-                            }
-                            else if (dataState.directeur != null)
-                            {
-                                Console.WriteLine(@"Erreur : aucun autre chef d'équipe n'est disponible
-                                pour récupérer les chauffeurs de ce chef. La suppression n'a donc pas lieu");
-                                return;
-                            }
-                        }
-                        // Sinon aucun chauffeur sous sa responsabilité
-                        dataState.salaries.Remove(chef);
-                        dataState.organigramme.SupprimerSalarie(chef);
+                        Console.WriteLine("Aucun chef d'équipe disponible pour reprendre le chauffeur ; licenciement annulé.");
+                        return;
                     }
-                    break;
 
-                default:
-                    foreach(Salarie salarie in dataState.salaries) {
-                        if (salarie is ChefEquipe) {
-                            ChefEquipe manager = (ChefEquipe)salarie;
-                            manager.SupprimerChauffeur((Chauffeur)this);
-                            break;
-                        }
-                    }
-                    break;
+                    cible.AssignerChauffeur(seul);
+                    dataState.organigramme.ModifierManager(seul, cible);
+                }
+
+                RetirerDesCollections(dataState, chef);
+                return;
             }
-            dataState.directeur!.SupprimerSalarie(this);
-            dataState.organigramme.SupprimerSalarie(this);
-            dataState.salaries.Remove(this);
+
+            if (this is Chauffeur chauffeur)
+            {
+                var chefProprietaire = dataState.salaries
+                                               .OfType<ChefEquipe>()
+                                               .FirstOrDefault(c => c.ChauffeursSousResponsabilite.Contains(chauffeur));
+                chefProprietaire?.SupprimerChauffeur(chauffeur);
+            }
+
+            RetirerDesCollections(dataState, this);
+        }
+
+        /// <summary>
+        /// Retire le salarié des collections de l'entreprise et de l'organigramme.
+        /// </summary>
+        /// <param name="ds"></param>
+        /// <param name="s"></param>
+        private static void RetirerDesCollections(DataState ds, Salarie s)
+        {
+            ds.organigramme.SupprimerSalarie(s);
+            ds.directeur?.SupprimerSalarie(s);
+            ds.salaries.Remove(s);
+            Console.WriteLine("Salarié licencié avec succès");
         }
 
         /// <summary>
@@ -134,28 +143,39 @@ namespace transconnect
         /// <param name="manager"></param>
         public void Embaucher(DataState dataState, Salarie? manager = null)
         {
-            if (manager != null && !dataState.salaries.Contains(manager)) {
-                Console.WriteLine("Erreur : le manager doit faire partie de l'entreprise");
+            if (dataState.salaries.Any(s => s.NumeroSS == NumeroSS))
+            {
+                Console.WriteLine("Erreur : un salarié possède déjà ce numéro de SS");
+                return;
             }
 
-            if (!dataState.salaries.Contains(this))
+            if (manager != null && !dataState.salaries.Contains(manager))
+            {
+                Console.WriteLine("Erreur : le manager doit faire partie de l'entreprise");
+                return;
+            }
+
+            if (this is Chauffeur chauffeurInstance)
+            {
+                if (manager is not ChefEquipe chef)
+                {
+                    Console.WriteLine("Erreur : un chauffeur doit avoir un chef d'équipe attitré");
+                    return;
+                }
+
+                dataState.salaries.Add(this);
+                chef.AssignerChauffeur(chauffeurInstance);
+                dataState.directeur?.AjouterSalarie(chauffeurInstance);
+                dataState.organigramme.AjouterSalarie(chauffeurInstance, chef);
+            }
+            else
             {
                 dataState.salaries.Add(this);
-                if (this.GetType() == typeof(Chauffeur)) {
-                    if (manager is not null && manager.GetType() == typeof(ChefEquipe)) {
-                        ChefEquipe chef = (ChefEquipe) manager!;
-                        Chauffeur chauffeur = (Chauffeur) this;
-                        chef.AssignerChauffeur(chauffeur);
-                    } else {
-                        Console.WriteLine("Erreur : le manager saisi n'est pas valide");
-                    }
-                    dataState.directeur!.AjouterSalarie(this);
-                } else if (this.GetType() == typeof(ChefEquipe)) {
-                    dataState.directeur!.AjouterSalarie(this);
-                }
+                dataState.directeur?.AjouterSalarie(this);
                 dataState.organigramme.AjouterSalarie(this, manager);
-                Console.WriteLine("Salarié embauché avec succès");
-            } else Console.WriteLine("Salarié déjà embauché");
+            }
+
+            Console.WriteLine("Salarié embauché avec succès");
         }
 
         /// <summary>
