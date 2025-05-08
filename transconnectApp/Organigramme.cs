@@ -122,22 +122,15 @@
             public void Afficher(Noeud? start = null, string prefix = "")
             {
                 if (start == null) start = racine;
-                if (start == null) return; 
-
+                if (start == null) return;
                 if (start.Salarie != null)
                 {
                     Console.WriteLine($"{prefix}- {start.Salarie.Nom} {start.Salarie.Prenom} ({start.Salarie.Poste}) {start.Salarie.NumeroSS}");
-                }
-
-                if (start.Succ != null)
-                {
                     Afficher(start.Succ, prefix + "    ");
-                }
-
-                if (start.Frere != null)
-                {
                     Afficher(start.Frere, prefix);
                 }
+
+                
             }
             /// <summary>
             /// Recherche un salarié dans l'organigramme à partir du noeud spécifié.
