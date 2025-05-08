@@ -223,7 +223,7 @@
                             }
                         } 
                         else {
-                            Console.WriteLine("Votre entreprise est vide, commencez par créer un directeuré");
+                            Console.WriteLine("Votre entreprise est vide, commencez par créer un directeur");
                             Directeur.CreerNouveau().Embaucher(dataState);
                         }
                         break;

@@ -4,18 +4,18 @@
         {
             public class Noeud
             {
-                private Salarie? salarie;
+                private Salarie salarie;
                 private Noeud? succ;    
                 private Noeud? frere;   
 
-                public Noeud(Salarie? salarie = null, Noeud? succ = null, Noeud? frere = null)
+                public Noeud(Salarie salarie, Noeud? succ = null, Noeud? frere = null)
                 {
                     this.salarie = salarie;
                     this.succ = succ;
                     this.frere = frere;
                 }
 
-                public Salarie? Salarie
+                public Salarie Salarie
                 {
                     get { return salarie; }
                     set { salarie = value; }
@@ -104,10 +104,10 @@
                     return;
                 }
 
-                if (manager == null)
+                if (manager!.Equals(racine.Salarie))
                 {
                     // nouveau top-manager (ex. second directeur) : frère de la racine
-                    Ajouter_Frere(racine, salarie);
+                    Ajouter_Frere(racine.Succ, salarie);
                     return;
                 }
 
@@ -154,11 +154,11 @@
             /// <returns></returns>
             public Noeud? Rechercher(Noeud? start, Salarie salarie)
             {
-                if (start == null) return null;
-                if (start.Salarie == salarie) return start;
+                if (start is null) return null;
+                if (start.Salarie.Equals(salarie)) return start;
 
                 Noeud? trouve = Rechercher(start.Succ, salarie);
-                if (trouve != null) return trouve;
+                if (trouve is not null) return trouve;
 
                 return Rechercher(start.Frere, salarie);
             }
@@ -168,9 +168,9 @@
             /// <param name="salarie"></param>
             public void SupprimerSalarie(Salarie salarie)
             {
-                if (racine == null) return;
+                if (racine is null) return;
 
-                if (racine.Salarie == salarie)
+                if (racine.Salarie.Equals(salarie))
                 {
                     racine = null;
                 }
@@ -188,23 +188,23 @@
             /// <param name="salarie"></param>
             private void SupprimerNoeud(Noeud? parent, Noeud courant, Salarie salarie)
             {
-                if (courant == null) return;
+                if (courant is null) return;
 
-                if (courant.Succ != null)
+                if (courant.Succ is not null)
                 {
                     SupprimerNoeud(courant, courant.Succ, salarie);
                 }
 
-                if (courant.Frere != null)
+                if (courant.Frere is not null)
                 {
-                    SupprimerNoeud(parent, courant.Frere, salarie);
+                    SupprimerNoeud(courant, courant.Frere, salarie);
                 }
 
-                if (courant.Salarie == salarie)
+                if (courant.Salarie.Equals(salarie))
                 {
                     if (parent != null)
                     {
-                        if (parent.Succ == courant)
+                        if (parent.Succ is not null && parent.Succ.Equals(courant))
                         {
                             parent.Succ = courant.Frere;
                         }

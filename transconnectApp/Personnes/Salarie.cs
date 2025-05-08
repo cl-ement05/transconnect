@@ -84,30 +84,34 @@ namespace transconnect
                                                      doyen.AdressePostale, doyen.Email, doyen.Telephone,
                                                      doyen.DateEntree, doyen.Salaire);
 
-                    foreach (var c in team.Where(c => c != doyen))
+                    foreach (Chauffeur c in team.Where(c => !c.Equals(doyen)))
                         nouveauChef.AssignerChauffeur(c);
 
                     dataState.salaries.Remove(doyen);
                     dataState.salaries.Add(nouveauChef);
                     dataState.organigramme.AjouterSalarie(nouveauChef, dataState.directeur);
+                    foreach (Chauffeur c in nouveauChef.ChauffeursSousResponsabilite) dataState.organigramme.AjouterSalarie(c, nouveauChef);
+                    Console.WriteLine($"Chauffeur promu : {nouveauChef.Nom} {nouveauChef.Prenom}");
                 }
                 else if (team.Count == 1)
                 {
                     var seul = team[0];
                     var cible = dataState.salaries
                                          .OfType<ChefEquipe>()
-                                         .Where(c => c != chef)
+                                         .Where(c => !c.Equals(chef))
                                          .OrderBy(c => c.ChauffeursSousResponsabilite.Count)
                                          .FirstOrDefault();
 
-                    if (cible == null)
+                    if (cible is null)
                     {
                         Console.WriteLine("Aucun chef d'équipe disponible pour reprendre le chauffeur ; licenciement annulé.");
                         return;
                     }
 
+                    chef.SupprimerChauffeur(seul);
                     cible.AssignerChauffeur(seul);
                     dataState.organigramme.ModifierManager(seul, cible);
+                    Console.WriteLine($"Nouveau manager pour reprendre le chauffeur : {cible.Nom} {cible.Prenom}");
                 }
 
                 RetirerDesCollections(dataState, chef);
@@ -133,7 +137,6 @@ namespace transconnect
         private static void RetirerDesCollections(DataState ds, Salarie s)
         {
             ds.organigramme.SupprimerSalarie(s);
-            ds.directeur?.SupprimerSalarie(s);
             ds.salaries.Remove(s);
             Console.WriteLine("Salarié licencié avec succès");
         }
@@ -157,6 +160,10 @@ namespace transconnect
                 return;
             }
 
+            if (manager is null && dataState.directeur is not null) {
+                Console.WriteLine("Erreur : tout salarié (hors directeur) doit avoir un supérieur hiérarchique");
+            }
+
             if (this is Chauffeur chauffeurInstance)
             {
                 if (manager is not ChefEquipe chef)
@@ -167,13 +174,11 @@ namespace transconnect
 
                 dataState.salaries.Add(this);
                 chef.AssignerChauffeur(chauffeurInstance);
-                dataState.directeur?.AjouterSalarie(chauffeurInstance);
                 dataState.organigramme.AjouterSalarie(chauffeurInstance, chef);
             }
             else
             {
                 dataState.salaries.Add(this);
-                dataState.directeur?.AjouterSalarie(this);
                 dataState.organigramme.AjouterSalarie(this, manager);
             }
 

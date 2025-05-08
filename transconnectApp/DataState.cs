@@ -53,8 +53,8 @@ namespace transconnect {
                 string json = JsonConvert.SerializeObject(this, settings);
                 File.WriteAllText(path, json);
                 return true;
-            } catch (Exception) {
-                Console.WriteLine("Une erreur est survenue, veuillez réessayer");
+            } catch (Exception e) {
+                Console.WriteLine("Une erreur est survenue : " + e.Message);
                 return false;
             }
         }
@@ -64,10 +64,10 @@ namespace transconnect {
                 string json = File.ReadAllText(path);
                 return JsonConvert.DeserializeObject<DataState>(json, new JsonSerializerSettings{TypeNameHandling = TypeNameHandling.All});
             } catch (IOException e) {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Une erreur est survenue : " + e.Message);
                 return null;
             } catch (Exception e) {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Une erreur est survenue : " + e.Message);
                 return null;
             }
         }

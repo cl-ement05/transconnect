@@ -147,80 +147,6 @@
         "AdressePostale": "60 allée des Saules",
         "Email": "marie.rousseau@example.com",
         "Telephone": "0644556677"
-      },
-      {
-        "$type": "transconnect.ChefEquipe, transconnect",
-        "ChauffeursSousResponsabilite": {
-          "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
-          "$values": [
-            {
-              "$type": "transconnect.Chauffeur, transconnect",
-              "TarifHoraire": 0.0,
-              "DateEntree": "2025-05-08T23:42:25.6358747+02:00",
-              "Poste": "Chauffeur",
-              "Salaire": 20000.0,
-              "NumeroSS": "000123123",
-              "Nom": "C1",
-              "Prenom": "C1",
-              "DateNaissance": "2000-01-01T00:00:00",
-              "AdressePostale": "T",
-              "Email": "T",
-              "Telephone": "05"
-            },
-            {
-              "$type": "transconnect.Chauffeur, transconnect",
-              "TarifHoraire": 0.0,
-              "DateEntree": "2025-05-08T23:42:53.1175956+02:00",
-              "Poste": "Chauffeur",
-              "Salaire": 2000.0,
-              "NumeroSS": "000456456",
-              "Nom": "C2",
-              "Prenom": "C2",
-              "DateNaissance": "2000-02-02T00:00:00",
-              "AdressePostale": "T",
-              "Email": "T",
-              "Telephone": "06"
-            }
-          ]
-        },
-        "DateEntree": "2025-05-08T23:41:57.1567208+02:00",
-        "Poste": "Chef d'équipe",
-        "Salaire": 3000.0,
-        "NumeroSS": "789789789",
-        "Nom": "T1",
-        "Prenom": "T1",
-        "DateNaissance": "2000-04-01T00:00:00",
-        "AdressePostale": "T",
-        "Email": "T",
-        "Telephone": "05"
-      },
-      {
-        "$type": "transconnect.Chauffeur, transconnect",
-        "TarifHoraire": 0.0,
-        "DateEntree": "2025-05-08T23:42:25.6358747+02:00",
-        "Poste": "Chauffeur",
-        "Salaire": 20000.0,
-        "NumeroSS": "000123123",
-        "Nom": "C1",
-        "Prenom": "C1",
-        "DateNaissance": "2000-01-01T00:00:00",
-        "AdressePostale": "T",
-        "Email": "T",
-        "Telephone": "05"
-      },
-      {
-        "$type": "transconnect.Chauffeur, transconnect",
-        "TarifHoraire": 0.0,
-        "DateEntree": "2025-05-08T23:42:53.1175956+02:00",
-        "Poste": "Chauffeur",
-        "Salaire": 2000.0,
-        "NumeroSS": "000456456",
-        "Nom": "C2",
-        "Prenom": "C2",
-        "DateNaissance": "2000-02-02T00:00:00",
-        "AdressePostale": "T",
-        "Email": "T",
-        "Telephone": "06"
       }
     ]
   },
@@ -379,93 +305,7 @@
             "Succ": null,
             "Frere": null
           },
-          "Frere": {
-            "$type": "transconnect.Organigramme+Noeud, transconnect",
-            "Salarie": {
-              "$type": "transconnect.ChefEquipe, transconnect",
-              "ChauffeursSousResponsabilite": {
-                "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
-                "$values": [
-                  {
-                    "$type": "transconnect.Chauffeur, transconnect",
-                    "TarifHoraire": 0.0,
-                    "DateEntree": "2025-05-08T23:42:25.6358747+02:00",
-                    "Poste": "Chauffeur",
-                    "Salaire": 20000.0,
-                    "NumeroSS": "000123123",
-                    "Nom": "C1",
-                    "Prenom": "C1",
-                    "DateNaissance": "2000-01-01T00:00:00",
-                    "AdressePostale": "T",
-                    "Email": "T",
-                    "Telephone": "05"
-                  },
-                  {
-                    "$type": "transconnect.Chauffeur, transconnect",
-                    "TarifHoraire": 0.0,
-                    "DateEntree": "2025-05-08T23:42:53.1175956+02:00",
-                    "Poste": "Chauffeur",
-                    "Salaire": 2000.0,
-                    "NumeroSS": "000456456",
-                    "Nom": "C2",
-                    "Prenom": "C2",
-                    "DateNaissance": "2000-02-02T00:00:00",
-                    "AdressePostale": "T",
-                    "Email": "T",
-                    "Telephone": "06"
-                  }
-                ]
-              },
-              "DateEntree": "2025-05-08T23:41:57.1567208+02:00",
-              "Poste": "Chef d'équipe",
-              "Salaire": 3000.0,
-              "NumeroSS": "789789789",
-              "Nom": "T1",
-              "Prenom": "T1",
-              "DateNaissance": "2000-04-01T00:00:00",
-              "AdressePostale": "T",
-              "Email": "T",
-              "Telephone": "05"
-            },
-            "Succ": {
-              "$type": "transconnect.Organigramme+Noeud, transconnect",
-              "Salarie": {
-                "$type": "transconnect.Chauffeur, transconnect",
-                "TarifHoraire": 0.0,
-                "DateEntree": "2025-05-08T23:42:25.6358747+02:00",
-                "Poste": "Chauffeur",
-                "Salaire": 20000.0,
-                "NumeroSS": "000123123",
-                "Nom": "C1",
-                "Prenom": "C1",
-                "DateNaissance": "2000-01-01T00:00:00",
-                "AdressePostale": "T",
-                "Email": "T",
-                "Telephone": "05"
-              },
-              "Succ": null,
-              "Frere": {
-                "$type": "transconnect.Organigramme+Noeud, transconnect",
-                "Salarie": {
-                  "$type": "transconnect.Chauffeur, transconnect",
-                  "TarifHoraire": 0.0,
-                  "DateEntree": "2025-05-08T23:42:53.1175956+02:00",
-                  "Poste": "Chauffeur",
-                  "Salaire": 2000.0,
-                  "NumeroSS": "000456456",
-                  "Nom": "C2",
-                  "Prenom": "C2",
-                  "DateNaissance": "2000-02-02T00:00:00",
-                  "AdressePostale": "T",
-                  "Email": "T",
-                  "Telephone": "06"
-                },
-                "Succ": null,
-                "Frere": null
-              }
-            },
-            "Frere": null
-          }
+          "Frere": null
         }
       },
       "Frere": null
@@ -1688,34 +1528,6 @@
         "AdressePostale": "60 allée des Saules",
         "Email": "marie.rousseau@example.com",
         "Telephone": "0644556677"
-      },
-      {
-        "$type": "transconnect.Chauffeur, transconnect",
-        "TarifHoraire": 0.0,
-        "DateEntree": "2025-05-08T23:42:25.6358747+02:00",
-        "Poste": "Chauffeur",
-        "Salaire": 20000.0,
-        "NumeroSS": "000123123",
-        "Nom": "C1",
-        "Prenom": "C1",
-        "DateNaissance": "2000-01-01T00:00:00",
-        "AdressePostale": "T",
-        "Email": "T",
-        "Telephone": "05"
-      },
-      {
-        "$type": "transconnect.Chauffeur, transconnect",
-        "TarifHoraire": 0.0,
-        "DateEntree": "2025-05-08T23:42:53.1175956+02:00",
-        "Poste": "Chauffeur",
-        "Salaire": 2000.0,
-        "NumeroSS": "000456456",
-        "Nom": "C2",
-        "Prenom": "C2",
-        "DateNaissance": "2000-02-02T00:00:00",
-        "AdressePostale": "T",
-        "Email": "T",
-        "Telephone": "06"
       }
     ]
   },

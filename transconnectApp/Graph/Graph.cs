@@ -381,12 +381,12 @@ namespace transconnect {
             }
             catch (IOException e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Une erreur est survenue : " + e.Message);
                 return null;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Une erreur est survenue : " + e.Message);
                 return null;
             }
 
