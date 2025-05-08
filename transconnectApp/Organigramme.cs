@@ -99,38 +99,52 @@
             {
                 if (racine == null)
                 {
+                    // premier salarié de l’entreprise
                     racine = new Noeud(salarie);
+                    return;
                 }
-                else if (manager != null)
+
+                if (manager == null)
                 {
-                    Noeud? noeudManager = Rechercher(racine, manager);
-                    if (noeudManager != null)
-                    {
-                        Ajouter_Succ(noeudManager, salarie);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Manager {manager.Nom} introuvable dans l'organigramme.");
-                    }
+                    // nouveau top-manager (ex. second directeur) : frère de la racine
+                    Ajouter_Frere(racine, salarie);
+                    return;
                 }
+
+                // cas classique : on cherche le manager et on ajoute le successeur
+                Noeud? noeudManager = Rechercher(racine, manager);
+                if (noeudManager != null)
+                    Ajouter_Succ(noeudManager, salarie);
+                else
+                    Console.WriteLine($"Manager {manager.Nom} introuvable dans l'organigramme.");
             }
+
             /// <summary>
             /// Affiche l'organigramme à partir du noeud spécifié avec une indentation pour représenter la hiérarchie.
             /// </summary>
             /// <param name="start"></param>
             /// <param name="prefix"></param>
-            public void Afficher(Noeud? start = null, string prefix = "")
+            public void Afficher(Noeud? start, string prefix = "")
             {
-                if (start == null) start = racine;
-                if (start == null) return;
-                if (start.Salarie != null)
-                {
-                    Console.WriteLine($"{prefix}- {start.Salarie.Nom} {start.Salarie.Prenom} ({start.Salarie.Poste}) {start.Salarie.NumeroSS}");
-                    Afficher(start.Succ, prefix + "    ");
-                    Afficher(start.Frere, prefix);
+                if (start == null) 
+                { 
+                    return;
                 }
 
+                // Afficher le salarié courant
+                Console.WriteLine($"{prefix}├─ {start} ({start.Salarie?.Poste}) - #{start.Salarie?.NumeroSS}");
                 
+                // Afficher ses successeurs (subordonnés directs) avec une indentation supplémentaire
+                if (start.Succ != null)
+                {
+                    Afficher(start.Succ, prefix + "│  ");
+                }
+                
+                // Afficher ses frères (même niveau hiérarchique)
+                if (start.Frere != null)
+                {
+                    Afficher(start.Frere, prefix);
+                }
             }
             /// <summary>
             /// Recherche un salarié dans l'organigramme à partir du noeud spécifié.

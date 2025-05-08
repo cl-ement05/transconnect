@@ -191,7 +191,8 @@
                 string numeroSS = "";
                 switch(nbr) {
                     case "1":
-                        if (dataState.directeur is not null) {
+                        if (dataState.directeur is not null) 
+                        {
                             Console.Write($"Veuillez choisir le poste à créer " +
                             $"({Salarie.chefEquipe}, {Salarie.directeur}, {Salarie.chauffeur}) : ");
                             string choice = Console.ReadLine()!;
@@ -220,7 +221,8 @@
                                     Console.WriteLine("Choix invalide");
                                     break;
                             }
-                        } else {
+                        } 
+                        else {
                             Console.WriteLine("Votre entreprise est vide, commencez par créer un directeuré");
                             Directeur.CreerNouveau().Embaucher(dataState);
                         }
