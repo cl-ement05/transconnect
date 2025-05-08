@@ -81,7 +81,6 @@ namespace transconnect{
             string telephone = Console.ReadLine()!;
             if (!string.IsNullOrWhiteSpace(telephone)) this.telephone = telephone;
 
-            Console.WriteLine("Les informations ont été mises à jour.");
         }
 
         protected static PersonneDataHolder CreerNouveau() {
@@ -162,6 +161,11 @@ namespace transconnect{
         public override string ToString()
         {
             return $"{numeroSS} Nom : {nom}, Prénom : {prenom}, Date de naissance : {dateNaissance.ToShortDateString()}, Adresse : {adressePostale}, Email : {email}, Téléphone : {telephone}";
+        }
+
+        public override int GetHashCode()
+        {
+            return numeroSS.GetHashCode();
         }
     }
 }

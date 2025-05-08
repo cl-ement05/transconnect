@@ -44,6 +44,8 @@ namespace transconnect
             {
                 salaire = nouveauSalaire;
             }
+            Console.WriteLine("Les informations ont été mises à jour.");
+
 
         }
 
