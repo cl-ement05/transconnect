@@ -22,7 +22,7 @@ namespace transconnect
         {
             int anciennete = DateTime.Now.Year - DateEntree.Year;
             if (DateTime.Now < DateEntree.AddYears(anciennete)) anciennete--;
-            return anciennete * 1;
+            return anciennete + 1;
         }
 
         public int kmParcours(DataState dataState) {
@@ -58,6 +58,13 @@ namespace transconnect
             
             decimal salaire = Convert.ToDecimal(Program.ParseInt("Salaire : "));
 
+        
+            DateTime dateEntree;
+            Console.Write("Saisir date d'entrée (JJ/MM/AAAA) : ");
+            while (!DateTime.TryParse(Console.ReadLine(), out dateEntree)) {
+                Console.WriteLine("Format invalide ! Veuillez réessayer.");
+            }
+
             return new Chauffeur(
                 data.numeroSS,
                 data.nom,
@@ -66,7 +73,7 @@ namespace transconnect
                 data.adressePostale,
                 data.email,
                 data.telephone,
-                DateTime.Now,
+                dateEntree,
                 salaire
             );
         }

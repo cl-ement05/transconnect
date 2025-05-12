@@ -193,7 +193,7 @@ namespace transconnect
                             double nvPrix = prixInitial - montantReduction;
 
                             Console.WriteLine($"Réduction de {pourcentage}% appliquée ({montantReduction} €).");
-                            Console.WriteLine($"Le nouveau prix est de {nvPrix} €");
+                            Console.WriteLine($"Le nouveau prix est de {nvPrix:2F} €");
                         }
                         catch (FormatException fe)
                         {
@@ -239,7 +239,7 @@ namespace transconnect
             int a;
             (chemin, a) = dataState.graphe.Dijkstra(noeudDepart, noeudArrivee);
 
-            Console.WriteLine("Plant de route de " + villeDepart+ " à " + villeArrivee);   
+            Console.WriteLine("Plan de route de " + villeDepart+ " à " + villeArrivee);   
             for(int i = 0; i < chemin.Count; i++)
             {
                 if (i != 0) Console.WriteLine(" - " + chemin[i].data);
@@ -333,7 +333,7 @@ namespace transconnect
 
             Commande commande = new Commande(clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
 
-            Console.WriteLine("Prix de la commande : "+commande.CalculerPrixCommande(dataState)+" euros");
+            Console.WriteLine("Prix de la commande : {commande.CalculerPrixCommande(dataState):2F} euros");
 
             Console.WriteLine("Commande créée avec succès");
             return commande;
