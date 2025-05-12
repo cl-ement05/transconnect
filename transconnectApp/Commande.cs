@@ -192,8 +192,8 @@ namespace transconnect
                             double montantReduction = prixInitial * (pourcentage / 100);
                             double nvPrix = prixInitial - montantReduction;
 
-                            Console.WriteLine($"Réduction de {pourcentage}% appliquée ({montantReduction} €).");
-                            Console.WriteLine($"Le nouveau prix est de {nvPrix:2F} €");
+                            Console.WriteLine($"Réduction de {pourcentage:F2}% appliquée ({montantReduction:F2} €).");
+                            Console.WriteLine($"Le nouveau prix est de {nvPrix:F2} €");
                         }
                         catch (FormatException fe)
                         {
@@ -333,7 +333,7 @@ namespace transconnect
 
             Commande commande = new Commande(clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
 
-            Console.WriteLine("Prix de la commande : {commande.CalculerPrixCommande(dataState):2F} euros");
+            Console.WriteLine($"Prix de la commande : {commande.CalculerPrixCommande(dataState):F2} euros");
 
             Console.WriteLine("Commande créée avec succès");
             return commande;
