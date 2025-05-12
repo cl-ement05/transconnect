@@ -9,7 +9,7 @@ namespace transconnect
     public abstract class Salarie : Personne
     {
         public const string directeur = "Directeur";
-        public const string chefEquipe = "Chef d'équipe";
+        public const string chefEquipe = "Chef d'equipe";
         public const string chauffeur = "Chauffeur";
 
         private DateTime dateEntree;
@@ -64,17 +64,17 @@ namespace transconnect
                 // Supprimer le salarié de l'organigramme
                 dataState.organigramme.SupprimerSalarie(this);
 
-                if (poste == Salarie.chefEquipe)
+                if (poste.ToUpper() == Salarie.chefEquipe.ToUpper())
                 {
                     // Ajouter le salarié comme frère des autres chefs d'équipe et successeur du directeur
                     var directeurNoeud = dataState.organigramme.RechercherSalarie(dataState.directeur);
-                    if (directeurNoeud != null)
+                    if (directeurNoeud is not null)
                     {
                         dataState.organigramme.Ajouter_Succ(directeurNoeud, this);
                         Console.WriteLine($"Le salarié {Nom} {Prenom} a été promu au poste de Chef d'équipe.");
                     }
                 }
-                else if (poste == Salarie.chauffeur)
+                else if (poste.ToUpper() == Salarie.chauffeur.ToUpper())
                 {
                     // Demander le numéro de SS du chef d'équipe
                     Console.Write("Entrez le numéro de sécurité sociale du chef d'équipe : ");
@@ -98,7 +98,7 @@ namespace transconnect
                         poste = ancienPoste; // Restaurer l'ancien poste si le chef d'équipe est introuvable
                     }
                 }
-                else if (poste == Salarie.directeur)
+                else if (poste.ToUpper() == Salarie.directeur.ToUpper())
                 {
                     // Vérifier s'il existe déjà un directeur
                     if (dataState.directeur != null && !dataState.directeur.Equals(this))
