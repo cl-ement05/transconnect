@@ -192,8 +192,8 @@ namespace transconnect
                             double montantReduction = prixInitial * (pourcentage / 100);
                             double nvPrix = prixInitial - montantReduction;
 
-                            Console.WriteLine($"Réduction de {pourcentage:F2}% appliquée ({montantReduction:F2} €).");
-                            Console.WriteLine($"Le nouveau prix est de {nvPrix:F2} €");
+                            Console.WriteLine($"Réduction de {pourcentage}% appliquée ({montantReduction} €).");
+                            Console.WriteLine($"Le nouveau prix est de {nvPrix} €");
                         }
                         catch (FormatException fe)
                         {
@@ -208,7 +208,7 @@ namespace transconnect
                             Console.WriteLine("Une erreur inattendue est survenue : " + ex.Message);
                         }
                         break;
-
+                        
                     case "4":
                         continueA = false;
                         break;
@@ -239,7 +239,7 @@ namespace transconnect
             int a;
             (chemin, a) = dataState.graphe.Dijkstra(noeudDepart, noeudArrivee);
 
-            Console.WriteLine("Plan de route de " + villeDepart+ " à " + villeArrivee);   
+            Console.WriteLine("Plant de route de " + villeDepart+ " à " + villeArrivee);   
             for(int i = 0; i < chemin.Count; i++)
             {
                 if (i != 0) Console.WriteLine(" - " + chemin[i].data);
@@ -331,9 +331,10 @@ namespace transconnect
 
             Console.WriteLine("Distance estimée : "+distancekm+" km");
 
-            Commande commande = new Commande(clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
+            double prix=distancekm * chauffeurSelectionne.TarifHoraire;
+            Console.WriteLine("Prix de la commande : "+prix+" euros");
 
-            Console.WriteLine($"Prix de la commande : {commande.CalculerPrixCommande(dataState):F2} euros");
+            Commande commande = new Commande(clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
 
             Console.WriteLine("Commande créée avec succès");
             return commande;

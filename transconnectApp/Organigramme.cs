@@ -162,18 +162,6 @@
 
                 return Rechercher(start.Frere, salarie);
             }
-
-            /// <summary>
-            /// Recherche un salarié dans l'organigramme à partir de la racine.
-            /// </summary>
-            /// <param name="salarie"></param>
-            /// <returns></returns>
-            public Noeud? RechercherSalarie(Salarie? salarie)
-            {
-                if (racine is null) return null;
-                return Rechercher(racine, salarie!);
-            }
-            
             /// <summary>
             /// Supprime un salarié de l'organigramme.
             /// </summary>
@@ -193,6 +181,7 @@
             }
             /// <summary>
             /// Supprime un noeud de l'organigramme.
+            /// Cette méthode est appelée récursivement pour parcourir l'organigramme.
             /// </summary>
             /// <param name="parent"></param>
             /// <param name="courant"></param>

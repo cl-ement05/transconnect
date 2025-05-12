@@ -2,797 +2,15 @@
   "$type": "transconnect.DataState, transconnect",
   "commandes": {
     "$type": "System.Collections.Generic.List`1[[transconnect.Commande, transconnect]], System.Private.CoreLib",
-    "$values": [
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 1,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "456",
-          "Nom": "Angelli",
-          "Prenom": "Emilie",
-          "DateNaissance": "1997-03-24T00:00:00",
-          "AdressePostale": "avenue Victor Hugo",
-          "Email": "a.emilie@icloud.com",
-          "Telephone": "06413468863"
-        },
-        "VilleDepart": "Paris",
-        "VilleArrivee": "Bordeaux",
-        "Vehicule": {
-          "$type": "transconnect.CamionBenne, transconnect",
-          "NombreBennes": 4,
-          "GrueAuxiliaire": false,
-          "CapaciteChargement": 45.0,
-          "Immatriculation": "BB225BB",
-          "Couleur": "Blanc",
-          "Marque": "Renault",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2500.0,
-          "NumeroSS": "789123456",
-          "Nom": "Lemoine",
-          "Prenom": "Claire",
-          "DateNaissance": "1985-07-25T00:00:00",
-          "AdressePostale": "50 rue des Fleurs",
-          "Email": "claire.lemoine@example.com",
-          "Telephone": "0611223344"
-        },
-        "DateCommande": "2025-05-14T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 2,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "789",
-          "Nom": "Leblanc",
-          "Prenom": "Hugo",
-          "DateNaissance": "1984-09-18T00:00:00",
-          "AdressePostale": "Bordeaux",
-          "Email": "leblanc.hugo@free.fr",
-          "Telephone": "06422467925"
-        },
-        "VilleDepart": "Lille",
-        "VilleArrivee": "Rennes",
-        "Vehicule": {
-          "$type": "transconnect.CamionFrigorifique, transconnect",
-          "CapaciteIsotherme": 23.0,
-          "NombreGroupesElectrogene": 2,
-          "CapaciteChargement": 35.0,
-          "Immatriculation": "AAA11AA",
-          "Couleur": "rouge",
-          "Marque": "peugeot",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2500.0,
-          "NumeroSS": "789123456",
-          "Nom": "Lemoine",
-          "Prenom": "Claire",
-          "DateNaissance": "1985-07-25T00:00:00",
-          "AdressePostale": "50 rue des Fleurs",
-          "Email": "claire.lemoine@example.com",
-          "Telephone": "0611223344"
-        },
-        "DateCommande": "2025-06-29T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 3,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "123",
-          "Nom": "Dupont",
-          "Prenom": "Victor",
-          "DateNaissance": "1988-05-05T00:00:00",
-          "AdressePostale": "Lille",
-          "Email": "victor@dupont.fr",
-          "Telephone": "06514966735"
-        },
-        "VilleDepart": "Paris",
-        "VilleArrivee": "Rennes",
-        "Vehicule": {
-          "$type": "transconnect.CamionFrigorifique, transconnect",
-          "CapaciteIsotherme": 23.0,
-          "NombreGroupesElectrogene": 2,
-          "CapaciteChargement": 35.0,
-          "Immatriculation": "AAA11AA",
-          "Couleur": "rouge",
-          "Marque": "peugeot",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2500.0,
-          "NumeroSS": "789123456",
-          "Nom": "Lemoine",
-          "Prenom": "Claire",
-          "DateNaissance": "1985-07-25T00:00:00",
-          "AdressePostale": "50 rue des Fleurs",
-          "Email": "claire.lemoine@example.com",
-          "Telephone": "0611223344"
-        },
-        "DateCommande": "2012-12-12T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 4,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "456",
-          "Nom": "Angelli",
-          "Prenom": "Emilie",
-          "DateNaissance": "1997-03-24T00:00:00",
-          "AdressePostale": "Paris ",
-          "Email": "a.emilie@icloud.com",
-          "Telephone": "06413468863"
-        },
-        "VilleDepart": "Marseille",
-        "VilleArrivee": "Toulouse",
-        "Vehicule": {
-          "$type": "transconnect.CamionCiterne, transconnect",
-          "VolumeCuve": 90.0,
-          "TypeProduit": "eau",
-          "CapaciteChargement": 60.0,
-          "Immatriculation": "BB235BBB",
-          "Couleur": "Bleu",
-          "Marque": "Renault",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2500.0,
-          "NumeroSS": "789123456",
-          "Nom": "Lemoine",
-          "Prenom": "Claire",
-          "DateNaissance": "1985-07-25T00:00:00",
-          "AdressePostale": "50 rue des Fleurs",
-          "Email": "claire.lemoine@example.com",
-          "Telephone": "0611223344"
-        },
-        "DateCommande": "2024-06-23T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 5,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "123",
-          "Nom": "Dupont",
-          "Prenom": "Victor",
-          "DateNaissance": "1988-05-05T00:00:00",
-          "AdressePostale": "Lille",
-          "Email": "victor@dupont.fr",
-          "Telephone": "06514966735"
-        },
-        "VilleDepart": "Paris",
-        "VilleArrivee": "Marseille",
-        "Vehicule": {
-          "$type": "transconnect.CamionFrigorifique, transconnect",
-          "CapaciteIsotherme": 23.0,
-          "NombreGroupesElectrogene": 2,
-          "CapaciteChargement": 35.0,
-          "Immatriculation": "AAA11AA",
-          "Couleur": "rouge",
-          "Marque": "peugeot",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2500.0,
-          "NumeroSS": "789123456",
-          "Nom": "Lemoine",
-          "Prenom": "Claire",
-          "DateNaissance": "1985-07-25T00:00:00",
-          "AdressePostale": "50 rue des Fleurs",
-          "Email": "claire.lemoine@example.com",
-          "Telephone": "0611223344"
-        },
-        "DateCommande": "2025-06-06T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 6,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "123",
-          "Nom": "Dupont",
-          "Prenom": "Victor",
-          "DateNaissance": "1988-05-05T00:00:00",
-          "AdressePostale": "Lille",
-          "Email": "victor@dupont.fr",
-          "Telephone": "06514966735"
-        },
-        "VilleDepart": "Paris",
-        "VilleArrivee": "Toulouse",
-        "Vehicule": {
-          "$type": "transconnect.CamionFrigorifique, transconnect",
-          "CapaciteIsotherme": 23.0,
-          "NombreGroupesElectrogene": 2,
-          "CapaciteChargement": 35.0,
-          "Immatriculation": "AAA11AA",
-          "Couleur": "rouge",
-          "Marque": "peugeot",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2500.0,
-          "NumeroSS": "789123456",
-          "Nom": "Lemoine",
-          "Prenom": "Claire",
-          "DateNaissance": "1985-07-25T00:00:00",
-          "AdressePostale": "50 rue des Fleurs",
-          "Email": "claire.lemoine@example.com",
-          "Telephone": "0611223344"
-        },
-        "DateCommande": "2022-11-10T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 7,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "123",
-          "Nom": "Dupont",
-          "Prenom": "Victor",
-          "DateNaissance": "1988-05-05T00:00:00",
-          "AdressePostale": "Lille",
-          "Email": "victor@dupont.fr",
-          "Telephone": "06514966735"
-        },
-        "VilleDepart": "Paris",
-        "VilleArrivee": "Rennes",
-        "Vehicule": {
-          "$type": "transconnect.CamionFrigorifique, transconnect",
-          "CapaciteIsotherme": 23.0,
-          "NombreGroupesElectrogene": 2,
-          "CapaciteChargement": 35.0,
-          "Immatriculation": "AAA11AA",
-          "Couleur": "rouge",
-          "Marque": "peugeot",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2500.0,
-          "NumeroSS": "789123456",
-          "Nom": "Lemoine",
-          "Prenom": "Claire",
-          "DateNaissance": "1985-07-25T00:00:00",
-          "AdressePostale": "50 rue des Fleurs",
-          "Email": "claire.lemoine@example.com",
-          "Telephone": "0611223344"
-        },
-        "DateCommande": "2024-12-13T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 8,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "456",
-          "Nom": "Angelli",
-          "Prenom": "Emilie",
-          "DateNaissance": "1997-03-24T00:00:00",
-          "AdressePostale": "Paris ",
-          "Email": "a.emilie@icloud.com",
-          "Telephone": "06413468863"
-        },
-        "VilleDepart": "Marseille",
-        "VilleArrivee": "Toulouse",
-        "Vehicule": {
-          "$type": "transconnect.CamionCiterne, transconnect",
-          "VolumeCuve": 90.0,
-          "TypeProduit": "eau",
-          "CapaciteChargement": 60.0,
-          "Immatriculation": "BB235BBB",
-          "Couleur": "Bleu",
-          "Marque": "Renault",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2500.0,
-          "NumeroSS": "789123456",
-          "Nom": "Lemoine",
-          "Prenom": "Claire",
-          "DateNaissance": "1985-07-25T00:00:00",
-          "AdressePostale": "50 rue des Fleurs",
-          "Email": "claire.lemoine@example.com",
-          "Telephone": "0611223344"
-        },
-        "DateCommande": "2025-06-23T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 9,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "789",
-          "Nom": "Leblanc",
-          "Prenom": "Hugo",
-          "DateNaissance": "1984-09-18T00:00:00",
-          "AdressePostale": "Bordeaux",
-          "Email": "leblanc.hugo@free.fr",
-          "Telephone": "06422467925"
-        },
-        "VilleDepart": "Rennes",
-        "VilleArrivee": "Lille",
-        "Vehicule": {
-          "$type": "transconnect.Voiture, transconnect",
-          "Nb_passager": 5,
-          "Immatriculation": "ABT5563B",
-          "Couleur": "noir",
-          "Marque": "peugeot",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:44:40.7716207+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2000.0,
-          "NumeroSS": "123123123",
-          "Nom": "Garnier",
-          "Prenom": "Luc",
-          "DateNaissance": "1988-03-11T00:00:00",
-          "AdressePostale": "40 impasse des Tilleuls",
-          "Email": "luc.garnier@example.com",
-          "Telephone": "0633445566"
-        },
-        "DateCommande": "2025-05-14T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 10,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "456",
-          "Nom": "Angelli",
-          "Prenom": "Emilie",
-          "DateNaissance": "1997-03-24T00:00:00",
-          "AdressePostale": "Paris ",
-          "Email": "a.emilie@icloud.com",
-          "Telephone": "06413468863"
-        },
-        "VilleDepart": "Lille",
-        "VilleArrivee": "Rennes",
-        "Vehicule": {
-          "$type": "transconnect.Voiture, transconnect",
-          "Nb_passager": 5,
-          "Immatriculation": "ABT5563B",
-          "Couleur": "noir",
-          "Marque": "peugeot",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2500.0,
-          "NumeroSS": "789123456",
-          "Nom": "Lemoine",
-          "Prenom": "Claire",
-          "DateNaissance": "1985-07-25T00:00:00",
-          "AdressePostale": "50 rue des Fleurs",
-          "Email": "claire.lemoine@example.com",
-          "Telephone": "0611223344"
-        },
-        "DateCommande": "2025-11-10T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 11,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "111",
-          "Nom": "Viral",
-          "Prenom": "Benjamin",
-          "DateNaissance": "2000-12-12T00:00:00",
-          "AdressePostale": "Rennes",
-          "Email": "benji@viral.com",
-          "Telephone": "0563134579"
-        },
-        "VilleDepart": "Rennes",
-        "VilleArrivee": "Marseille",
-        "Vehicule": {
-          "$type": "transconnect.CamionFrigorifique, transconnect",
-          "CapaciteIsotherme": 23.0,
-          "NombreGroupesElectrogene": 2,
-          "CapaciteChargement": 35.0,
-          "Immatriculation": "AAA11AA",
-          "Couleur": "rouge",
-          "Marque": "peugeot",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2500.0,
-          "NumeroSS": "789123456",
-          "Nom": "Lemoine",
-          "Prenom": "Claire",
-          "DateNaissance": "1985-07-25T00:00:00",
-          "AdressePostale": "50 rue des Fleurs",
-          "Email": "claire.lemoine@example.com",
-          "Telephone": "0611223344"
-        },
-        "DateCommande": "2023-03-04T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 12,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "111",
-          "Nom": "Viral",
-          "Prenom": "Benjamin",
-          "DateNaissance": "2000-12-12T00:00:00",
-          "AdressePostale": "Rennes",
-          "Email": "benji@viral.com",
-          "Telephone": "0563134579"
-        },
-        "VilleDepart": "Rennes",
-        "VilleArrivee": "Paris",
-        "Vehicule": {
-          "$type": "transconnect.Voiture, transconnect",
-          "Nb_passager": 5,
-          "Immatriculation": "ABT5563B",
-          "Couleur": "noir",
-          "Marque": "peugeot",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:44:40.7716207+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2000.0,
-          "NumeroSS": "123123123",
-          "Nom": "Garnier",
-          "Prenom": "Luc",
-          "DateNaissance": "1988-03-11T00:00:00",
-          "AdressePostale": "40 impasse des Tilleuls",
-          "Email": "luc.garnier@example.com",
-          "Telephone": "0633445566"
-        },
-        "DateCommande": "2023-03-04T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 13,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "222",
-          "Nom": "Lamile",
-          "Prenom": "Virginie",
-          "DateNaissance": "1999-08-23T00:00:00",
-          "AdressePostale": "Toulouse",
-          "Email": "v.l@free.fr",
-          "Telephone": "04632104597"
-        },
-        "VilleDepart": "Marseille",
-        "VilleArrivee": "Lille",
-        "Vehicule": {
-          "$type": "transconnect.CamionFrigorifique, transconnect",
-          "CapaciteIsotherme": 23.0,
-          "NombreGroupesElectrogene": 2,
-          "CapaciteChargement": 35.0,
-          "Immatriculation": "AAA11AA",
-          "Couleur": "rouge",
-          "Marque": "peugeot",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2500.0,
-          "NumeroSS": "789123456",
-          "Nom": "Lemoine",
-          "Prenom": "Claire",
-          "DateNaissance": "1985-07-25T00:00:00",
-          "AdressePostale": "50 rue des Fleurs",
-          "Email": "claire.lemoine@example.com",
-          "Telephone": "0611223344"
-        },
-        "DateCommande": "2024-12-03T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 14,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "222",
-          "Nom": "Lamile",
-          "Prenom": "Virginie",
-          "DateNaissance": "1999-08-23T00:00:00",
-          "AdressePostale": "Toulouse",
-          "Email": "v.l@free.fr",
-          "Telephone": "04632104597"
-        },
-        "VilleDepart": "Paris",
-        "VilleArrivee": "Marseille",
-        "Vehicule": {
-          "$type": "transconnect.CamionBenne, transconnect",
-          "NombreBennes": 4,
-          "GrueAuxiliaire": false,
-          "CapaciteChargement": 45.0,
-          "Immatriculation": "BB225BB",
-          "Couleur": "Blanc",
-          "Marque": "Renault",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2500.0,
-          "NumeroSS": "789123456",
-          "Nom": "Lemoine",
-          "Prenom": "Claire",
-          "DateNaissance": "1985-07-25T00:00:00",
-          "AdressePostale": "50 rue des Fleurs",
-          "Email": "claire.lemoine@example.com",
-          "Telephone": "0611223344"
-        },
-        "DateCommande": "2025-09-06T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 15,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "222",
-          "Nom": "Lamile",
-          "Prenom": "Virginie",
-          "DateNaissance": "1999-08-23T00:00:00",
-          "AdressePostale": "Toulouse",
-          "Email": "v.l@free.fr",
-          "Telephone": "04632104597"
-        },
-        "VilleDepart": "Toulouse",
-        "VilleArrivee": "Lille",
-        "Vehicule": {
-          "$type": "transconnect.Voiture, transconnect",
-          "Nb_passager": 5,
-          "Immatriculation": "ABT5563B",
-          "Couleur": "noir",
-          "Marque": "peugeot",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2500.0,
-          "NumeroSS": "789123456",
-          "Nom": "Lemoine",
-          "Prenom": "Claire",
-          "DateNaissance": "1985-07-25T00:00:00",
-          "AdressePostale": "50 rue des Fleurs",
-          "Email": "claire.lemoine@example.com",
-          "Telephone": "0611223344"
-        },
-        "DateCommande": "2025-03-05T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 16,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "222",
-          "Nom": "Lamile",
-          "Prenom": "Virginie",
-          "DateNaissance": "1999-08-23T00:00:00",
-          "AdressePostale": "Toulouse",
-          "Email": "v.l@free.fr",
-          "Telephone": "04632104597"
-        },
-        "VilleDepart": "Paris",
-        "VilleArrivee": "Toulouse",
-        "Vehicule": {
-          "$type": "transconnect.CamionCiterne, transconnect",
-          "VolumeCuve": 90.0,
-          "TypeProduit": "eau",
-          "CapaciteChargement": 60.0,
-          "Immatriculation": "BB235BBB",
-          "Couleur": "Bleu",
-          "Marque": "Renault",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:44:40.7716207+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2000.0,
-          "NumeroSS": "123123123",
-          "Nom": "Garnier",
-          "Prenom": "Luc",
-          "DateNaissance": "1988-03-11T00:00:00",
-          "AdressePostale": "40 impasse des Tilleuls",
-          "Email": "luc.garnier@example.com",
-          "Telephone": "0633445566"
-        },
-        "DateCommande": "2025-03-05T00:00:00"
-      },
-      {
-        "$type": "transconnect.Commande, transconnect",
-        "NumeroCommande": 17,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "123",
-          "Nom": "Dupont",
-          "Prenom": "Victor",
-          "DateNaissance": "1988-05-05T00:00:00",
-          "AdressePostale": "Lille",
-          "Email": "victor@dupont.fr",
-          "Telephone": "06514966735"
-        },
-        "VilleDepart": "Paris",
-        "VilleArrivee": "Marseille",
-        "Vehicule": {
-          "$type": "transconnect.CamionBenne, transconnect",
-          "NombreBennes": 4,
-          "GrueAuxiliaire": false,
-          "CapaciteChargement": 45.0,
-          "Immatriculation": "BB225BB",
-          "Couleur": "Blanc",
-          "Marque": "Renault",
-          "Statut": "disponible"
-        },
-        "Chauffeur": {
-          "$type": "transconnect.Chauffeur, transconnect",
-          "TarifHoraire": 1.0,
-          "DateEntree": "2025-05-08T22:46:19.6036784+02:00",
-          "Poste": "Chauffeur",
-          "Salaire": 2000.0,
-          "NumeroSS": "456456456",
-          "Nom": "Rousseau",
-          "Prenom": "Marie",
-          "DateNaissance": "1978-04-18T00:00:00",
-          "AdressePostale": "60 allée des Saules",
-          "Email": "marie.rousseau@example.com",
-          "Telephone": "0644556677"
-        },
-        "DateCommande": "2025-03-05T00:00:00"
-      }
-    ]
+    "$values": []
   },
   "reclamations": {
     "$type": "System.Collections.Generic.List`1[[transconnect.Reclamation, transconnect]], System.Private.CoreLib",
-    "$values": [
-      {
-        "$type": "transconnect.Reclamation, transconnect",
-        "Id": 1,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "456",
-          "Nom": "Angelli",
-          "Prenom": "Emilie",
-          "DateNaissance": "1997-03-24T00:00:00",
-          "AdressePostale": "Paris ",
-          "Email": "a.emilie@icloud.com",
-          "Telephone": "06413468863"
-        },
-        "Sujet": "Retard",
-        "Description": "J'ai reçu avec 1 minute de retard",
-        "DateReclamation": "2025-05-12T13:39:46.8222927+02:00",
-        "Statut": "Résolue",
-        "DateTraitement": "2025-05-12T13:41:09.5236393+02:00",
-        "Reponse": "Bonjour, Veuillez nous excuser. Après discussion avec le chauffeur, des canards traversaient la route. Nous nous excusons pour la gêne occassionnée. "
-      },
-      {
-        "$type": "transconnect.Reclamation, transconnect",
-        "Id": 2,
-        "Client": {
-          "$type": "transconnect.Client, transconnect",
-          "NumeroSS": "123",
-          "Nom": "Dupont",
-          "Prenom": "Victor",
-          "DateNaissance": "1988-05-05T00:00:00",
-          "AdressePostale": "Lille",
-          "Email": "victor@dupont.fr",
-          "Telephone": "06514966735"
-        },
-        "Sujet": "Matériel dégradé",
-        "Description": "objets reçus cassés",
-        "DateReclamation": "2025-05-12T13:42:12.9760726+02:00",
-        "Statut": "Rejetée",
-        "DateTraitement": "2025-05-12T13:42:44.6610221+02:00",
-        "Reponse": "Le chauffeur a pris des photos et des vidéos montrant la marchandise reçue intacte."
-      }
-    ]
+    "$values": []
   },
   "clients": {
     "$type": "System.Collections.Generic.List`1[[transconnect.Client, transconnect]], System.Private.CoreLib",
-    "$values": [
-      {
-        "$type": "transconnect.Client, transconnect",
-        "NumeroSS": "123",
-        "Nom": "Dupont",
-        "Prenom": "Victor",
-        "DateNaissance": "1988-05-05T00:00:00",
-        "AdressePostale": "Lille",
-        "Email": "victor@dupont.fr",
-        "Telephone": "06514966735"
-      },
-      {
-        "$type": "transconnect.Client, transconnect",
-        "NumeroSS": "456",
-        "Nom": "Angelli",
-        "Prenom": "Emilie",
-        "DateNaissance": "1997-03-24T00:00:00",
-        "AdressePostale": "Paris ",
-        "Email": "a.emilie@icloud.com",
-        "Telephone": "06413468863"
-      },
-      {
-        "$type": "transconnect.Client, transconnect",
-        "NumeroSS": "789",
-        "Nom": "Leblanc",
-        "Prenom": "Hugo",
-        "DateNaissance": "1984-09-18T00:00:00",
-        "AdressePostale": "Bordeaux",
-        "Email": "leblanc.hugo@free.fr",
-        "Telephone": "06422467925"
-      },
-      {
-        "$type": "transconnect.Client, transconnect",
-        "NumeroSS": "111",
-        "Nom": "Viral",
-        "Prenom": "Benjamin",
-        "DateNaissance": "2000-12-12T00:00:00",
-        "AdressePostale": "Rennes",
-        "Email": "benji@viral.com",
-        "Telephone": "0563134579"
-      },
-      {
-        "$type": "transconnect.Client, transconnect",
-        "NumeroSS": "222",
-        "Nom": "Lamile",
-        "Prenom": "Virginie",
-        "DateNaissance": "1999-08-23T00:00:00",
-        "AdressePostale": "Toulouse",
-        "Email": "v.l@free.fr",
-        "Telephone": "04632104597"
-      }
-    ]
+    "$values": []
   },
   "salaries": {
     "$type": "System.Collections.Generic.List`1[[transconnect.Salarie, transconnect]], System.Private.CoreLib",
@@ -817,7 +35,7 @@
           "$values": [
             {
               "$type": "transconnect.Chauffeur, transconnect",
-              "TarifHoraire": 1.0,
+              "TarifHoraire": 0.0,
               "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
               "Poste": "Chauffeur",
               "Salaire": 2500.0,
@@ -831,7 +49,7 @@
             },
             {
               "$type": "transconnect.Chauffeur, transconnect",
-              "TarifHoraire": 1.0,
+              "TarifHoraire": 0.0,
               "DateEntree": "2025-05-08T22:44:40.7716207+02:00",
               "Poste": "Chauffeur",
               "Salaire": 2000.0,
@@ -863,7 +81,7 @@
           "$values": [
             {
               "$type": "transconnect.Chauffeur, transconnect",
-              "TarifHoraire": 1.0,
+              "TarifHoraire": 0.0,
               "DateEntree": "2025-05-08T22:46:19.6036784+02:00",
               "Poste": "Chauffeur",
               "Salaire": 2000.0,
@@ -890,7 +108,7 @@
       },
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "TarifHoraire": 1.0,
+        "TarifHoraire": 0.0,
         "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
         "Poste": "Chauffeur",
         "Salaire": 2500.0,
@@ -904,7 +122,7 @@
       },
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "TarifHoraire": 1.0,
+        "TarifHoraire": 0.0,
         "DateEntree": "2025-05-08T22:44:40.7716207+02:00",
         "Poste": "Chauffeur",
         "Salaire": 2000.0,
@@ -918,7 +136,7 @@
       },
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "TarifHoraire": 1.0,
+        "TarifHoraire": 0.0,
         "DateEntree": "2025-05-08T22:46:19.6036784+02:00",
         "Poste": "Chauffeur",
         "Salaire": 2000.0,
@@ -937,7 +155,7 @@
           "$values": [
             {
               "$type": "transconnect.Chauffeur, transconnect",
-              "TarifHoraire": 1.0,
+              "TarifHoraire": 0.0,
               "DateEntree": "2025-05-08T23:42:25.6358747+02:00",
               "Poste": "Chauffeur",
               "Salaire": 20000.0,
@@ -951,7 +169,7 @@
             },
             {
               "$type": "transconnect.Chauffeur, transconnect",
-              "TarifHoraire": 1.0,
+              "TarifHoraire": 0.0,
               "DateEntree": "2025-05-08T23:42:53.1175956+02:00",
               "Poste": "Chauffeur",
               "Salaire": 2000.0,
@@ -978,7 +196,7 @@
       },
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "TarifHoraire": 1.0,
+        "TarifHoraire": 0.0,
         "DateEntree": "2025-05-08T23:42:25.6358747+02:00",
         "Poste": "Chauffeur",
         "Salaire": 20000.0,
@@ -992,7 +210,7 @@
       },
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "TarifHoraire": 1.0,
+        "TarifHoraire": 0.0,
         "DateEntree": "2025-05-08T23:42:53.1175956+02:00",
         "Poste": "Chauffeur",
         "Salaire": 2000.0,
@@ -1032,7 +250,7 @@
             "$values": [
               {
                 "$type": "transconnect.Chauffeur, transconnect",
-                "TarifHoraire": 1.0,
+                "TarifHoraire": 0.0,
                 "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
                 "Poste": "Chauffeur",
                 "Salaire": 2500.0,
@@ -1046,7 +264,7 @@
               },
               {
                 "$type": "transconnect.Chauffeur, transconnect",
-                "TarifHoraire": 1.0,
+                "TarifHoraire": 0.0,
                 "DateEntree": "2025-05-08T22:44:40.7716207+02:00",
                 "Poste": "Chauffeur",
                 "Salaire": 2000.0,
@@ -1075,7 +293,7 @@
           "$type": "transconnect.Organigramme+Noeud, transconnect",
           "Salarie": {
             "$type": "transconnect.Chauffeur, transconnect",
-            "TarifHoraire": 1.0,
+            "TarifHoraire": 0.0,
             "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
             "Poste": "Chauffeur",
             "Salaire": 2500.0,
@@ -1092,7 +310,7 @@
             "$type": "transconnect.Organigramme+Noeud, transconnect",
             "Salarie": {
               "$type": "transconnect.Chauffeur, transconnect",
-              "TarifHoraire": 1.0,
+              "TarifHoraire": 0.0,
               "DateEntree": "2025-05-08T22:44:40.7716207+02:00",
               "Poste": "Chauffeur",
               "Salaire": 2000.0,
@@ -1117,7 +335,7 @@
               "$values": [
                 {
                   "$type": "transconnect.Chauffeur, transconnect",
-                  "TarifHoraire": 1.0,
+                  "TarifHoraire": 0.0,
                   "DateEntree": "2025-05-08T22:46:19.6036784+02:00",
                   "Poste": "Chauffeur",
                   "Salaire": 2000.0,
@@ -1146,7 +364,7 @@
             "$type": "transconnect.Organigramme+Noeud, transconnect",
             "Salarie": {
               "$type": "transconnect.Chauffeur, transconnect",
-              "TarifHoraire": 1.0,
+              "TarifHoraire": 0.0,
               "DateEntree": "2025-05-08T22:46:19.6036784+02:00",
               "Poste": "Chauffeur",
               "Salaire": 2000.0,
@@ -1170,7 +388,7 @@
                 "$values": [
                   {
                     "$type": "transconnect.Chauffeur, transconnect",
-                    "TarifHoraire": 1.0,
+                    "TarifHoraire": 0.0,
                     "DateEntree": "2025-05-08T23:42:25.6358747+02:00",
                     "Poste": "Chauffeur",
                     "Salaire": 20000.0,
@@ -1184,7 +402,7 @@
                   },
                   {
                     "$type": "transconnect.Chauffeur, transconnect",
-                    "TarifHoraire": 1.0,
+                    "TarifHoraire": 0.0,
                     "DateEntree": "2025-05-08T23:42:53.1175956+02:00",
                     "Poste": "Chauffeur",
                     "Salaire": 2000.0,
@@ -1213,7 +431,7 @@
               "$type": "transconnect.Organigramme+Noeud, transconnect",
               "Salarie": {
                 "$type": "transconnect.Chauffeur, transconnect",
-                "TarifHoraire": 1.0,
+                "TarifHoraire": 0.0,
                 "DateEntree": "2025-05-08T23:42:25.6358747+02:00",
                 "Poste": "Chauffeur",
                 "Salaire": 20000.0,
@@ -1230,7 +448,7 @@
                 "$type": "transconnect.Organigramme+Noeud, transconnect",
                 "Salarie": {
                   "$type": "transconnect.Chauffeur, transconnect",
-                  "TarifHoraire": 1.0,
+                  "TarifHoraire": 0.0,
                   "DateEntree": "2025-05-08T23:42:53.1175956+02:00",
                   "Poste": "Chauffeur",
                   "Salaire": 2000.0,
@@ -2424,53 +1642,14 @@
   },
   "flotte": {
     "$type": "System.Collections.Generic.List`1[[transconnect.Vehicule, transconnect]], System.Private.CoreLib",
-    "$values": [
-      {
-        "$type": "transconnect.CamionFrigorifique, transconnect",
-        "CapaciteIsotherme": 23.0,
-        "NombreGroupesElectrogene": 2,
-        "CapaciteChargement": 35.0,
-        "Immatriculation": "AAA11AA",
-        "Couleur": "rouge",
-        "Marque": "peugeot",
-        "Statut": "disponible"
-      },
-      {
-        "$type": "transconnect.CamionCiterne, transconnect",
-        "VolumeCuve": 90.0,
-        "TypeProduit": "eau",
-        "CapaciteChargement": 60.0,
-        "Immatriculation": "BB235BBB",
-        "Couleur": "Bleu",
-        "Marque": "Renault",
-        "Statut": "disponible"
-      },
-      {
-        "$type": "transconnect.CamionBenne, transconnect",
-        "NombreBennes": 4,
-        "GrueAuxiliaire": false,
-        "CapaciteChargement": 45.0,
-        "Immatriculation": "BB225BB",
-        "Couleur": "Blanc",
-        "Marque": "Renault",
-        "Statut": "disponible"
-      },
-      {
-        "$type": "transconnect.Voiture, transconnect",
-        "Nb_passager": 5,
-        "Immatriculation": "ABT5563B",
-        "Couleur": "noir",
-        "Marque": "peugeot",
-        "Statut": "disponible"
-      }
-    ]
+    "$values": []
   },
   "chauffeurs": {
     "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
     "$values": [
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "TarifHoraire": 1.0,
+        "TarifHoraire": 0.0,
         "DateEntree": "2025-05-08T22:41:54.0096712+02:00",
         "Poste": "Chauffeur",
         "Salaire": 2500.0,
@@ -2484,7 +1663,7 @@
       },
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "TarifHoraire": 1.0,
+        "TarifHoraire": 0.0,
         "DateEntree": "2025-05-08T22:44:40.7716207+02:00",
         "Poste": "Chauffeur",
         "Salaire": 2000.0,
@@ -2498,7 +1677,7 @@
       },
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "TarifHoraire": 1.0,
+        "TarifHoraire": 0.0,
         "DateEntree": "2025-05-08T22:46:19.6036784+02:00",
         "Poste": "Chauffeur",
         "Salaire": 2000.0,
@@ -2512,7 +1691,7 @@
       },
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "TarifHoraire": 1.0,
+        "TarifHoraire": 0.0,
         "DateEntree": "2025-05-08T23:42:25.6358747+02:00",
         "Poste": "Chauffeur",
         "Salaire": 20000.0,
@@ -2526,7 +1705,7 @@
       },
       {
         "$type": "transconnect.Chauffeur, transconnect",
-        "TarifHoraire": 1.0,
+        "TarifHoraire": 0.0,
         "DateEntree": "2025-05-08T23:42:53.1175956+02:00",
         "Poste": "Chauffeur",
         "Salaire": 2000.0,
