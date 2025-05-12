@@ -35,8 +35,13 @@ namespace transconnect
         /// </summary>
         public override void ModifierInfos(DataState dataState)
         {
+            // Sauvegarde des anciennes informations
+            string ancienPoste = this.poste;
+
+            // Appel à la méthode de base pour modifier les informations générales
             base.ModifierInfos(dataState);
 
+            // Modification du salaire
             Console.Write($"Salaire ({salaire}) : ");
             string saisie = Console.ReadLine()!;
             if (!string.IsNullOrWhiteSpace(saisie) &&
@@ -44,25 +49,74 @@ namespace transconnect
             {
                 salaire = nouveauSalaire;
             }
+
+            // Modification du poste
             Console.Write($"Poste ({poste}) : ");
-             saisie = Console.ReadLine()!;
-            if (!string.IsNullOrWhiteSpace(saisie) &&
-                decimal.TryParse(saisie, out var nouveauPoste))
+            saisie = Console.ReadLine()!;
+            if (!string.IsNullOrWhiteSpace(saisie))
             {
-                salaire = nouveauPoste;
+                poste = saisie;
             }
 
-            var salarie = dataState.organigramme.RechercherSalarie(this);
-            if (salarie != null)
+            // Mise à jour de l'organigramme si le poste a changé
+            if (ancienPoste != poste)
             {
-                salarie.Salarie = this;
-            }
-            
+                // Supprimer le salarié de l'organigramme
+                dataState.organigramme.SupprimerSalarie(this);
 
-            
+                if (poste == Salarie.chefEquipe)
+                {
+                    // Ajouter le salarié comme frère des autres chefs d'équipe et successeur du directeur
+                    var directeurNoeud = dataState.organigramme.RechercherSalarie(dataState.directeur);
+                    if (directeurNoeud != null)
+                    {
+                        dataState.organigramme.Ajouter_Succ(directeurNoeud, this);
+                        Console.WriteLine($"Le salarié {Nom} {Prenom} a été promu au poste de Chef d'équipe.");
+                    }
+                }
+                else if (poste == Salarie.chauffeur)
+                {
+                    // Demander le numéro de SS du chef d'équipe
+                    Console.Write("Entrez le numéro de sécurité sociale du chef d'équipe : ");
+                    string numeroSSChef = Console.ReadLine()!;
+                    var chefEquipe = dataState.salaries
+                        .FirstOrDefault(s => s.NumeroSS == numeroSSChef && s.Poste == Salarie.chefEquipe);
+
+                    if (chefEquipe != null)
+                    {
+                        // Ajouter le chauffeur en tant que successeur du chef d'équipe
+                        var chefNoeud = dataState.organigramme.RechercherSalarie(chefEquipe);
+                        if (chefNoeud != null)
+                        {
+                            dataState.organigramme.Ajouter_Succ(chefNoeud, this);
+                            Console.WriteLine($"Le chauffeur {Nom} {Prenom} a été ajouté sous le chef d'équipe {chefEquipe.Nom} {chefEquipe.Prenom}.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Chef d'équipe introuvable. Le poste n'a pas été mis à jour.");
+                        poste = ancienPoste; // Restaurer l'ancien poste si le chef d'équipe est introuvable
+                    }
+                }
+                else if (poste == Salarie.directeur)
+                {
+                    // Vérifier s'il existe déjà un directeur
+                    if (dataState.directeur != null && !dataState.directeur.Equals(this))
+                    {
+                        Console.WriteLine("Erreur : il ne peut y avoir qu'un seul directeur dans l'entreprise.");
+                        poste = ancienPoste; // Restaurer l'ancien poste
+                    }
+                    
+                }
+                else
+                {
+                    // Ajouter le salarié sous son manager habituel (par exemple, le directeur)
+                    Salarie? manager = dataState.salaries.FirstOrDefault(s => s.Poste == Salarie.directeur);
+                    dataState.organigramme.AjouterSalarie(this, manager);
+                }
+            }
+
             Console.WriteLine("Les informations ont été mises à jour.");
-
-
         }
 
         /// <summary>

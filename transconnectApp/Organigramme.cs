@@ -168,10 +168,10 @@
             /// </summary>
             /// <param name="salarie"></param>
             /// <returns></returns>
-            public Noeud? RechercherSalarie(Salarie salarie)
+            public Noeud? RechercherSalarie(Salarie? salarie)
             {
                 if (racine is null) return null;
-                return Rechercher(racine, salarie);
+                return Rechercher(racine, salarie!);
             }
             
             /// <summary>
@@ -193,7 +193,6 @@
             }
             /// <summary>
             /// Supprime un noeud de l'organigramme.
-            /// Cette méthode est appelée récursivement pour parcourir l'organigramme.
             /// </summary>
             /// <param name="parent"></param>
             /// <param name="courant"></param>
