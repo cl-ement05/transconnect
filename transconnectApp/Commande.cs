@@ -208,7 +208,7 @@ namespace transconnect
                             Console.WriteLine("Une erreur inattendue est survenue : " + ex.Message);
                         }
                         break;
-                        
+
                     case "4":
                         continueA = false;
                         break;
@@ -331,10 +331,9 @@ namespace transconnect
 
             Console.WriteLine("Distance estimée : "+distancekm+" km");
 
-            double prix=distancekm * chauffeurSelectionne.TarifHoraire;
-            Console.WriteLine("Prix de la commande : "+prix+" euros");
-
             Commande commande = new Commande(clientExistant, villeDepart, villeArrivee, vehiculeSelectionne, chauffeurSelectionne, dateCommande);
+
+            Console.WriteLine("Prix de la commande : "+commande.CalculerPrixCommande(dataState)+" euros");
 
             Console.WriteLine("Commande créée avec succès");
             return commande;

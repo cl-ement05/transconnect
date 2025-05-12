@@ -10,7 +10,38 @@
   },
   "clients": {
     "$type": "System.Collections.Generic.List`1[[transconnect.Client, transconnect]], System.Private.CoreLib",
-    "$values": []
+    "$values": [
+      {
+        "$type": "transconnect.Client, transconnect",
+        "NumeroSS": "123",
+        "Nom": "Dupont",
+        "Prenom": "Victor",
+        "DateNaissance": "1988-05-05T00:00:00",
+        "AdressePostale": "boulevard des petites fleurs",
+        "Email": "victor@dupont.fr",
+        "Telephone": "06514966735"
+      },
+      {
+        "$type": "transconnect.Client, transconnect",
+        "NumeroSS": "456",
+        "Nom": "Angelli",
+        "Prenom": "Emilie",
+        "DateNaissance": "1997-03-24T00:00:00",
+        "AdressePostale": "avenue Victor Hugo",
+        "Email": "a.emilie@icloud.com",
+        "Telephone": "06413468863"
+      },
+      {
+        "$type": "transconnect.Client, transconnect",
+        "NumeroSS": "789",
+        "Nom": "Leblanc",
+        "Prenom": "Hugo",
+        "DateNaissance": "1984-09-18T00:00:00",
+        "AdressePostale": "leblanc.hugo@free.fr",
+        "Email": "lebanc.hugo@free.fr",
+        "Telephone": "06422467925"
+      }
+    ]
   },
   "salaries": {
     "$type": "System.Collections.Generic.List`1[[transconnect.Salarie, transconnect]], System.Private.CoreLib",
@@ -1642,7 +1673,46 @@
   },
   "flotte": {
     "$type": "System.Collections.Generic.List`1[[transconnect.Vehicule, transconnect]], System.Private.CoreLib",
-    "$values": []
+    "$values": [
+      {
+        "$type": "transconnect.CamionFrigorifique, transconnect",
+        "CapaciteIsotherme": 23.0,
+        "NombreGroupesElectrogene": 2,
+        "CapaciteChargement": 35.0,
+        "Immatriculation": "AAA11AA",
+        "Couleur": "rouge",
+        "Marque": "peugeot",
+        "Statut": "disponible"
+      },
+      {
+        "$type": "transconnect.CamionCiterne, transconnect",
+        "VolumeCuve": 90.0,
+        "TypeProduit": "eau",
+        "CapaciteChargement": 60.0,
+        "Immatriculation": "BB235BBB",
+        "Couleur": "Bleu",
+        "Marque": "Renault",
+        "Statut": "disponible"
+      },
+      {
+        "$type": "transconnect.CamionBenne, transconnect",
+        "NombreBennes": 4,
+        "GrueAuxiliaire": false,
+        "CapaciteChargement": 45.0,
+        "Immatriculation": "BB225BB",
+        "Couleur": "Blanc",
+        "Marque": "Renault",
+        "Statut": "disponible"
+      },
+      {
+        "$type": "transconnect.Voiture, transconnect",
+        "Nb_passager": 5,
+        "Immatriculation": "ABT5563B",
+        "Couleur": "noir",
+        "Marque": "peugeot",
+        "Statut": "disponible"
+      }
+    ]
   },
   "chauffeurs": {
     "$type": "System.Collections.Generic.List`1[[transconnect.Chauffeur, transconnect]], System.Private.CoreLib",
