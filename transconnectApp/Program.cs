@@ -3,27 +3,6 @@
         public static void Main(string[] args) 
         {
             Console.WriteLine("Bienvenue sur transconnect");
-            Console.Write("Veuillez écrire le nom COMPLET du fichier CSV contenant les infos sur les villes : ");
-            string path = Console.ReadLine()!;
-
-            Graph<string>? graph = Graph<string>.createGraphFromCSV(path);
-            if (graph is null) {
-                //error message already printed in method
-                Console.WriteLine("");
-                string[] files = Directory.GetFiles(Environment.CurrentDirectory, "*.csv", SearchOption.AllDirectories);
-                if (files.Length > 0) {
-                    Console.WriteLine("Liste des fichiers .CSV trouvés dans le répertoire :");
-                    foreach (string file in files) {
-                        Console.WriteLine(file);
-                    }
-                    Console.WriteLine("Veuillez réessayer");
-                    return;
-                } else {
-                    Console.WriteLine("Aucun fichier CSV dans le répertoire courant");
-                    Console.WriteLine("Veuillez réessayer");
-                    return;
-                }
-            }
 
             DataState dataState;
 
@@ -33,18 +12,39 @@
             string answer = Console.ReadLine()!;
             switch (answer.ToLower()) {
                 case "vide":
+                    Console.Write("Veuillez écrire le nom COMPLET du fichier CSV contenant les infos sur les villes : ");
+                    string path = Console.ReadLine()!;
+
+                    Graph<string>? graph = Graph<string>.createGraphFromCSV(path);
+                    if (graph is null) {
+                        //error message already printed in method
+                        return;
+                    }
+                    
                     dataState = new DataState(graph);
                     break;
                 case "charger":
                     DataState? loaded = DataState.Load(".data.json");
                     if (loaded is null) {
-                        Console.WriteLine("Une erreur est survenue lors de la lecture du fichier de données, vous commencerez donc avec une entreprise vide");
-                        dataState = new DataState(graph);
+                        Console.WriteLine("Une erreur est survenue lors de la lecture du fichier de données, veuillez commencer avec une entreprise vide");
+                        return;
                     } else {
                         dataState = loaded;
-                        Console.WriteLine("Données chargées avec succès");
+                        Console.WriteLine("Données chargées avec succès. Vous pouvez également changer le " +
+                        "graph des villes. Si vous souhaitez faire ça, écrire le nom COMPLET du fichier CSV contenant" +
+                        " les infos sur les villes, sinon laissez le champ blanc : ");
+
+                        path = Console.ReadLine()!;
+
+                        graph = Graph<string>.createGraphFromCSV(path);
+                        if (graph is null) {
+                            //error message already printed in method
+                            Console.WriteLine("Le graph incus dans les données sera utilisé");
+                        } else {
+                            Console.WriteLine("Graph chargé!");
+                            dataState.graphe = graph;
+                        }
                     }
-                    // dataState = DataState.predefinedState(graph);
                     break;
                 default:
                     Console.WriteLine("Choix invalide");
