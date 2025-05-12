@@ -33,9 +33,9 @@ namespace transconnect
         /// <summary>
         /// Méthode pour modifier les informations d'un salarié.
         /// </summary>
-        public override void ModifierInfos()
+        public override void ModifierInfos(DataState dataState)
         {
-            base.ModifierInfos();
+            base.ModifierInfos(dataState);
 
             Console.Write($"Salaire ({salaire}) : ");
             string saisie = Console.ReadLine()!;
@@ -44,6 +44,22 @@ namespace transconnect
             {
                 salaire = nouveauSalaire;
             }
+            Console.Write($"Poste ({poste}) : ");
+             saisie = Console.ReadLine()!;
+            if (!string.IsNullOrWhiteSpace(saisie) &&
+                decimal.TryParse(saisie, out var nouveauPoste))
+            {
+                salaire = nouveauPoste;
+            }
+
+            var salarie = dataState.organigramme.RechercherSalarie(this);
+            if (salarie != null)
+            {
+                salarie.Salarie = this;
+            }
+            
+
+            
             Console.WriteLine("Les informations ont été mises à jour.");
 
 

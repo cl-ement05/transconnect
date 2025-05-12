@@ -138,7 +138,7 @@
                         if (client is null) {
                             Console.WriteLine("Client non trouvé");
                         } else {
-                            client.ModifierInfos();
+                            client.ModifierInfos(dataState);
                         }
                         break;
                     case "5":
@@ -244,7 +244,7 @@
                         if (salarie is null) {
                             Console.WriteLine("Salarié non trouvé");
                         } else {
-                            salarie.ModifierInfos();
+                            salarie.ModifierInfos(dataState);
                         }
                         break;
                     case "4":
