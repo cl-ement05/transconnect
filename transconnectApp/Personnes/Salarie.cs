@@ -33,9 +33,9 @@ namespace transconnect
         /// <summary>
         /// Méthode pour modifier les informations d'un salarié.
         /// </summary>
-        public override void ModifierInfos()
+        public override void ModifierInfos(DataState dataState)
         {
-            base.ModifierInfos();
+            base.ModifierInfos(dataState);
 
             Console.Write($"Salaire ({salaire}) : ");
             string saisie = Console.ReadLine()!;
@@ -44,9 +44,13 @@ namespace transconnect
             {
                 salaire = nouveauSalaire;
             }
-            Console.WriteLine("Les informations ont été mises à jour.");
+            
 
-
+            var salarie = dataState.organigramme.RechercherSalarie(this);
+            if (salarie != null)
+            {
+                salarie.Salarie = this;
+            }
         }
 
         /// <summary>
@@ -87,6 +91,7 @@ namespace transconnect
                     foreach (Chauffeur c in team.Where(c => !c.Equals(doyen)))
                         nouveauChef.AssignerChauffeur(c);
 
+                    RetirerDesCollections(dataState, chef);
                     dataState.salaries.Remove(doyen);
                     dataState.salaries.Add(nouveauChef);
                     dataState.organigramme.AjouterSalarie(nouveauChef, dataState.directeur);
@@ -108,13 +113,12 @@ namespace transconnect
                         return;
                     }
 
+                    RetirerDesCollections(dataState, chef);
                     chef.SupprimerChauffeur(seul);
                     cible.AssignerChauffeur(seul);
                     dataState.organigramme.ModifierManager(seul, cible);
                     Console.WriteLine($"Nouveau manager pour reprendre le chauffeur : {cible.Nom} {cible.Prenom}");
                 }
-
-                RetirerDesCollections(dataState, chef);
                 return;
             }
 
@@ -124,9 +128,8 @@ namespace transconnect
                                                .OfType<ChefEquipe>()
                                                .FirstOrDefault(c => c.ChauffeursSousResponsabilite.Contains(chauffeur));
                 chefProprietaire?.SupprimerChauffeur(chauffeur);
+                RetirerDesCollections(dataState, this);
             }
-
-            RetirerDesCollections(dataState, this);
         }
 
         /// <summary>

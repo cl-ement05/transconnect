@@ -43,7 +43,7 @@ namespace transconnect{
             this.telephone = telephone;
         }
 
-        public virtual void ModifierInfos() {
+        public virtual void ModifierInfos(DataState dataState) {
             Console.WriteLine("Modification des informations de " + Nom + " " + Prenom 
             + ". Appuyez sur Entrée pour conserver la valeur actuelle.");
 
