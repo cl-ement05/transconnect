@@ -70,8 +70,9 @@ namespace transconnect
                 Console.WriteLine("\nQue souhaitez-vous modifier ?");
                 Console.WriteLine("1. Modifier le trajet (ville de départ et d'arrivée)");
                 Console.WriteLine("2. Modifier la date de commande");
-                Console.WriteLine("3. Terminer la modification");
-                Console.Write("Entrez votre choix (1-3) : ");
+                Console.WriteLine("3. Appliquer une réduction sur le prix de la commande");
+                Console.WriteLine("4. Terminer la modification");
+                Console.Write("Entrez votre choix (1-4) : ");
 
                 string choix = Console.ReadLine()!;
 
@@ -171,8 +172,44 @@ namespace transconnect
                             }
                         }
                         break;
-
+                    
                     case "3":
+                        try
+                        {
+                            Console.Write("Quel pourcentage de réduction voulez-vous appliquer ? ");
+                            string? saisie = Console.ReadLine();
+
+                            if (string.IsNullOrWhiteSpace(saisie))
+                                throw new FormatException("La saisie est vide.");
+
+                            if (!float.TryParse(saisie, out float pourcentage))
+                                throw new FormatException("La saisie n'est pas un nombre valide.");
+
+                            if (pourcentage <= 0 || pourcentage > 100)
+                                throw new ArgumentOutOfRangeException("Le pourcentage doit être entre 1 et 100.");
+
+                            double prixInitial = CalculerPrixCommande(dataState);
+                            double montantReduction = prixInitial * (pourcentage / 100);
+                            double nvPrix = prixInitial - montantReduction;
+
+                            Console.WriteLine($"Réduction de {pourcentage}% appliquée ({montantReduction} €).");
+                            Console.WriteLine($"Le nouveau prix est de {nvPrix} €");
+                        }
+                        catch (FormatException fe)
+                        {
+                            Console.WriteLine("Erreur de format : " + fe.Message);
+                        }
+                        catch (ArgumentOutOfRangeException aoore)
+                        {
+                            Console.WriteLine("Erreur : " + aoore.Message);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Une erreur inattendue est survenue : " + ex.Message);
+                        }
+                        break;
+                        
+                    case "4":
                         continueA = false;
                         break;
 
